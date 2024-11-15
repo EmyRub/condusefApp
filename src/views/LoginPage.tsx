@@ -5,7 +5,7 @@ import { UserIcon, KeyIcon } from "@heroicons/react/16/solid";
 export default function LoginPage() {
     return (
         <>
-            <main className="bg-[url('/public/bg1.jpg')] h-screen w-full flex justify-center items-center p-4 relative overflow-hidden">
+            <main className="bg-[url('/bg1.jpg')] h-screen w-full flex justify-center items-center p-4 relative overflow-hidden">
 
                 <div className="bg-teal-800 opacity-65 absolute w-full h-full">
                     <ParticlesBackground />
@@ -20,10 +20,9 @@ export default function LoginPage() {
                     <ParticlesBackground />
                 </div>
 
-                <form className="w-2/4 max-w-2xl mx-auto p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
-                    <img src="../public/logoGrudis.gif" alt="Logo Grudis" className="w-1/4 mx-auto" />
-
-
+                <form className="w-11/12 md:w-2/4 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
+                   
+                    <img src="../logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
 
                     <div className="bg-teal-600	p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden ">
                         <UserIcon className="w-8 text-white opacity-50" />
@@ -40,11 +39,11 @@ export default function LoginPage() {
                     <button className="bg-teal-900 rounded-3xl block w-full mt-3 p-3 cursor-pointer text-white hover:bg-teal-600">Crear Cuenta</button>
 
 
-                    <div className="mt-8 flex justify-between items-center">
+                    <div className="mt-8 flex flex-col center md:flex-row md:justify-between items-center">
 
-                        <img src="../public/logo-micro.png" alt="Logo Microfinix" className="w-52" />
+                        <img src="../logo-micro.png" alt="Logo Microfinix" className="w-52" />
 
-                        <img src="../public/logo-condusef.png" alt="Logo Condusef" className="max-w-36" />
+                        <img src="../logo-condusef.png" alt="Logo Condusef" className="max-w-36" />
 
                         <p className="text-right text-white">¿Olvidaste tu contraseña?
                             <NavLink to='/' className='underline text-sm block font-light'> Has clic aquí</NavLink>
