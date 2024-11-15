@@ -9,7 +9,6 @@ export default function AppRouter() {
     return (
         <BrowserRouter>
             <Routes>
-
                 <Route element={<BgLogin/>}>
                     <Route path="/" element={<LoginPage />}></Route>
                     <Route path="/newAcount" element={<NewAcountPage />}></Route>

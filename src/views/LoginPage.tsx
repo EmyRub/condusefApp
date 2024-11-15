@@ -1,22 +1,53 @@
 import { NavLink } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { UserIcon, KeyIcon } from "@heroicons/react/16/solid";
+import Error from "../components/Error";
 
 export default function LoginPage() {
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const validateLogin = () => {
+
+    }
+
     return (
 
-        <form className="w-11/12 md:w-2/4 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
+        <form
+            onSubmit={handleSubmit(validateLogin)}
+            className="w-11/12 md:w-2/4 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
 
             <img src="../logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
-
-            <div className="bg-teal-600	p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden ">
+         
+            <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden ">
                 <UserIcon className="w-8 text-white opacity-50" />
-                <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50" type="email" name="email" id="email" placeholder="Email:" />
+                <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50"
+                    type="email"
+                    id="email"
+                    placeholder="Email:"
+                    {...register('email', {
+                        required: 'El campo de usuario esta vacío'
+                    })}
+                />
             </div>
+            {errors.email && (
+                <Error>{errors.email?.message as string}</Error>
+            )}
 
             <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden ">
                 <KeyIcon className="w-8 text-white opacity-50" />
-                <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50" type="password" name="password" id="password" placeholder="Contraseña:" />
+                <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50"
+                    type="password"
+                    id="password"
+                    placeholder="Contraseña:"
+                    {...register('password', {
+                        required: 'El campo password esta vacío'
+                    })}
+                />
             </div>
+            {errors.password && (
+                <Error>{errors.password?.message as string}</Error>
+            )}
 
             <input className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-600" type="submit" value="Iniciar Sesión" />
 
