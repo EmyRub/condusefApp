@@ -18,6 +18,9 @@ export default function NewAcountPage() {
 
       <img src="../logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
 
+      <hr className="my-4" />
+
+      <h1 className="text-center text-white mb-4 text-lg uppercase">Nueva Cuenta</h1>
       <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
         <UserIcon className="w-8 text-white opacity-50" />
         <input className="block w-full bg-transparent border-none placeholder:text-white placeholder:opacity-50 outline-none"
