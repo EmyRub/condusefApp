@@ -7,7 +7,7 @@ import BgLogin from "./layouts/BgLogin";
 
 export default function AppRouter() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/condusefApp">
             <Routes>
                 <Route element={<BgLogin/>}>
                     <Route path="/" element={<LoginPage />}></Route>
