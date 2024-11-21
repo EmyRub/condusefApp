@@ -16,7 +16,7 @@ export default function NewAcountPage() {
       onSubmit={handleSubmit(newUser)}
       className="w-11/12 md:w-2/4 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
 
-      <img src="../logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
+      <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
 
       <hr className="my-4" />
 
@@ -92,9 +92,9 @@ export default function NewAcountPage() {
 
       <div className="mt-8 flex flex-col center md:flex-row md:justify-between items-center">
 
-        <img src="../logo-micro.png" alt="Logo Microfinix" className="w-52" />
+        <img src="/condusefApp/logo-micro.png" alt="Logo Microfinix" className="w-52" />
 
-        <img src="../logo-condusef.png" alt="Logo Condusef" className="max-w-36" />
+        <img src="/condusefApp/logo-condusef.png" alt="Logo Condusef" className="max-w-36" />
 
       </div>
 

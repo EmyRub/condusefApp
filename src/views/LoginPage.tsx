@@ -17,7 +17,7 @@ export default function LoginPage() {
             onSubmit={handleSubmit(validateLogin)}
             className="w-11/12 md:w-2/4 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
 
-            <img src="../logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
+            <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
          
             <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
                 <UserIcon className="w-8 text-white opacity-50" />
@@ -55,9 +55,9 @@ export default function LoginPage() {
 
             <div className="mt-8 flex flex-col center md:flex-row md:justify-between items-center">
 
-                <img src="../logo-micro.png" alt="Logo Microfinix" className="w-52" />
+                <img src="/condusefApp/logo-micro.png" alt="Logo Microfinix" className="w-52" />
 
-                <img src="../logo-condusef.png" alt="Logo Condusef" className="max-w-36" />
+                <img src="/condusefApp/logo-condusef.png" alt="Logo Condusef" className="max-w-36" />
 
                 <p className="text-right text-white">¿Olvidaste tu contraseña?
                     <NavLink to='/' className='underline text-sm block font-light hover:text-teal-100'>Has clic aquí</NavLink>
