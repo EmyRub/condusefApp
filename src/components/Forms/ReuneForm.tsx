@@ -1,7 +1,7 @@
 
 export default function ReuneForm() {
     return (
-        <form autoComplete="on" className="p-8 bg-slate-50 rounded-2xl">
+        <form autoComplete="on" className="p-8 bg-slate-50 rounded-2xl w-9/12 mx-auto">
 
             <select name="empresa" id="empresa">
                 <option value="reune" selected>REUNE</option>
@@ -64,51 +64,50 @@ export default function ReuneForm() {
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
                 
-                    <div className="basis-1/2">
-                        <label htmlFor="inst" className="inline-block w-1/3">Nombre de la institución:</label>
-                        <input id="inst" type="text" className="border-b-2 border-b-teal-300 inline-block w-2/3" readOnly disabled />
-                    </div>
-
-                    <div className="basis-5/12">
-                        <label htmlFor="sect" className="inline-block w-1/5">Sector:</label>
-                        <input type="text" name="sect" id="sect" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
+                    <div className="basis-full">
+                        <label htmlFor="inst" className="inline-block w-1/5">Nombre de la institución:</label>
+                        <input id="inst" type="text" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
                     </div>
 
                     <div className="basis-1/3">
-                        <label htmlFor="loc" className="inline-block w-1/5">Localidad:</label>
-                        <input type="text" name="loc" id="loc" className="border-b-2 border-b-teal-300 w-4/5" readOnly disabled />
+                        <label htmlFor="sect" className="inline-block w-1/5">Sector:</label>
+                        <input type="text" name="sect" id="sect" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
                     </div>
+                    
+                    <div className="basis-1/3">
+                        <label htmlFor="cp" className="inline-block w-1/5">C.P.</label>
+                        <input type="text" name="cp" id="cp" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
+                    </div>                    
+                    
+                    <select name="" id="" className="basis-1/4">
+                        <option value="">Ninguno</option>
+                    </select>
 
-                    <div className="basis-3/12">
+                    <div className="basis-1/3">
                         <label htmlFor="edo" className="inline-block w-1/5">Estado:</label>
                         <input type="text" name="edo" id="edo" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
                     </div>
 
                     <div className="basis-1/3">
-                        <label htmlFor="muni" className="inline-block w-1/5">Municipio:</label>
-                        <input type="text" name="muni" id="muni" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
+                        <label htmlFor="muni" className="inline-block w-1/4">Municipio:</label>
+                        <input type="text" name="muni" id="muni" className="border-b-2 border-b-teal-300 inline-block w-3/4" readOnly disabled />
                     </div>
 
-
-                    <div className="basis-1/3">
-                        <label htmlFor="tyLoc" className="inline-block w-1/4">Tipo Localidad:</label>
-                        <input type="text" name="tyLoc" id="tyLoc" className="border-b-2 border-b-teal-300 inline-block w-9/12" readOnly disabled />
+                    <div className="basis-1/4">
+                        <label htmlFor="loc" className="inline-block w-1/3">Localidad:</label>
+                        <input type="text" name="loc" id="loc" className="border-b-2 border-b-teal-300 w-2/3" readOnly disabled />
+                    </div>
+                    
+                    <div className="basis-5/12">
+                        <label htmlFor="tyLoc" className="inline-block w-1/3">Tipo Localidad:</label>
+                        <input type="text" name="tyLoc" id="tyLoc" className="border-b-2 border-b-teal-300 inline-block w-4/6" readOnly disabled />
                     </div>
 
-
-                    <div className="basis-3/12">
-                        <label htmlFor="col" className="inline-block w-1/5">Colonia:</label>
-                        <input type="text" name="col" id="col" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
+                    <div className="basis-1/2">
+                        <label htmlFor="col" className="inline-block w-1/6">Colonia:</label>
+                        <input type="text" name="col" id="col" className="border-b-2 border-b-teal-300 inline-block w-4/6" readOnly disabled />
                     </div>
 
-                    <div className="basis-3/12">
-                        <label htmlFor="cp" className="inline-block w-1/5">C.P.</label>
-                        <input type="text" name="cp" id="cp" className="border-b-2 border-b-teal-300 inline-block w-4/5" readOnly disabled />
-                    </div>
-
-                    <select name="" id="">
-                        <option value="">Ninguno</option>
-                    </select>
                 </div>
 
             </fieldset>
