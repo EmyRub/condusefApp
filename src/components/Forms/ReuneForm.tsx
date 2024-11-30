@@ -22,39 +22,59 @@ export default function ReuneForm() {
                 </div>
             </fieldset>
 
-            <fieldset>
-                <label htmlFor="">Nombre del Cliente</label>
-                <label htmlFor="">Teléfono</label>
-                <label htmlFor="">Correo</label>
-                <div className="flex gap-3 items-center">
-                    <label htmlFor="exg">Si es extranjero</label>
-                    <input type="checkbox" name="exg" id="exg" />
-                </div>
-            </fieldset>
+            <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8">
 
-            <fieldset>
-                <legend>Datos de la persona</legend>
-                <div className="">
-                    <label htmlFor="type">Tipo de Persona</label>
-                    <select name="type" id="type"></select>
-                </div>
+                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-stone-800">Datos de la persona</legend>
 
-                <div className="">
-                    <label htmlFor="age">Edad</label>
-                    <span id="age">00</span>
-                </div>
+                <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
-                <div className="flex gap-3 items-center">
-                    <label>Sexo</label>
-
-                    <div className="flex gap-1">
-                        <input type="radio" name="sex" id="m" />
-                        <label htmlFor="m">M</label>
+                    <div className="basis-1/2">
+                        <label htmlFor="cliente" className="inline-block w-36">Nombre del Cliente:</label>
+                        <input type="text" name="cliente" id="cliente" className="border-b-2 border-b-teal-300 inline-block w-8/12" readOnly disabled />
                     </div>
-                    <div className="flex gap-1">
-                        <input type="radio" name="sex" id="h" />
-                        <label htmlFor="h">H</label>
+
+                    <div className="basis-5/12">
+                        <label htmlFor="tel" className="inline-block w-20">Teléfono:</label>
+                        <input type="tel" name="tel" id="tel" className="border-b-2 border-b-teal-300 inline-block w-9/12" readOnly disabled />
                     </div>
+
+                    <div className="basis-2/6">
+                        <label htmlFor="email" className="inline-block w-16">Correo:</label>
+                        <input type="email" name="email" id="email" className="border-b-2 border-b-teal-300 inline-block w-3/4" readOnly disabled />
+                    </div>
+
+                    <div className="basis-1/5">
+                        <label htmlFor="age" className="inline-block w-12">Edad:</label>
+                        <input type="number" name="age" id="age" className="border-b-2 border-b-teal-300 inline-block w-1/2" readOnly disabled />
+                    </div>
+
+                    <div className="basis-1/5 flex gap-3 items-center">
+                        <label htmlFor="sex" className="inline-block w-12">Sexo:</label>
+                        
+                        <div className="flex gap-1">
+                            <input type="radio" name="sex" id="m" />
+                            <label htmlFor="m">M</label>
+                        </div>
+                        <div className="flex gap-1">
+                            <input type="radio" name="sex" id="h" />
+                            <label htmlFor="h">H</label>
+                        </div>
+                    </div>
+
+
+                    <div className="basis-1/4">
+                        <label htmlFor="typePer" className="inline-block w-36">Tipo de Persona:</label>
+
+                        <select name="typePer" id="typePer" className="inline-block w-1/3">
+                            <option value="">0</option>
+                        </select>
+                    </div>
+
+                    <div className="basis-2/6">
+                        <input type="checkbox" name="exg" id="exg" />
+                        <label htmlFor="exg" className="inline-block w-40">Si es del extranjero:</label>
+                    </div>
+
                 </div>
             </fieldset>
 
@@ -81,8 +101,11 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-1/4">
-                        <label htmlFor="FoAtn" className="inline-block w-32">Folio de Atención</label>
-                        <input type="number" name="FoAtn" id="FoAtn" className="border-b-2 border-b-teal-300 inline-block w-2/5" readOnly disabled />
+                        <label htmlFor="eReg" className="inline-block w-36">Estado de registro</label>
+
+                        <select name="eReg" id="eReg" className="inline-block w-1/3">
+                            <option value="">0</option>
+                        </select>
                     </div>
 
                     <div className="basis-2/6">
@@ -96,38 +119,42 @@ export default function ReuneForm() {
                     <div className="basis-2/6">
                         <label htmlFor="queja" className="inline-block w-28">Tipo de Queja</label>
 
-                        <select name="queja" id="queja" className="w-1/2">
+                        <select name="queja" id="queja" className="inline-block w-1/2">
                             <option value="">Ninguno</option>
                         </select>
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="eReg" className="inline-block w-28">Estado de registro</label>
+                    <div className="basis-1/4">
+                        <label htmlFor="nProd" className="inline-block w-40">Número de Producto:</label>
 
-                        <select name="eReg" id="eReg" className="w-1/2">
+                        <select name="nProd" id="nProd" className="w-1/4">
                             <option value="">0</option>
                         </select>
                     </div>
 
                     <div className="basis-2/6">
-                        <label htmlFor="mCom" className="inline-block w-28">Medio de Comunicación:</label>
+                        <label htmlFor="mCom" className="inline-block w-48">Medio de Comunicación:</label>
 
-                        <select name="mCom" id="mCom" className="w-1/2">
+                        <select name="mCom" id="mCom" className="w-1/3">
                             <option value="">0</option>
                         </select>
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="nProd" className="inline-block w-28">Número de Producto:</label>
 
-                        <select name="nProd" id="nProd" className="w-1/2">
-                            <option value="">0</option>
-                        </select>
+                    <div className="basis-2/6">
+                        <label htmlFor="FoAtn" className="inline-block w-32">Folio de Atención</label>
+                        <input type="number" name="FoAtn" id="FoAtn" className="border-b-2 border-b-teal-300 inline-block w-2/5" readOnly disabled />
+                    </div>
+
+
+                    <div className="basis-5/12">
+                        <label htmlFor="foConduf" className="inline-block w-28">Folio condusef:</label>
+                        <input type="number" name="foConduf" id="foConduf" className="border-b-2 border-b-teal-300 inline-block w-4/6" readOnly disabled />
                     </div>
 
                     <div className="basis-1/2">
-                        <label htmlFor="foConduf" className="inline-block w-1/6">Folio condusef:</label>
-                        <input type="number" name="foConduf" id="foConduf" className="border-b-2 border-b-teal-300 inline-block w-4/6" readOnly disabled />
+                        <label htmlFor="causa" className="inline-block w-12">Causa:</label>
+                        <input type="number" name="causa" id="causa" className="border-b-2 border-b-teal-300 inline-block w-10/12" readOnly disabled />
                     </div>
 
                 </div>
