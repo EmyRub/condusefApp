@@ -3,23 +3,36 @@ export default function ReuneForm() {
     return (
         <form autoComplete="on" className="p-8 bg-slate-50 rounded-2xl w-9/12 mx-auto">
 
-            <select name="empresa" id="empresa">
-                <option value="reune" selected>REUNE</option>
-                <option value="redeco">REDECO</option>
-            </select>
+            <div className="flex justify-center bg-teal-500 rounded-2xl mb-12">
+                <select name="empresa" id="empresa" className="w-1/4 my-10 text-center">
+                    <option value="reune" selected>REUNE</option>
+                    <option value="redeco">REDECO</option>
+                </select>
+            </div>
 
-            <fieldset className="flex">
-                <div>
-                    <label htmlFor="ente">N° de ente</label>
-                    <p></p>
-                    <button></button>
+            <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8 flex justify-between items-center flex-wrap gap-12">
+
+                <div className="basis-1/2">
+                    <label htmlFor="ente" className="inline-block w-32">Número del ente:</label>
+                    <input type="number" name="ente" id="ente" className="border-b-2 border-b-teal-300 inline-block w-2/6" readOnly disabled />
                 </div>
 
-                <div>
-                    <label htmlFor="suc">Sucursal</label>
-                    <p></p>
-                    <button></button>
+                <div className="basis-1/3">
+                    <label htmlFor="sucur" className="inline-block w-16">Sucursal:</label>
+                    <input type="number" name="sucur" id="sucur" className="border-b-2 border-b-teal-300 inline-block w-2/6" readOnly disabled />
                 </div>
+
+
+                <div className="basis-1/2">
+                    <label htmlFor="recl" className="inline-block w-96">¿El reclamo o Aclaración es de objeto monetario?:</label>
+                    <input type="checkbox" name="recl" id="recl" />
+                </div>
+
+                <div className="basis-1/3">
+                    <label htmlFor="rever" className="inline-block w-16">Rever:</label>
+                    <input type="checkbox" name="rever" id="rever" />
+                </div>
+
             </fieldset>
 
             <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8">
@@ -50,7 +63,7 @@ export default function ReuneForm() {
 
                     <div className="basis-1/5 flex gap-3 items-center">
                         <label htmlFor="sex" className="inline-block w-12">Sexo:</label>
-                        
+
                         <div className="flex gap-1">
                             <input type="radio" name="sex" id="m" />
                             <label htmlFor="m">M</label>
@@ -61,18 +74,23 @@ export default function ReuneForm() {
                         </div>
                     </div>
 
-
-                    <div className="basis-1/4">
+                    <div className="basis-2/6">
                         <label htmlFor="typePer" className="inline-block w-36">Tipo de Persona:</label>
 
-                        <select name="typePer" id="typePer" className="inline-block w-1/3">
+                        <select name="typePer" id="typePer" className="inline-block w-1/2">
                             <option value="">0</option>
                         </select>
                     </div>
 
-                    <div className="basis-2/6">
-                        <input type="checkbox" name="exg" id="exg" />
+                    <div className="basis-1/5">
+                        <label htmlFor="pori" className="inline-block w-12">PORI:</label>
+                        <input type="checkbox" name="pori" id="pori" />
+
+                    </div>
+
+                    <div className="basis-1/5">
                         <label htmlFor="exg" className="inline-block w-40">Si es del extranjero:</label>
+                        <input type="checkbox" name="exg" id="exg" />
                     </div>
 
                 </div>
@@ -92,12 +110,12 @@ export default function ReuneForm() {
 
                     <div className="basis-2/6">
                         <label htmlFor="FReg" className="inline-block w-36">Fecha de Registro:</label>
-                        <input type="date" name="FReg" id="FReg" className="border-b-2 border-b-teal-300 inline-block w-1/2" readOnly disabled />
+                        <input type="date" name="FReg" id="FReg" className="border-b-2 border-b-teal-300 inline-block w-1/2" />
                     </div>
 
                     <div className="basis-2/6">
                         <label htmlFor="FeAtn" className="inline-block w-36">Fecha de Atención</label>
-                        <input type="date" name="FeAtn" id="FeAtn" className="border-b-2 border-b-teal-300 inline-block w-1/2" readOnly disabled />
+                        <input type="date" name="FeAtn" id="FeAtn" className="border-b-2 border-b-teal-300 inline-block w-1/2" />
                     </div>
 
                     <div className="basis-1/4">
@@ -171,12 +189,12 @@ export default function ReuneForm() {
 
                         <div className="basis-full">
                             <label htmlFor="fnot" className="inline-block w-2/5">Fecha de Notificación:</label>
-                            <input type="date" name="fnot" id="fnot" className="border-b-2 border-b-teal-300 inline-block w-3/5" readOnly disabled />
+                            <input type="date" name="fnot" id="fnot" className="border-b-2 border-b-teal-300 inline-block w-3/5" />
                         </div>
 
                         <div className="basis-full">
                             <label htmlFor="freso" className="inline-block w-2/5">Fecha de Resolución:</label>
-                            <input type="date" name="freso" id="freso" className="border-b-2 border-b-teal-300 inline-block w-3/5" readOnly disabled />
+                            <input type="date" name="freso" id="freso" className="border-b-2 border-b-teal-300 inline-block w-3/5" />
                         </div>
 
                         <div className="basis-full">
@@ -195,17 +213,17 @@ export default function ReuneForm() {
 
                         <div className="basis-full">
                             <label htmlFor="montRe" className="inline-block w-1/2">Monto Reclamado:</label>
-                            <input type="number" name="montRe" id="montRe" className="border-b-2 border-b-teal-300 inline-block w-1/2" readOnly disabled />
+                            <input type="number" name="montRe" id="montRe" className="border-b-2 border-b-teal-300 inline-block w-1/2" />
                         </div>
 
                         <div className="basis-full">
                             <label htmlFor="fAbon" className="inline-block w-1/2">Fecha de Abono:</label>
-                            <input type="number" name="fAbon" id="fAbon" className="border-b-2 border-b-teal-300 inline-block w-1/2" readOnly disabled />
+                            <input type="date" name="fAbon" id="fAbon" className="border-b-2 border-b-teal-300 inline-block w-1/2" />
                         </div>
 
                         <div className="basis-full">
                             <label htmlFor="mAbo" className="inline-block w-1/2">Monto Abonado:</label>
-                            <input type="number" name="mAbo" id="mAbo" className="border-b-2 border-b-teal-300 inline-block w-1/2" readOnly disabled />
+                            <input type="number" name="mAbo" id="mAbo" className="border-b-2 border-b-teal-300 inline-block w-1/2" />
                         </div>
                     </div>
                 </fieldset>
