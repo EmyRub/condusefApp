@@ -10,7 +10,15 @@ export default function ReuneForm() {
                 </select>
             </div>
 
-            <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8 flex justify-between items-center flex-wrap gap-12">
+            <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-center items-center flex-wrap gap-12">
+
+                <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Para No Clientes</button>
+
+                <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Editar dirección</button>
+
+            </fieldset>
+
+            <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-between items-center flex-wrap gap-12">
 
                 <div className="basis-1/2">
                     <label htmlFor="ente" className="inline-block w-32">Número del ente:</label>
@@ -37,7 +45,7 @@ export default function ReuneForm() {
 
             <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8">
 
-                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-stone-800">Datos de la persona</legend>
+                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-teal-900">Datos de la persona</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
@@ -99,7 +107,7 @@ export default function ReuneForm() {
 
             <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8">
 
-                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-stone-800">Datos de Comunicación</legend>
+                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-teal-900">Datos de Comunicación</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
@@ -183,7 +191,7 @@ export default function ReuneForm() {
 
                 <fieldset className="p-12 border-teal-400 border-2 rounded-2xl basis-1/2">
 
-                    <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-stone-800">Datos Generales</legend>
+                    <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-teal-900">Datos Generales</legend>
 
                     <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
@@ -208,7 +216,7 @@ export default function ReuneForm() {
                 </fieldset>
 
                 <fieldset className="p-12 border-teal-400 border-2 rounded-2xl basis-1/2">
-                    <legend className="w-11/12 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-stone-800">Datos del Reclamo por Abono</legend>
+                    <legend className="w-11/12 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-teal-900">Datos del Reclamo por Abono</legend>
                     <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
                         <div className="basis-full">
@@ -232,7 +240,7 @@ export default function ReuneForm() {
 
             <fieldset className="p-12 border-teal-400 border-2 rounded-2xl">
 
-                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-stone-800">Datos de la institución</legend>
+                <legend className="w-1/2 py-2 px-4 text-center bg-teal-300 rounded-full uppercase font-bold text-teal-900">Datos de la institución</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
