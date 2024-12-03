@@ -1,18 +1,8 @@
-import RegistroNoCliente from "../RegistroNoCliente";
 
 export default function ReuneForm() {
     return (        
         <form autoComplete="on" >
 
-<RegistroNoCliente/>
-
-            <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-center items-center flex-wrap gap-12">
-
-                <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Registro Para No Clientes</button>
-
-                <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Editar dirección</button>
-
-            </fieldset>
 
             <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-between items-center flex-wrap gap-12">
 

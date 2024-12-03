@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import RedecoForm from "../components/Forms/RedecoForm";
 import ReuneForm from "../components/Forms/ReuneForm";
+import RegistroNoCliente from "../components/RegistroNoCliente";
+
 
 export default function IndexPage() {
 
@@ -13,7 +15,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <main className="p-8 bg-slate-50 rounded-2xl w-9/12 mx-auto">
+      <main className="p-8 bg-slate-50 rounded-2xl w-9/12 mx-auto relative">
 
         <form className="flex justify-center bg-teal-500 rounded-2xl mb-12">
           <select
@@ -26,6 +28,16 @@ export default function IndexPage() {
             <option value={2}>REDECO</option>
           </select>
         </form>
+
+        <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-center items-center flex-wrap gap-12">
+
+          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Registro Para No Clientes</button>
+
+          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Editar dirección</button>
+
+        </fieldset>
+
+        <RegistroNoCliente />
 
         {category === 1 ? <ReuneForm /> : <RedecoForm />}
 

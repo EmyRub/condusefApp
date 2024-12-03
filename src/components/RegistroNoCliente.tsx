@@ -2,7 +2,7 @@
 export default function RegistroNoCliente() {
     return (
 
-        <form>
+        <form className="bg-white absolute left-1/2 top-1/2 translate-x-1/2	 translate-y-1/2">
 
             <fieldset className="p-12 border-teal-400 border-2 rounded-2xl mb-8">
 
