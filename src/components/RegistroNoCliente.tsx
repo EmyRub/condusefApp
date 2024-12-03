@@ -10,24 +10,25 @@ export default function RegistroNoCliente() {
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
-                    <div className="basis-1/2">
-                        <label htmlFor="name" className="inline-block w-36">Nombre de la Persona:</label>
-                        <input type="text" name="name" id="name" className="border-b-2 border-b-teal-300 w-8/12 focus:ring-teal-500 focus:border-teal-500" />
+                    <div className="basis-full">
+                        <label htmlFor="name" className="inline-block w-44">Nombre de la Persona:</label>
+                        <input type="text" name="name" id="name" className="border-b-2 border-b-teal-300 w-7/12 focus:ring-teal-500 focus:border-teal-500" />
                     </div>
-
+                    
                     <div className="basis-5/12">
-                        <label htmlFor="tel" className="inline-block w-20">Teléfono:</label>
-                        <input type="tel" name="tel" id="tel" className="border-b-2 border-b-teal-300 w-9/12" readOnly disabled />
+                        <label htmlFor="email" className="inline-block w-16">Correo:</label>
+                        <input type="email" name="email" id="email" className="border-b-2 border-b-teal-300 w-3/4" />
                     </div>
 
                     <div className="basis-2/6">
-                        <label htmlFor="email" className="inline-block w-16">Correo:</label>
-                        <input type="email" name="email" id="email" className="border-b-2 border-b-teal-300 w-3/4" readOnly disabled />
+                        <label htmlFor="tel" className="inline-block w-20">Teléfono:</label>
+                        <input type="tel" name="tel" id="tel" className="border-b-2 border-b-teal-300 w-8/12" />
                     </div>
+
 
                     <div className="basis-1/5">
                         <label htmlFor="age" className="inline-block w-12">Edad:</label>
-                        <input type="number" name="age" id="age" className="border-b-2 border-b-teal-300 w-1/2" readOnly disabled />
+                        <input type="number" name="age" id="age" className="border-b-2 border-b-teal-300 w-1/2" />
                     </div>
 
                     <div className="basis-1/5 flex gap-3 items-center">
@@ -43,25 +44,13 @@ export default function RegistroNoCliente() {
                         </div>
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="typePer" className="inline-block w-36">Tipo de Persona:</label>
+                    <div className="basis-1/2">
+                        <label htmlFor="typePer" className="inline-block w-36">Tipo de Cliente:</label>
 
                         <select name="typePer" id="typePer" className="inline-block w-1/2">
                             <option value="">0</option>
                         </select>
                     </div>
-
-                    <div className="basis-1/5">
-                        <label htmlFor="pori" className="inline-block w-12">PORI:</label>
-                        <input type="checkbox" name="pori" id="pori" />
-
-                    </div>
-
-                    <div className="basis-1/5">
-                        <label htmlFor="exg" className="inline-block w-40">Si es del extranjero:</label>
-                        <input type="checkbox" name="exg" id="exg" />
-                    </div>
-
                 </div>
             </fieldset>
         </form>
