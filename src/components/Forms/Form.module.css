@@ -1,0 +1,27 @@
+fieldset {
+	padding: 3rem;
+	border-width: 2px;
+	border-radius: 1rem;
+	margin-bottom: 2rem;
+	border-color: rgb(45 212 191);
+}
+
+legend {
+	width: 50%;
+	font-weight: bold;
+	text-align: center;
+	padding: .5rem 1rem;
+	border-radius: 9rem;
+	color: rgb(19 78 74);
+	text-transform: uppercase;
+	background-color: rgb(94 234 212);
+}
+
+label, select {
+	display: inline-block;
+}
+
+input {
+	border-bottom-width: 2px;
+	border-bottom-color: rgb(94 234 212);
+}

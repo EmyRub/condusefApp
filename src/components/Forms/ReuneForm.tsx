@@ -1,21 +1,20 @@
+import styles from './form.module.css';
 
 export default function ReuneForm() {
     return (        
         <form autoComplete="on" >
 
-
             <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-between items-center flex-wrap gap-12">
 
                 <div className="basis-1/2">
                     <label htmlFor="ente" className="inline-block w-32">Número del ente:</label>
-                    <input type="number" name="ente" id="ente" className="border-b-2 border-b-teal-300 w-2/6" readOnly disabled />
+                    <input type="number" name="ente" id="ente" className="border-b-teal-300 w-2/6" readOnly disabled />
                 </div>
 
                 <div className="basis-1/3">
                     <label htmlFor="sucur" className="inline-block w-16">Sucursal:</label>
                     <input type="number" name="sucur" id="sucur" className="border-b-2 border-b-teal-300 w-2/6" readOnly disabled />
                 </div>
-
 
                 <div className="basis-1/2">
                     <label htmlFor="recl" className="inline-block w-96">¿El reclamo o Aclaración es de objeto monetario?:</label>
