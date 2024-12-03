@@ -15,7 +15,7 @@ export default function AppRouter() {
                 </Route>
 
                 <Route element={<Layout />}>
-                    <Route path="/inicio" element={<IndexPage />}></Route>
+                    <Route path="/quejas" element={<IndexPage />}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
