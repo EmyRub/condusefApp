@@ -214,8 +214,6 @@ export default function RedecoForm() {
                 </div>
 
             </fieldset>
-
-
         </form>
     )
 }
