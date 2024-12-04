@@ -17,7 +17,7 @@ export default function IndexPage() {
     <>
       <main className="p-8 bg-slate-50 rounded-2xl w-9/12 mx-auto relative">
 
-        <form className="flex justify-center bg-teal-500 rounded-2xl mb-12">
+        <form className="flex justify-center bg-teal-500 rounded-2xl">
           <select
             name="empresa"
             value={category}
@@ -29,13 +29,13 @@ export default function IndexPage() {
           </select>
         </form>
 
-        <fieldset className="p-12 border-2 rounded-2xl mb-8 flex justify-center items-center flex-wrap gap-12">
+        <nav className="py-12 flex justify-around items-center flex-wrap gap-12">
 
-          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Registro Para No Clientes</button>
+          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64">Registro Para No Clientes</button>
 
-          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold">Editar dirección</button>
+          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64">Editar dirección</button>
 
-        </fieldset>
+        </nav>
 
         <RegistroNoCliente />
 

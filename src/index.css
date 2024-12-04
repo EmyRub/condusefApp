@@ -6,10 +6,6 @@ body {
     font-family: "Kanit", sans-serif;
 }
 
-input {
-    display: inline-block;
-}
-
 input:focus {
     outline: none;
 }
