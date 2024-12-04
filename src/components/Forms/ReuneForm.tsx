@@ -4,7 +4,7 @@ export default function ReuneForm() {
     return (
         <form autoComplete="on" data-formulario>
 
-            <fieldset className="flex justify-between items-center flex-wrap gap-12">
+            <fieldset className="flex justify-between items-center flex-wrap gap-12 ">
 
                 <div className="basis-1/2">
                     <label htmlFor="ente" className="w-32">Número del ente:</label>

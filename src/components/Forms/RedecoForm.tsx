@@ -1,4 +1,3 @@
-import './form.module.css';
 
 export default function RedecoForm() {
     return (

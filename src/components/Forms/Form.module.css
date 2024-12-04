@@ -1,27 +1,38 @@
 [data-formulario] fieldset {
-	padding: 3rem;
-	border-width: 2px;
-	border-radius: 1rem;
-	margin-bottom: 2rem;
-	border-color: rgb(45 212 191);
+    padding: 3rem;
+    border-width: 2px;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    border-color: rgb(45 212 191);
+    background-color: #e9ffff;
+    box-shadow: 0 15px 20px -12px rgba(45, 58, 58, 0.25);
 }
 
 [data-formulario] legend {
-	width: 50%;
-	font-weight: bold;
-	text-align: center;
-	padding: .5rem 1rem;
-	border-radius: 9rem;
-	color: rgb(19 78 74);
-	text-transform: uppercase;
-	background-color: rgb(94 234 212);
+    width: 50%;
+    font-weight: bold;
+    text-align: center;
+    padding: .5rem 1rem;
+    border-radius: 9rem;
+    color: rgb(19 78 74);
+    text-transform: uppercase;
+    background-color: rgb(94 234 212);
 }
 
-[data-formulario] label, [data-formulario] select {
-	display: inline-block;
+[data-formulario] label,
+[data-formulario] select {
+    display: inline-block;
 }
 
 [data-formulario] input {
-	border-bottom-width: 2px;
-	border-bottom-color: rgb(94 234 212);
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(94 234 212);
+}
+
+.bgModal {
+    background-color: #66666657;
+}
+
+.modal {
+    transform: translate(-50%, -50%);
 }
