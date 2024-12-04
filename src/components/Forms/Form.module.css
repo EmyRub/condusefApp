@@ -1,4 +1,4 @@
-fieldset {
+[data-formulario] fieldset {
 	padding: 3rem;
 	border-width: 2px;
 	border-radius: 1rem;
@@ -6,7 +6,7 @@ fieldset {
 	border-color: rgb(45 212 191);
 }
 
-legend {
+[data-formulario] legend {
 	width: 50%;
 	font-weight: bold;
 	text-align: center;
@@ -17,11 +17,11 @@ legend {
 	background-color: rgb(94 234 212);
 }
 
-label, select {
+[data-formulario] label, [data-formulario] select {
 	display: inline-block;
 }
 
-input {
+[data-formulario] input {
 	border-bottom-width: 2px;
 	border-bottom-color: rgb(94 234 212);
 }

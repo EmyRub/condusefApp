@@ -2,7 +2,7 @@ import './form.module.css';
 
 export default function ReuneForm() {
     return (
-        <form autoComplete="on" >
+        <form autoComplete="on" data-formulario>
 
             <fieldset className="flex justify-between items-center flex-wrap gap-12">
 
