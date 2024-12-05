@@ -20,7 +20,7 @@ export default function RedecoForm() {
 
             <fieldset>
 
-                <legend>Datos de la persona</legend>
+                <legend className='w-1/2'>Datos de la persona</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
@@ -74,7 +74,7 @@ export default function RedecoForm() {
 
             <fieldset>
 
-                <legend>Datos de Comunicación</legend>
+                <legend className='w-1/2'>Datos de Comunicación</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-16 gap-x-2">
 
@@ -154,7 +154,7 @@ export default function RedecoForm() {
 
             <fieldset>
 
-                <legend>Datos de la institución</legend>
+                <legend className='w-1/2'>Datos de la institución</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 

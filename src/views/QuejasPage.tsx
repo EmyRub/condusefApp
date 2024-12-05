@@ -1,27 +1,24 @@
 import { ChangeEvent, useState } from "react";
 import RedecoForm from "../components/Forms/RedecoForm";
 import ReuneForm from "../components/Forms/ReuneForm";
-import RegistroNoCliente from "../components/Forms/FormNoCliente";
+import RegistroNoCliente from "../components/Forms/NoClienteForm";
+import EditarDirForm from "../components/Forms/EditarDirForm";
 
 
 export default function IndexPage() {
 
   const [category, setCategory] = useState(1)
-  const [noClient, setnoClient] = useState(false)
+  const [formClient, setFormClient] = useState(false)
+  const [formDirection, setFormDirection] = useState(false)
 
-  const [modals, setModals] = useState({
-    client: false,
-    address: false
-  })
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = parseInt(e.target.value, 10); // Aseguramos que sea un número
     setCategory(selectedCategory);
   }
 
-  const handleModal = (cat: number) => {
-
-
+  const handleModal = (id: number) => {
+    id === 1 ? setFormClient(true) : setFormDirection(true)
   }
 
   return (
@@ -46,7 +43,9 @@ export default function IndexPage() {
             onClick={() => handleModal(1)}
             className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Registro Para No Clientes</button>
 
-          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Editar dirección</button>
+          <button
+            onClick={() => handleModal(2)}
+            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Editar dirección</button>
 
         </nav>
 
@@ -54,7 +53,9 @@ export default function IndexPage() {
 
       </main>
 
-      <RegistroNoCliente />
+      {formClient && (<RegistroNoCliente />)}
+      {formDirection && (<EditarDirForm />)}
+
     </>
   )
 }
