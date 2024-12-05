@@ -172,7 +172,7 @@ export default function ReuneForm() {
 
             <div className="flex gap-2 justify-between items-start mb-8">
 
-                <fieldset className="basis-1/2">
+                <fieldset className="basis-1/2 p-6 xl:p-12">
 
                     <legend className='w-11/12'>Datos Generales</legend>
 
@@ -198,7 +198,7 @@ export default function ReuneForm() {
                     </div>
                 </fieldset>
 
-                <fieldset className="basis-1/2">
+                <fieldset className="basis-1/2 p-6 xl:p-12">
                     <legend className="w-11/12">Datos del Reclamo por Abono</legend>
                     <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
@@ -221,7 +221,7 @@ export default function ReuneForm() {
 
             </div>
 
-            <fieldset>
+            <fieldset className='p-6 xl:p-12'>
 
                 <legend className='w-1/2'>Datos de la institución</legend>
 
