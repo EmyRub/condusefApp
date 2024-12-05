@@ -1,4 +1,6 @@
 import styles from './Form.module.css';
+import { XCircleIcon } from "@heroicons/react/16/solid";
+
 
 export default function RegistroNoCliente() {
     return (
@@ -31,6 +33,14 @@ export default function RegistroNoCliente() {
                         <input type="number" name="age" id="age" className="w-1/2" />
                     </div>
 
+                    <div className="basis-3/4">
+                        <label htmlFor="typePer" className="w-36">Tipo de Cliente:</label>
+
+                        <select name="typePer" id="typePer" className="w-1/2">
+                            <option value="">0</option>
+                        </select>
+                    </div>
+
                     <div className="basis-1/5 flex gap-3 items-center">
                         <label htmlFor="sex" className="w-12">Sexo:</label>
 
@@ -44,14 +54,14 @@ export default function RegistroNoCliente() {
                         </div>
                     </div>
 
-                    <div className="basis-1/2">
-                        <label htmlFor="typePer" className="w-36">Tipo de Cliente:</label>
-
-                        <select name="typePer" id="typePer" className="w-1/2">
-                            <option value="">0</option>
-                        </select>
-                    </div>
                 </div>
+
+                <div className="flex justify-center">
+                    <input type="submit" value="Guardar" className='bg-teal-400 text-teal-800 py-2 px-8 rounded-xl border-none uppercase font-semibold w-3/5 mt-12 cursor-pointer hover:bg-teal-600 hover:text-white' />
+                </div>
+
+                <XCircleIcon className={`${styles.close} absolute w-12 h-12 top-1/2 text-teal-500 cursor-pointer hover:text-teal-600`} />
+
             </fieldset>
         </form>
 

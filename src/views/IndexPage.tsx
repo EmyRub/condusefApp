@@ -7,6 +7,11 @@ import RegistroNoCliente from "../components/Forms/FormNoCliente";
 export default function IndexPage() {
 
   const [category, setCategory] = useState(1)
+  const [noClient, setnoClient] = useState(false)
+
+  const [modals, setModals] = useState({
+
+  })
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = parseInt(e.target.value, 10); // Aseguramos que sea un número
