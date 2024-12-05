@@ -1,5 +1,4 @@
 [data-formulario] fieldset {
-    padding: 3rem;
     border-width: 2px;
     border-radius: 1rem;
     margin-bottom: 2rem;
@@ -11,7 +10,8 @@
 [data-formulario] legend {
     font-weight: bold;
     text-align: center;
-    padding: .5rem 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
     border-radius: 9rem;
     color: rgb(19 78 74);
     text-transform: uppercase;

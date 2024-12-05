@@ -4,58 +4,58 @@ export default function ReuneForm() {
     return (
         <form autoComplete="on" data-formulario>
 
-            <fieldset className="flex justify-between items-center flex-wrap gap-12 ">
+            <fieldset className="flex justify-between items-center flex-wrap gap-10 md:gap-12 p-6 lg:p-12">
 
-                <div className="basis-1/2">
-                    <label htmlFor="ente" className="w-32">Número del ente:</label>
-                    <input type="number" name="ente" id="ente" className="w-2/6" readOnly disabled />
+                <div className="basis-full lg:basis-1/2">
+                    <label htmlFor="ente" className="w-full lg:w-32 text-center lg:text-left">Número del ente:</label>
+                    <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
                 </div>
 
-                <div className="basis-1/3">
-                    <label htmlFor="sucur" className="w-16">Sucursal:</label>
-                    <input type="number" name="sucur" id="sucur" className="w-2/6" readOnly disabled />
+                <div className="basis-full lg:basis-2/5">
+                    <label htmlFor="sucur" className="w-full lg:w-16 text-center xl:text-left">Sucursal:</label>
+                    <input type="number" name="sucur" id="sucur" className="w-full lg:w-3/5" readOnly disabled />
                 </div>
 
-                <div className="basis-1/2">
-                    <label htmlFor="recl" className="w-96">¿El reclamo o Aclaración es de objeto monetario?:</label>
-                    <input type="checkbox" name="recl" id="recl" />
+                <div className="basis-full lg:basis-1/2">
+                    <label htmlFor="recl" className="w-full lg:w-56 text-center">¿El reclamo o Aclaración es de objeto monetario?</label>
+                    <input type="checkbox" name="recl" id="recl" className='w-full lg:w-1/5' />
                 </div>
 
-                <div className="basis-1/3">
-                    <label htmlFor="rever" className="w-16">Rever:</label>
-                    <input type="checkbox" name="rever" id="rever" />
+                <div className="basis-full lg:basis-2/5">
+                    <label htmlFor="rever" className="w-full lg:w-16 text-center xl:text-left">Rever:</label>
+                    <input type="checkbox" name="rever" id="rever" className='w-full lg:w-1/6' />
                 </div>
 
             </fieldset>
 
-            <fieldset>
+            <fieldset className='p-6 lg:p-12'>
 
-                <legend className='w-1/2'>Datos de la persona</legend>
+                <legend className='w-full md:w-1/2 xl:px-4'>Datos de la persona</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
-                    <div className="basis-1/2">
-                        <label htmlFor="cliente" className="w-36">Nombre del Cliente:</label>
-                        <input type="text" name="cliente" id="cliente" className="w-8/12" readOnly disabled />
+                    <div className="basis-full">
+                        <label htmlFor="cliente" className="w-full lg:w-36 text-center lg:text-left">Nombre del Cliente:</label>
+                        <input type="text" name="cliente" id="cliente" className="w-full lg:w-3/4" readOnly disabled />
+                    </div>
+                    
+                    <div className="basis-full lg:basis-1/2">
+                        <label htmlFor="email" className="w-full lg:w-16 text-center lg:text-left">Correo:</label>
+                        <input type="email" name="email" id="email" className="w-full lg:w-3/4" readOnly disabled />
                     </div>
 
-                    <div className="basis-5/12">
-                        <label htmlFor="tel" className="w-20">Teléfono:</label>
-                        <input type="tel" name="tel" id="tel" className="w-9/12" readOnly disabled />
+                    <div className="basis-full lg:basis-5/12">
+                        <label htmlFor="tel" className="w-full lg:w-20 text-center xl:text-left">Teléfono:</label>
+                        <input type="tel" name="tel" id="tel" className="w-full lg:w-3/5" readOnly disabled />
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="email" className="w-16">Correo:</label>
-                        <input type="email" name="email" id="email" className="w-3/4" readOnly disabled />
+                    <div className="basis-full lg:basis-1/5">
+                        <label htmlFor="age" className="w-full lg:w-12 text-center lg:text-left">Edad:</label>
+                        <input type="number" name="age" id="age" className="w-full lg:w-1/2" readOnly disabled />
                     </div>
 
-                    <div className="basis-1/5">
-                        <label htmlFor="age" className="w-12">Edad:</label>
-                        <input type="number" name="age" id="age" className="w-1/2" readOnly disabled />
-                    </div>
-
-                    <div className="basis-1/5 flex gap-3 items-center">
-                        <label htmlFor="sex" className="w-12">Sexo:</label>
+                    <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
+                        <label htmlFor="sex" className="lg:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
                             <input type="radio" name="sex" id="m" />
@@ -67,103 +67,103 @@ export default function ReuneForm() {
                         </div>
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="typePer" className="w-36">Tipo de Persona:</label>
+                    <div className="basis-full lg:basis-1/2">
+                        <label htmlFor="typePer" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Tipo de Persona:</label>
 
-                        <select name="typePer" id="typePer" className="w-1/2">
+                        <select name="typePer" id="typePer" className="w-full lg:w-1/2 text-center lg:text-left">
                             <option value="">Física</option>
                         </select>
                     </div>
 
-                    <div className="basis-1/5">
-                        <label htmlFor="pori" className="w-12">PORI:</label>
-                        <input type="checkbox" name="pori" id="pori" />
+                    <div className="basis-full lg:basis-5/12">
+                        <label htmlFor="pori" className="w-full lg:w-12 text-center lg:text-left">PORI:</label>
+                        <input type="checkbox" name="pori" id="pori" className='lg:w-12 w-full' />
 
                     </div>
 
-                    <div className="basis-1/5">
-                        <label htmlFor="exg" className="w-40">Si es del extranjero:</label>
-                        <input type="checkbox" name="exg" id="exg" />
+                    <div className="basis-full lg:basis-1/2">
+                        <label htmlFor="exg" className="w-full lg:w-40 text-center lg:text-left">Si es del extranjero:</label>
+                        <input type="checkbox" name="exg" id="exg" className='w-full lg:w-12' />
                     </div>
 
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset className='p-6 xl:p-12'>
 
-                <legend className='w-1/2'>Datos de Comunicación</legend>
+                <legend className='w-full md:w-1/2 xl:px-4'>Datos de Comunicación</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-16 gap-x-2">
 
-                    <div className="basis-1/4">
-                        <label htmlFor="mes" className="w-12">Mes:</label>
-                        <input id="mes" type="number" className="w-4/6" readOnly disabled />
+                    <div className="basis-full lg:basis-1/4">
+                        <label htmlFor="mes" className="w-full lg:w-12 text-center lg:text-left">Mes:</label>
+                        <input id="mes" type="number" className="w-full lg:w-4/6" readOnly disabled />
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="FReg" className="w-36">Fecha de Registro:</label>
-                        <input type="date" name="FReg" id="FReg" className="w-1/2" />
+                    <div className="basis-full lg:basis-2/6">
+                        <label htmlFor="FReg" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Fecha de Registro:</label>
+                        <input type="date" name="FReg" id="FReg" className="w-full lg:w-1/2 text-center" />
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="FeAtn" className="w-36">Fecha de Atención</label>
-                        <input type="date" name="FeAtn" id="FeAtn" className="w-1/2" />
+                    <div className="basis-full lg:basis-2/6">
+                        <label htmlFor="FeAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Fecha de Atención</label>
+                        <input type="date" name="FeAtn" id="FeAtn" className="w-full lg:w-1/2 text-center" />
                     </div>
 
-                    <div className="basis-1/3">
-                        <label htmlFor="eReg" className="w-36">Estado de registro</label>
+                    <div className="basis-full lg:basis-1/3">
+                        <label htmlFor="eReg" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Estado de registro</label>
 
-                        <select name="eReg" id="eReg" className="w-1/2">
+                        <select name="eReg" id="eReg" className="w-full lg:w-1/2 text-center">
                             <option value="">Concluido</option>
                         </select>
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="nAtn" className="w-36">Nivel de Atención:</label>
+                    <div className="basis-full lg:basis-2/6">
+                        <label htmlFor="nAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Nivel de Atención:</label>
 
-                        <select name="nAtn" id="nAtn" className="w-1/2">
+                        <select name="nAtn" id="nAtn" className="w-full lg:w-1/2 text-center">
                             <option value="">Vía Eletrónica</option>
                         </select>
                     </div>
 
-                    <div className="basis-1/4">
-                        <label htmlFor="queja" className="w-28">Tipo de Queja</label>
+                    <div className="basis-full lg:basis-1/4">
+                        <label htmlFor="queja" className="w-full lg:w-28 text-center lg:text-left mb-2 lg:mb-0">Tipo de Queja</label>
 
-                        <select name="queja" id="queja" className="w-5/12">
+                        <select name="queja" id="queja" className="w-full lg:w-5/12 text-center">
                             <option value="">Consulta</option>
                         </select>
                     </div>
 
-                    <div className="basis-1/3">
-                        <label htmlFor="nProd" className="w-40">Número de Producto:</label>
+                    <div className="basis-full lg:basis-1/3">
+                        <label htmlFor="nProd" className="w-full lg:w-40 text-center lg:text-left mb-2 lg:mb-0">Número de Producto:</label>
 
-                        <select name="nProd" id="nProd" className="w-5/12">
+                        <select name="nProd" id="nProd" className="w-full lg:w-5/12 text-center">
                             <option value="">14653216</option>
                         </select>
                     </div>
 
-                    <div className="basis-2/6">
-                        <label htmlFor="foConduf" className="w-28">Folio condusef:</label>
-                        <input type="number" name="foConduf" id="foConduf" className="w-3/5" readOnly disabled />
+                    <div className="basis-full lg:basis-2/6">
+                        <label htmlFor="foConduf" className="w-full lg:w-28 text-center lg:text-left">Folio condusef:</label>
+                        <input type="number" name="foConduf" id="foConduf" className="w-full lg:w-3/5" readOnly disabled />
                     </div>
 
-                    <div className="basis-1/4">
-                        <label htmlFor="FoAtn" className="w-32">Folio de Atención</label>
-                        <input type="number" name="FoAtn" id="FoAtn" className="w-1/3" readOnly disabled />
+                    <div className="basis-full lg:basis-1/4">
+                        <label htmlFor="FoAtn" className="w-full lg:w-32 text-center lg:text-left">Folio de Atención</label>
+                        <input type="number" name="FoAtn" id="FoAtn" className="w-full lg:w-1/3" readOnly disabled />
                     </div>
 
 
-                    <div className="basis-1/2">
-                        <label htmlFor="mCom" className="w-48">Medio de Comunicación:</label>
+                    <div className="basis-full lg:basis-1/2">
+                        <label htmlFor="mCom" className="w-full lg:w-48 text-center lg:text-left mb-2 lg:mb-0">Medio de Comunicación:</label>
 
-                        <select name="mCom" id="mCom" className="w-1/2">
+                        <select name="mCom" id="mCom" className="w-full lg:w-1/2 text-center">
                             <option value="">Correo Electrónico</option>
                         </select>
                     </div>
 
-                    <div className="basis-5/12">
-                        <label htmlFor="causa" className="w-12">Causa:</label>
-                        <input type="number" name="causa" id="causa" className="w-10/12" readOnly disabled />
+                    <div className="basis-full lg:basis-5/12">
+                        <label htmlFor="causa" className="w-full lg:w-12 text-center lg:text-left">Causa:</label>
+                        <input type="number" name="causa" id="causa" className="w-full lg:w-10/12" readOnly disabled />
                     </div>
 
                 </div>

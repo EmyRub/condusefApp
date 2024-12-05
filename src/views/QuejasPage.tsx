@@ -23,7 +23,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <main className="p-8 bg-slate-50 rounded-2xl w-9/12 mx-auto relative">
+      <main className="p-2 md:p-8 bg-slate-50 rounded-2xl w-11/12 md:w-9/12 mx-auto relative">
 
         <form className="flex justify-center bg-teal-500 rounded-2xl shadow-lg">
           <select
@@ -37,15 +37,15 @@ export default function IndexPage() {
           </select>
         </form>
 
-        <nav className="py-12 flex justify-around items-center flex-wrap gap-12">
+        <nav className="py-12 flex justify-around items-center flex-wrap gap-6 lg:gap-12">
 
           <button
             onClick={() => handleModal(1)}
-            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 w-80 shadow-lg">Registro Para No Clientes</button>
+            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold w-11/12 md:w-80 shadow-lg">Registro Para No Clientes</button>
 
           <button
             onClick={() => handleModal(2)}
-            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 w-80 shadow-lg">Editar dirección</button>
+            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold w-11/12 md:w-80 shadow-lg">Editar dirección</button>
 
         </nav>
 
