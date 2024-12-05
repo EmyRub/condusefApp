@@ -41,11 +41,11 @@ export default function IndexPage() {
 
           <button
             onClick={() => handleModal(1)}
-            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Registro Para No Clientes</button>
+            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 w-80 shadow-lg">Registro Para No Clientes</button>
 
           <button
             onClick={() => handleModal(2)}
-            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Editar dirección</button>
+            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 w-80 shadow-lg">Editar dirección</button>
 
         </nav>
 

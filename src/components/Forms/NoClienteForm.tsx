@@ -7,9 +7,9 @@ export default function RegistroNoCliente() {
 
         <form className={`${styles.bgModal} fixed top-0 left-0 w-full h-full`} data-formulario>
 
-            <fieldset className={`${styles.modal} absolute left-1/2 top-1/2`}>
+            <fieldset className={`${styles.modal} absolute left-1/2 top-1/2 w-3/5`}>
 
-                <legend className='w-1/2'>Datos de la persona</legend>
+                <legend className='w-3/4'>Registro No Cliente</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
