@@ -10,12 +10,18 @@ export default function IndexPage() {
   const [noClient, setnoClient] = useState(false)
 
   const [modals, setModals] = useState({
-
+    client: false,
+    address: false
   })
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = parseInt(e.target.value, 10); // Aseguramos que sea un número
     setCategory(selectedCategory);
+  }
+
+  const handleModal = (cat: number) => {
+
+
   }
 
   return (
@@ -36,7 +42,9 @@ export default function IndexPage() {
 
         <nav className="py-12 flex justify-around items-center flex-wrap gap-12">
 
-          <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Registro Para No Clientes</button>
+          <button
+            onClick={() => handleModal(1)}
+            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Registro Para No Clientes</button>
 
           <button className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold min-w-64 shadow-lg">Editar dirección</button>
 
