@@ -38,7 +38,7 @@ export default function ReuneForm() {
                         <label htmlFor="cliente" className="w-full lg:w-36 text-center lg:text-left">Nombre del Cliente:</label>
                         <input type="text" name="cliente" id="cliente" className="w-full lg:w-3/4" readOnly disabled />
                     </div>
-                    
+
                     <div className="basis-full lg:basis-1/2">
                         <label htmlFor="email" className="w-full lg:w-16 text-center lg:text-left">Correo:</label>
                         <input type="email" name="email" id="email" className="w-full lg:w-3/4" readOnly disabled />
@@ -164,7 +164,7 @@ export default function ReuneForm() {
                         </select>
                     </div>
 
-                  
+
                 </div>
 
             </fieldset>
@@ -267,13 +267,9 @@ export default function ReuneForm() {
                         <label htmlFor="col" className="w-full lg:w-16 text-center lg:text-left">Colonia:</label>
                         <input type="text" name="col" id="col" className="w-full lg:w-12 mb-2" readOnly disabled />
                         <select name="" id="" className="w-full lg:w-72 text-center">
-                        <option value="">Ninguno</option>
-                    </select>
+                            <option value="">Ninguno</option>
+                        </select>
                     </div>
-
-
-                
-
 
                 </div>
 
