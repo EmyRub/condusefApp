@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import './form.module.css';
+import SearchBox from '../SearchBox';
 
 export default function ReuneForm() {
     return (
@@ -7,14 +8,18 @@ export default function ReuneForm() {
 
             <fieldset className="flex justify-between items-center flex-wrap gap-10 md:gap-12 p-6 lg:p-12">
 
-                <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center relative">
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
                     <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
                         <MagnifyingGlassIcon className="w-4 text-white" />
                     </button>
-
                     <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
+
+                    <div className='absolute top-full right-0'>
+                        <SearchBox />
+                    </div>
+
                 </div>
 
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
