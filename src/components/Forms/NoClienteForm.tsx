@@ -1,6 +1,7 @@
+import { Dispatch } from 'react';
 import styles from './Form.module.css';
 
-export default function RegistroNoCliente({ setModal }: any) {
+export default function RegistroNoCliente({ setModal }: {setModal: Dispatch<React.SetStateAction<boolean>>}) {
 
     return (
 
@@ -66,7 +67,6 @@ export default function RegistroNoCliente({ setModal }: any) {
                         onClick={() => setModal(false)}
                         className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold inline-block w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
                 </div>
-
 
             </fieldset>
         </form>
