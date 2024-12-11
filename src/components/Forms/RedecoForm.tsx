@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 
 export default function RedecoForm() {
     return (
@@ -6,14 +7,24 @@ export default function RedecoForm() {
 
             <fieldset className="flex justify-between items-center flex-wrap gap-12 md:gap-12 p-6 lg:p-12">
 
-                <div className="basis-full lg:basis-1/2">
-                    <label htmlFor="ente" className="w-full lg:w-32 text-center lg:text-left">Número del ente:</label>
+                <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                    <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
+
+                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
+                        <MagnifyingGlassIcon className="w-4 text-white" />
+                    </button>
+
                     <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
                 </div>
 
-                <div className="basis-full lg:basis-2/5">
-                    <label htmlFor="sucur" className="w-full lg:w-16 text-center xl:text-left">Sucursal:</label>
-                    <input type="number" name="sucur" id="sucur" className="w-full lg:w-3/5" readOnly disabled />
+                <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                    <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
+
+                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
+                        <MagnifyingGlassIcon className="w-4 text-white" />
+                    </button>
+
+                    <input type="number" name="sucur" id="sucur" className="w-full  lg:w-3/5" readOnly disabled />
                 </div>
 
             </fieldset>
@@ -135,9 +146,14 @@ export default function RedecoForm() {
                         <input type="number" name="FoAtn" id="FoAtn" className="w-full lg:w-24" readOnly disabled />
                     </div>
 
-                    <div className="basis-full lg:basis-72">
-                        <label htmlFor="causa" className="w-full lg:w-12 text-center lg:text-left">Causa:</label>
-                        <input type="number" name="causa" id="causa" className="w-full lg:w-48" readOnly disabled />
+                    <div className="basis-full lg:basis-96 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                        <label htmlFor="causa" className="w-12 text-center lg:text-left">Causa:</label>
+
+                        <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
+                            <MagnifyingGlassIcon className="w-4 text-white" />
+                        </button>
+
+                        <input type="number" name="causa" id="causa" className="w-full lg:w-72" readOnly disabled />
                     </div>
 
                     <div className="basis-full lg:basis-96">
