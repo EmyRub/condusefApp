@@ -7,19 +7,24 @@ import EditarDirForm from "../components/Forms/EditarDirForm";
 
 export default function IndexPage() {
 
+  const [modal, setModal] = useState(false)
+  const [idModal, setIdModal] = useState(0)
   const [category, setCategory] = useState(1)
-  const [formClient, setFormClient] = useState(false)
-  const [formDirection, setFormDirection] = useState(false)
 
 
+  //Control de formulario
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = parseInt(e.target.value, 10); // Aseguramos que sea un número
     setCategory(selectedCategory);
   }
 
   const handleModal = (id: number) => {
-    id === 1 ? setFormClient(true) : setFormDirection(true)
+    setModal(!modal)
+    setIdModal(id)
   }
+  // const handleModal = (id: number) => {
+  //   id === 1 ? setFormClient(!formClient) : setFormDirection(!formDirection)
+  // }
 
   return (
     <>
@@ -53,8 +58,15 @@ export default function IndexPage() {
 
       </main>
 
-      {formClient && (<RegistroNoCliente />)}
-      {formDirection && (<EditarDirForm />)}
+      {modal && idModal === 1 &&
+        (<RegistroNoCliente
+          setModal={setModal}
+        />)}
+
+      {modal && idModal === 2 &&
+        (<EditarDirForm
+          setModal={setModal}
+        />)}
 
     </>
   )

@@ -11,3 +11,8 @@ select:focus {
     outline: none;
 }
 
+button:hover,
+input[type='submit']:hover {
+    transform: translateY(.2rem);
+    transition: translateY 2s ease-in-out;
+}

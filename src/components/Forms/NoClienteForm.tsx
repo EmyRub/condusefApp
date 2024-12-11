@@ -1,13 +1,16 @@
 import styles from './Form.module.css';
-import { XCircleIcon } from "@heroicons/react/16/solid";
 
+export default function RegistroNoCliente({ setModal }: any) {
 
-export default function RegistroNoCliente() {
+    const handleModal = () => {
+        setModal(false)
+    }
+
     return (
 
-        <form className={`${styles.bgModal} fixed top-0 left-0 w-full h-full`} data-formulario>
+        <form className={`${styles.bgModal} fixed top-0 left-0 w-full h-full overflow-y-scroll py-12`} data-formulario>
 
-            <fieldset className={`${styles.modal} absolute left-1/2 top-1/2 w-11/12 lg:w-3/5 p-6 lg:p-12`}>
+            <fieldset className={`${styles.modal} absolute left-1/2 top-1/2 w-11/12 lg:w-3/5 p-6 lg:p-12 `}>
 
                 <legend className='w-full lg:w-3/4 xl:px-4'>Registro No Cliente</legend>
 
@@ -53,14 +56,21 @@ export default function RegistroNoCliente() {
                             <label htmlFor="h">H</label>
                         </div>
                     </div>
-
                 </div>
 
-                <div className="flex justify-center">
-                    <input type="submit" value="Guardar" className='bg-teal-400 text-teal-800 py-2 px-8 rounded-xl border-none uppercase font-semibold w-full lg:w-3/5 mt-12 cursor-pointer hover:bg-teal-600 hover:text-white' />
+                <div className="flex flex-col lg:flex-row items-center justify-center gap-5 mt-12">
+                    <input
+                        type="submit"
+                        value="Guardar"
+                        className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold inline-block w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
+
+                    <input
+                        type="submit"
+                        value="Cancelar"
+                        onClick={handleModal}
+                        className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold inline-block w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
                 </div>
 
-                <XCircleIcon className={`${styles.close} absolute w-12 h-12 top-1/2 text-teal-500 cursor-pointer hover:text-teal-600`} />
 
             </fieldset>
         </form>

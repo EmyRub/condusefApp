@@ -1,6 +1,11 @@
 import styles from './Form.module.css';
 
-export default function EditarDirForm() {
+export default function EditarDirForm({ setModal }: any) {
+
+    const handleModal = () => {
+        setModal(false)
+    }
+
     return (
 
         <form className={`${styles.bgModal} fixed top-0 left-0 w-full h-full`} data-formulario>
@@ -33,9 +38,19 @@ export default function EditarDirForm() {
 
                 </div>
 
-                <div className="flex justify-center">
-                    <input type="submit" value="Guardar" className='bg-teal-400 text-teal-800 py-2 px-8 rounded-xl border-none uppercase font-semibold w-3/5 mt-12 cursor-pointer hover:bg-teal-600 hover:text-white' />
+                <div className="flex flex-col lg:flex-row items-center justify-center gap-5 mt-12">
+                    <input
+                        type="submit"
+                        value="Guardar"
+                        className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
+
+                    <input
+                        type="submit"
+                        value="Cancelar"
+                        onClick={handleModal}
+                        className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
                 </div>
+
             </fieldset>
         </form>
     )
