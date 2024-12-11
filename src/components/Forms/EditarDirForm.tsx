@@ -2,10 +2,6 @@ import styles from './Form.module.css';
 
 export default function EditarDirForm({ setModal }: any) {
 
-    const handleModal = () => {
-        setModal(false)
-    }
-
     return (
 
         <form className={`${styles.bgModal} fixed top-0 left-0 w-full h-full`} data-formulario>
@@ -47,7 +43,7 @@ export default function EditarDirForm({ setModal }: any) {
                     <input
                         type="submit"
                         value="Cancelar"
-                        onClick={handleModal}
+                        onClick={() => setModal(false)}
                         className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
                 </div>
 
