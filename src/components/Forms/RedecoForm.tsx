@@ -1,4 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import SearchBox from "../SearchBox";
 
 export default function RedecoForm() {
     return (
@@ -10,8 +11,12 @@ export default function RedecoForm() {
                 <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
-                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
+                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
                         <MagnifyingGlassIcon className="w-4 text-white" />
+
+                        <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
+                            <SearchBox />
+                        </div>
                     </button>
 
                     <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
@@ -20,8 +25,12 @@ export default function RedecoForm() {
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                     <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
 
-                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
+                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
                         <MagnifyingGlassIcon className="w-4 text-white" />
+
+                        <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
+                            <SearchBox />
+                        </div>
                     </button>
 
                     <input type="number" name="sucur" id="sucur" className="w-full  lg:w-3/5" readOnly disabled />
@@ -149,8 +158,12 @@ export default function RedecoForm() {
                     <div className="basis-full lg:basis-96 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                         <label htmlFor="causa" className="w-12 text-center lg:text-left">Causa:</label>
 
-                        <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow">
+                        <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
                             <MagnifyingGlassIcon className="w-4 text-white" />
+
+                            <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
+                                <SearchBox />
+                            </div>
                         </button>
 
                         <input type="number" name="causa" id="causa" className="w-full lg:w-72" readOnly disabled />

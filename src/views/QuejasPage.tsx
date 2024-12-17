@@ -1,30 +1,12 @@
-import { ChangeEvent, useState } from "react";
 import RedecoForm from "../components/Forms/RedecoForm";
 import ReuneForm from "../components/Forms/ReuneForm";
 import RegistroNoCliente from "../components/Forms/NoClienteForm";
 import EditarDirForm from "../components/Forms/EditarDirForm";
-
+import { useFormCat } from "../hooks/useFormCat";
 
 export default function IndexPage() {
 
-  const [modal, setModal] = useState(false)
-  const [idModal, setIdModal] = useState(0)
-  const [category, setCategory] = useState(1)
-
-
-  //Control de formulario
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const selectedCategory = parseInt(e.target.value, 10); // Aseguramos que sea un número
-    setCategory(selectedCategory);
-  }
-
-  const handleModal = (id: number) => {
-    setModal(!modal)
-    setIdModal(id)
-  }
-  // const handleModal = (id: number) => {
-  //   id === 1 ? setFormClient(!formClient) : setFormDirection(!formDirection)
-  // }
+  const { category, handleChange, handleModal, modal, idModal, setModal } = useFormCat()
 
   return (
     <>
@@ -59,6 +41,7 @@ export default function IndexPage() {
       </main>
 
       {modal && idModal === 1 &&
+        //falta indicar a que formulario es
         (<RegistroNoCliente
           setModal={setModal}
         />)}
