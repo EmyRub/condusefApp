@@ -3,7 +3,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 export default function SearchBox() {
     return (
         
-        <article className="bg-slate-50 p-6 rounded-md shadow">
+        <article className="bg-slate-50 p-6 rounded-md shadow absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96">
 
             <div className="border-teal-500 border-2 mb-6 flex">
                 <MagnifyingGlassIcon className="bg-teal-500 w-8 text-white inline-block" />

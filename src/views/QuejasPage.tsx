@@ -2,11 +2,19 @@ import RedecoForm from "../components/Forms/RedecoForm";
 import ReuneForm from "../components/Forms/ReuneForm";
 import RegistroNoCliente from "../components/Forms/NoClienteForm";
 import EditarDirForm from "../components/Forms/EditarDirForm";
-import { useFormCat } from "../hooks/useFormCat";
+import { Categories, ModalIds, useFormCat } from "../hooks/useFormCat";
+import ModalButton from "../components/ModalButton";
 
 export default function IndexPage() {
 
+  // Hook personalizado para manejar el estado de categoría y modal
   const { category, handleChange, handleModal, modal, idModal, setModal } = useFormCat()
+
+  // Objeto para formularios de los modales
+  const ModalForms = {
+    [ModalIds.REGISTRO_NO_CLIENTE]: <RegistroNoCliente setModal={setModal} />,
+    [ModalIds.EDITAR_DIRECCION]: <EditarDirForm setModal={setModal} />,
+};
 
   return (
     <>
@@ -19,37 +27,30 @@ export default function IndexPage() {
             onChange={handleChange}
             className="w-4/5 lg:w-1/4 my-10 text-center bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
           >
-            <option value={1}>REUNE</option>
-            <option value={2}>REDECO</option>
+            <option value={Categories.REUNE}>REUNE</option>
+            <option value={Categories.REDECO}>REDECO</option>
           </select>
         </form>
 
         <nav className="py-12 flex justify-around items-center flex-wrap gap-6 lg:gap-12">
 
-          <button
-            onClick={() => handleModal(1)}
-            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold w-11/12 md:w-80 shadow-lg">Registro Para No Clientes</button>
+          <ModalButton
+            onClick={() => handleModal(ModalIds.REGISTRO_NO_CLIENTE)}
+            text='Registro Para No Clientes'
+          />
 
-          <button
-            onClick={() => handleModal(2)}
-            className="bg-teal-500 px-8 py-3 rounded-2xl text-white hover:bg-teal-700 uppercase font-bold w-11/12 md:w-80 shadow-lg">Editar dirección</button>
+          <ModalButton
+            onClick={() => handleModal(ModalIds.EDITAR_DIRECCION)}
+            text='Editar dirección'
+          />
 
         </nav>
 
-        {category === 1 ? <ReuneForm /> : <RedecoForm />}
+        {category === Categories.REUNE ? <ReuneForm /> : <RedecoForm />}
 
       </main>
 
-      {modal && idModal === 1 &&
-        //falta indicar a que formulario es
-        (<RegistroNoCliente
-          setModal={setModal}
-        />)}
-
-      {modal && idModal === 2 &&
-        (<EditarDirForm
-          setModal={setModal}
-        />)}
+      {modal && ModalForms[idModal]}
 
     </>
   )

@@ -1,37 +1,61 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import './form.module.css';
 import SearchBox from '../SearchBox';
+import { useState } from 'react';
 
 export default function ReuneForm() {
+
+    const [activeSearch, setActiveSearch] = useState<number | null>(null);
+    const [isActive, setIsActive] = useState(false)
+
+    const handleSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
+        e.preventDefault()
+
+        setActiveSearch(cat === activeSearch ? null : cat);
+
+        setIsActive(true)
+    }
+
     return (
+
         <form autoComplete="on" data-formulario>
 
             <fieldset className="flex justify-between items-center flex-wrap gap-10 md:gap-12 p-6 lg:p-12">
 
                 <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
-                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
-                        <MagnifyingGlassIcon className="w-4 text-white" />
+                    <div
+                        onClick={(e) => handleSearch(e, 1)}
+                        className='relative'
+                    >
+                        <button
+                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
+                            <MagnifyingGlassIcon className="w-4 text-white" />
+                        </button>
 
-                        <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
-                            <SearchBox />
-                        </div>
+                        {isActive && activeSearch === 1 && (<SearchBox />)}
 
-                    </button>
+                    </div>
+
                     <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
                 </div>
 
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                     <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
 
-                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
-                        <MagnifyingGlassIcon className="w-4 text-white" />
+                    <div className='relative'
+                        onClick={(e) => handleSearch(e, 2)}
+                    >
+                        <button
+                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
+                            <MagnifyingGlassIcon className="w-4 text-white" />
+                        </button>
 
-                        <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
-                            <SearchBox />
-                        </div>
-                    </button>
+                        {isActive && activeSearch === 2 && (<SearchBox />)}
+
+                    </div>
 
                     <input type="number" name="sucur" id="sucur" className="w-full  lg:w-3/5" readOnly disabled />
                 </div>
@@ -174,13 +198,17 @@ export default function ReuneForm() {
                     <div className="basis-full lg:basis-96 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                         <label htmlFor="causa" className="w-12 text-center lg:text-left">Causa:</label>
 
-                        <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
-                            <MagnifyingGlassIcon className="w-4 text-white" />
+                        <div className='relative'
+                            onClick={(e) => handleSearch(e, 3)}
+                        >
+                            <button
+                                className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
+                                <MagnifyingGlassIcon className="w-4 text-white" />
+                            </button>
 
-                            <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
-                                <SearchBox />
-                            </div>
-                        </button>
+                            {isActive && activeSearch === 3 && (<SearchBox />)}
+
+                        </div>
 
                         <input type="number" name="causa" id="causa" className="w-full lg:w-72" readOnly disabled />
                     </div>
