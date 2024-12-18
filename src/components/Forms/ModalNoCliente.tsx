@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import styles from './Form.module.css';
 
-export default function RegistroNoCliente({ setModal }: {setModal: Dispatch<React.SetStateAction<boolean>>}) {
+export default function ModalNoCliente({ setModal }: {setModal: Dispatch<React.SetStateAction<boolean>>}) {
 
     return (
 

@@ -1,6 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
-
 // Opciones para el formulario
 export enum Categories {
     REUNE = 1,

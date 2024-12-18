@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import styles from './Form.module.css';
 
-export default function EditarDirForm({ setModal }: {setModal: Dispatch<React.SetStateAction<boolean>>}) {
+export default function ModalEditarDir({ setModal }: {setModal: Dispatch<React.SetStateAction<boolean>>}) {
 
     return (
 
