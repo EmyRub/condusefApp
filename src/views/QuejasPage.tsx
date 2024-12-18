@@ -1,9 +1,12 @@
 import RedecoForm from "../components/Forms/RedecoForm";
 import ReuneForm from "../components/Forms/ReuneForm";
+
 import ModalButton from "../components/ModalButton";
 import ModalEditarDir from '../components/Forms/ModalEditarDir';
 import ModalNoCliente from "../components/Forms/ModalNoCliente";
-import { Categories, ModalIds, useFormCat } from "../hooks/useFormCat";
+
+import { useFormCat } from "../hooks/useFormCat";
+import { Categories, ModalIds } from "../types";
 
 export default function IndexPage() {
 
@@ -14,7 +17,7 @@ export default function IndexPage() {
   const ModalForms = {
     [ModalIds.REGISTRO_NO_CLIENTE]: <ModalNoCliente setModal={setModal} />,
     [ModalIds.EDITAR_DIRECCION]: <ModalEditarDir setModal={setModal} />,
-};
+  };
 
   return (
     <>

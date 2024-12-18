@@ -1,22 +1,56 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import './form.module.css';
-import SearchBox from '../SearchBox';
-import { useState } from 'react';
 import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';
+import SearchButton from '../SearchButton';
+import { useEffect, useRef, useState } from 'react';
+import { labelCat, SearchCategory } from '../../types';
+import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
 export default function ReuneForm() {
 
-    const [activeSearch, setActiveSearch] = useState<number | null>(null);
-    const [isActive, setIsActive] = useState(false)
+    const labelCat: labelCat = {
+        1: 'Cliente',
+        2: 'Sucursal',
+        3: 'Causa'
+    }
+
+    const initialState = {
+        id: null as number | null,
+        modal: false
+    }
+
+    const [activeSearch, setActiveSearch] = useState(initialState)
+    const modalRef = useRef<HTMLDivElement>(null); // Referencia al contenedor del modal
+
 
     const handleSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
         e.preventDefault()
 
-        setActiveSearch(cat === activeSearch ? null : cat);
+        setActiveSearch((prev) => ({
+            id: prev.id === cat && prev.modal ? null : cat,
+            modal: prev.id !== cat || !prev.modal,
+        }));
 
-        setIsActive(true)
     }
+
+    // Cierra el modal si se hace clic fuera de este
+    useEffect(() => {
+        
+        const handleClickOutside = (event: MouseEvent) => {
+
+            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                setActiveSearch({ id: null, modal: false });
+            }
+        };
+
+        if (activeSearch.modal) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [activeSearch.modal]);
 
     return (
 
@@ -29,33 +63,39 @@ export default function ReuneForm() {
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
                     <div
-                        onClick={(e) => handleSearch(e, 1)}
                         className='relative'
+                        onClick={(e) => handleSearch(e, SearchCategory.Cliente)}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {isActive && activeSearch === 1 && (<SearchBox />)}
+                        {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
+                            <SearchButton label={labelCat[1]} />
+                        )}
 
                     </div>
 
                     <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
+
                 </div>
 
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                     <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
 
-                    <div className='relative'
-                        onClick={(e) => handleSearch(e, 2)}
+                    <div
+                        className='relative'
+                        onClick={(e) => handleSearch(e, SearchCategory.Sucursal)}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {isActive && activeSearch === 2 && (<SearchBox />)}
+                        {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
+                            <SearchButton label={labelCat[2]} />
+                        )}
 
                     </div>
 
@@ -194,4 +234,5 @@ export default function ReuneForm() {
         </form>
 
     )
+
 }

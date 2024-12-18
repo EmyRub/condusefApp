@@ -1,16 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { Categories, ModalIds } from "../types";
 
-// Opciones para el formulario
-export enum Categories {
-    REUNE = 1,
-    REDECO = 2,
-};
-
-// Enum para modales
-export enum ModalIds {
-    REGISTRO_NO_CLIENTE = 1,
-    EDITAR_DIRECCION = 2,
-}
 
 const initialState = {
     modal: false,
@@ -28,6 +18,7 @@ interface UseFormCatReturn {
 }
 
 export const useFormCat = (): UseFormCatReturn => {
+    
     const [state, setState] = useState(initialState)
 
     //Control de formulario

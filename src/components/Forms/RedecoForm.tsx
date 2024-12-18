@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import SearchBox from "../SearchBox";
+import SearchBox from "../SearchButton";
 import FragmentComunicacion from "./FragmentComunicacion";
 import FragmentInstitucion from './FragmentInstitucion';
 
