@@ -1,7 +1,13 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import SearchBox from "../SearchButton";
+import { searchCat, SearchCategory } from "../../types";
+import SearchButton from "../SearchButton";
+import { useSearchBox } from "../../hooks/useSearchBox";
+
+
 
 export default function FragmentComunicacion() {
+
+  const { activeSearch, handleOpenSearch } = useSearchBox()
 
   return (
 
@@ -71,12 +77,20 @@ export default function FragmentComunicacion() {
         <div className="basis-full lg:basis-96 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
           <label htmlFor="causa" className="w-12 text-center lg:text-left">Causa:</label>
 
-          <div className='relative'
+          <div
+            className='relative'
+            onClick={(e) => handleOpenSearch(e, SearchCategory.Causa)}
           >
             <button
               className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
               <MagnifyingGlassIcon className="w-4 text-white" />
             </button>
+
+            {SearchCategory.Causa === activeSearch.id && activeSearch.modal && (
+              <SearchButton
+                label={searchCat.causa}
+              />
+            )}
 
           </div>
 

@@ -2,69 +2,13 @@ import './form.module.css';
 import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';
 import SearchButton from '../SearchButton';
-import { useEffect, useRef, useState } from 'react';
-import { labelCat, SearchCategory } from '../../types';
+import { searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
+import { useSearchBox } from '../../hooks/useSearchBox';
 
 export default function ReuneForm() {
 
-    const labelCat: labelCat = {
-        1: 'Cliente',
-        2: 'Sucursal',
-        3: 'Causa'
-    }
-
-    const initialState = {
-        id: null as number | null,
-        modal: false
-    }
-
-    const [activeSearch, setActiveSearch] = useState(initialState)
-    const modalRef = useRef<HTMLDivElement>(null); // Referencia al contenedor del modal
-
-
-    const handleOpenSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
-        e.preventDefault()
-
-        // setActiveSearch((prev) => ({
-        //     id: prev.id === cat && prev.modal ? null : cat,
-        //     modal: prev.id !== cat || !prev.modal,
-        // }));
-
-        setActiveSearch({
-            id: cat,
-            modal: true,
-        });
-
-    }
-
-    // Cierra el modal si se hace clic fuera de este
-    useEffect(() => {
-
-        // if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-
-        const handleClickOutside = (event: MouseEvent) => {
-
-            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-                setActiveSearch((prev) => ({
-                    ...prev,
-                    modal: false,
-                }));
-            }
-        };
-
-        //Se activa unicamente cuando modal es true
-        if (activeSearch.modal) {
-            // Manda a llamar la función al dar clic
-            document.addEventListener('mouseup', handleClickOutside);
-        }
-
-        return () => {
-            // Por default quita el evento
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-
-    }, [activeSearch.modal]);
+    const { activeSearch, handleOpenSearch } = useSearchBox()
 
     return (
 
@@ -77,7 +21,6 @@ export default function ReuneForm() {
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
                     <div
-
                         className='relative'
                         onClick={(e) => handleOpenSearch(e, SearchCategory.Cliente)}
                     >
@@ -88,8 +31,7 @@ export default function ReuneForm() {
 
                         {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
                             <SearchButton
-                                label={labelCat[1]}
-                                modalRef={modalRef}
+                                label={searchCat.cliente}
                             />
                         )}
 
@@ -103,7 +45,6 @@ export default function ReuneForm() {
                     <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
 
                     <div
-
                         className='relative'
                         onClick={(e) => handleOpenSearch(e, SearchCategory.Sucursal)}
                     >
@@ -114,8 +55,7 @@ export default function ReuneForm() {
 
                         {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
                             <SearchButton
-                                label={labelCat[2]}
-                                modalRef={modalRef}
+                                label={searchCat.sucursal}
                             />
                         )}
 
