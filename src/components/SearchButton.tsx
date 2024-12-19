@@ -14,6 +14,7 @@ export default function SearchButton({ label }: SearchBoxProps) {
         useEffect(() => {
 
             handleCloseSearch()
+            console.log(modalRef)
     
         }, [activeSearch.modal])
 
