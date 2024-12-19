@@ -23,33 +23,47 @@ export default function ReuneForm() {
     const modalRef = useRef<HTMLDivElement>(null); // Referencia al contenedor del modal
 
 
-    const handleSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
+    const handleOpenSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
         e.preventDefault()
 
-        setActiveSearch((prev) => ({
-            id: prev.id === cat && prev.modal ? null : cat,
-            modal: prev.id !== cat || !prev.modal,
-        }));
+        // setActiveSearch((prev) => ({
+        //     id: prev.id === cat && prev.modal ? null : cat,
+        //     modal: prev.id !== cat || !prev.modal,
+        // }));
+
+        setActiveSearch({
+            id: cat,
+            modal: true,
+        });
 
     }
 
     // Cierra el modal si se hace clic fuera de este
     useEffect(() => {
-        
+
+        // if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+
         const handleClickOutside = (event: MouseEvent) => {
 
             if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-                setActiveSearch({ id: null, modal: false });
+                setActiveSearch((prev) => ({
+                    ...prev,
+                    modal: false,
+                }));
             }
         };
 
+        //Se activa unicamente cuando modal es true
         if (activeSearch.modal) {
-            document.addEventListener('mousedown', handleClickOutside);
+            // Manda a llamar la función al dar clic
+            document.addEventListener('mouseup', handleClickOutside);
         }
 
         return () => {
+            // Por default quita el evento
             document.removeEventListener('mousedown', handleClickOutside);
         };
+
     }, [activeSearch.modal]);
 
     return (
@@ -63,8 +77,9 @@ export default function ReuneForm() {
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
                     <div
+
                         className='relative'
-                        onClick={(e) => handleSearch(e, SearchCategory.Cliente)}
+                        onClick={(e) => handleOpenSearch(e, SearchCategory.Cliente)}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -72,12 +87,15 @@ export default function ReuneForm() {
                         </button>
 
                         {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
-                            <SearchButton label={labelCat[1]} />
+                            <SearchButton
+                                label={labelCat[1]}
+                                modalRef={modalRef}
+                            />
                         )}
 
                     </div>
 
-                    <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
+                    <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly />
 
                 </div>
 
@@ -85,8 +103,9 @@ export default function ReuneForm() {
                     <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
 
                     <div
+
                         className='relative'
-                        onClick={(e) => handleSearch(e, SearchCategory.Sucursal)}
+                        onClick={(e) => handleOpenSearch(e, SearchCategory.Sucursal)}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -94,7 +113,10 @@ export default function ReuneForm() {
                         </button>
 
                         {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
-                            <SearchButton label={labelCat[2]} />
+                            <SearchButton
+                                label={labelCat[2]}
+                                modalRef={modalRef}
+                            />
                         )}
 
                     </div>
