@@ -2,56 +2,13 @@ import './form.module.css';
 import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';
 import SearchButton from '../SearchButton';
-import { useEffect, useRef, useState } from 'react';
-import { labelCat, SearchCategory } from '../../types';
+import { searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
+import { useSearchBox } from '../../hooks/useSearchBox';
 
 export default function ReuneForm() {
 
-    const labelCat: labelCat = {
-        1: 'Cliente',
-        2: 'Sucursal',
-        3: 'Causa'
-    }
-
-    const initialState = {
-        id: null as number | null,
-        modal: false
-    }
-
-    const [activeSearch, setActiveSearch] = useState(initialState)
-    const modalRef = useRef<HTMLDivElement>(null); // Referencia al contenedor del modal
-
-
-    const handleSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
-        e.preventDefault()
-
-        setActiveSearch((prev) => ({
-            id: prev.id === cat && prev.modal ? null : cat,
-            modal: prev.id !== cat || !prev.modal,
-        }));
-
-    }
-
-    // Cierra el modal si se hace clic fuera de este
-    useEffect(() => {
-
-        const handleClickOutside = (event: MouseEvent) => {
-
-            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-                setActiveSearch({ id: null, modal: false });
-            }
-        };
-
-        if (activeSearch.modal) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-        
-    }, [activeSearch.modal]);
+    const { activeSearch, handleOpenSearch } = useSearchBox()
 
     return (
 
@@ -65,7 +22,7 @@ export default function ReuneForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => handleSearch(e, SearchCategory.Cliente)}
+                        onClick={(e) => handleOpenSearch(e, SearchCategory.Cliente)}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -73,12 +30,14 @@ export default function ReuneForm() {
                         </button>
 
                         {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
-                            <SearchButton label={labelCat[1]} />
+                            <SearchButton
+                                label={searchCat.cliente}
+                            />
                         )}
 
                     </div>
 
-                    <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
+                    <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly />
 
                 </div>
 
@@ -87,7 +46,7 @@ export default function ReuneForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => handleSearch(e, SearchCategory.Sucursal)}
+                        onClick={(e) => handleOpenSearch(e, SearchCategory.Sucursal)}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -95,7 +54,9 @@ export default function ReuneForm() {
                         </button>
 
                         {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
-                            <SearchButton label={labelCat[2]} />
+                            <SearchButton
+                                label={searchCat.sucursal}
+                            />
                         )}
 
                     </div>

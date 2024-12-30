@@ -16,9 +16,9 @@ export enum SearchCategory {
     Causa = 3
 }
 
-export interface labelCat {
-    1: string,
-    2: string,
-    3: string
+export enum searchCat {
+    cliente = 'Cliente',
+    sucursal = 'Sucursal',
+    causa = 'Causa',
 }
 

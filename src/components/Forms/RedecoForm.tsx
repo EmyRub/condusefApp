@@ -1,9 +1,14 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import SearchBox from "../SearchButton";
 import FragmentComunicacion from "./FragmentComunicacion";
 import FragmentInstitucion from './FragmentInstitucion';
+import { useSearchBox } from "../../hooks/useSearchBox";
+import { searchCat, SearchCategory } from "../../types";
+import SearchButton from "../SearchButton";
 
 export default function RedecoForm() {
+
+    const { activeSearch, handleOpenSearch } = useSearchBox()
+
     return (
 
         <form autoComplete="on" data-formulario>
@@ -14,13 +19,22 @@ export default function RedecoForm() {
 
                     <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
 
-                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
-                        <MagnifyingGlassIcon className="w-4 text-white" />
+                    <div
+                        className='relative'
+                        onClick={(e) => handleOpenSearch(e, SearchCategory.Cliente)}
+                    >
+                        <button
+                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
+                            <MagnifyingGlassIcon className="w-4 text-white" />
+                        </button>
 
-                        <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
-                            <SearchBox />
-                        </div>
-                    </button>
+                        {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
+                            <SearchButton
+                                label={searchCat.cliente}
+                            />
+                        )}
+
+                    </div>
 
                     <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly disabled />
                 </div>
@@ -28,13 +42,22 @@ export default function RedecoForm() {
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
                     <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
 
-                    <button className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow relative">
-                        <MagnifyingGlassIcon className="w-4 text-white" />
+                    <div
+                        className='relative'
+                        onClick={(e) => handleOpenSearch(e, SearchCategory.Sucursal)}
+                    >
+                        <button
+                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
+                            <MagnifyingGlassIcon className="w-4 text-white" />
+                        </button>
 
-                        <div className='absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96'>
-                            <SearchBox />
-                        </div>
-                    </button>
+                        {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
+                            <SearchButton
+                                label={searchCat.sucursal}
+                            />
+                        )}
+
+                    </div>
 
                     <input type="number" name="sucur" id="sucur" className="w-full  lg:w-3/5" readOnly disabled />
                 </div>
