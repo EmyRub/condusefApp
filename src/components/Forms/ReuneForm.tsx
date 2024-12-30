@@ -35,7 +35,7 @@ export default function ReuneForm() {
 
     // Cierra el modal si se hace clic fuera de este
     useEffect(() => {
-        
+
         const handleClickOutside = (event: MouseEvent) => {
 
             if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -50,6 +50,7 @@ export default function ReuneForm() {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
+        
     }, [activeSearch.modal]);
 
     return (
