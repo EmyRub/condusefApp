@@ -5,10 +5,15 @@ import SearchButton from '../SearchButton';
 import { searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import { useSearchBox } from '../../hooks/useSearchBox';
+import { useReducer } from 'react';
+import { activityReducer, initialState } from '../../reducers/modalReducer';
 
 export default function ReuneForm() {
 
-    const { activeSearch, handleOpenSearch } = useSearchBox()
+    const { activeSearch, handleOpenSearch, modalRef, handleCloseSearch } = useSearchBox()
+
+    //Dispatch.- función especial que permite ejecutar acciones cuando se le llame
+   // const [state, dispatch] = useReducer(activityReducer, initialState)
 
     return (
 
@@ -32,6 +37,9 @@ export default function ReuneForm() {
                         {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
                             <SearchButton
                                 label={searchCat.cliente}
+                                modalRef={modalRef}
+                                activeSearch={activeSearch}
+                                handleCloseSearch={handleCloseSearch}
                             />
                         )}
 
@@ -56,6 +64,9 @@ export default function ReuneForm() {
                         {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
                             <SearchButton
                                 label={searchCat.sucursal}
+                                modalRef={modalRef}
+                                activeSearch={activeSearch}
+                                handleCloseSearch={handleCloseSearch}
                             />
                         )}
 
@@ -136,7 +147,11 @@ export default function ReuneForm() {
                 </div>
             </fieldset>
 
-            <FragmentComunicacion />
+            <FragmentComunicacion
+                modalRef={modalRef}
+                activeSearch={activeSearch}
+                handleCloseSearch={handleCloseSearch}
+            />
 
             <div className="flex flex-col lg:flex-row gap-2 justify-between items-start mb-8">
 

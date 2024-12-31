@@ -1,22 +1,22 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { useSearchBox } from "../hooks/useSearchBox";
 import { useEffect } from "react";
 
 interface SearchBoxProps {
-    label: string
+    label: string,
+    modalRef: React.RefObject<HTMLDivElement>,
+    activeSearch: { id: number | null, modal: boolean },
+    handleCloseSearch: () => void
 }
 
-export default function SearchButton({ label }: SearchBoxProps) {
+export default function SearchButton({ label, modalRef, activeSearch, handleCloseSearch }: SearchBoxProps) {
 
-    const { modalRef, activeSearch, handleCloseSearch } = useSearchBox()
+    // Cierra el modal si se hace clic fuera de este
+    useEffect(() => {
 
-        // Cierra el modal si se hace clic fuera de este
-        useEffect(() => {
+        handleCloseSearch()
+        console.log(modalRef)
 
-            handleCloseSearch()
-            console.log(modalRef)
-    
-        }, [activeSearch.modal])
+    }, [activeSearch.modal])
 
     return (
 

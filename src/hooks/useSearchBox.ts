@@ -24,7 +24,6 @@ export const useSearchBox = () => {
     }
 
     function handleCloseSearch() {
-        console.log('desde hook')
         //Se activa unicamente cuando modal es true
         if (activeSearch.modal) {
             // Manda a llamar la función al dar clic

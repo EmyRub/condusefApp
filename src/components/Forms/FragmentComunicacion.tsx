@@ -3,12 +3,15 @@ import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
 import { useSearchBox } from "../../hooks/useSearchBox";
 
+interface SearchBoxProps {
+  modalRef: React.RefObject<HTMLDivElement>,
+  activeSearch: { id: number | null, modal: boolean },
+  handleCloseSearch: () => void,
+}
 
+export default function FragmentComunicacion({ modalRef, activeSearch, handleCloseSearch, }: SearchBoxProps) {
 
-export default function FragmentComunicacion() {
-
-  const { activeSearch, handleOpenSearch } = useSearchBox()
-
+  const { handleOpenSearch } = useSearchBox()
   return (
 
     <fieldset className='p-6 lg:p-12'>
@@ -89,6 +92,9 @@ export default function FragmentComunicacion() {
             {SearchCategory.Causa === activeSearch.id && activeSearch.modal && (
               <SearchButton
                 label={searchCat.causa}
+                modalRef={modalRef}
+                activeSearch={activeSearch}
+                handleCloseSearch={handleCloseSearch}
               />
             )}
 

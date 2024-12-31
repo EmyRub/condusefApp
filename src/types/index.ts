@@ -22,3 +22,7 @@ export enum searchCat {
     causa = 'Causa',
 }
 
+export interface searchModal {
+    id: number | null,
+    modal: boolean
+}
