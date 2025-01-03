@@ -1,59 +1,36 @@
-import { useRef, useState } from 'react';
+import {  useEffect } from "react";
+import { useModal } from "./useModal";
 
-export const useSearchBox = () => {
 
-    const initialState = {
-        id: null as number | null,
-        modal: false
-    }
+interface useSearchProps {
+    modalRef: React.RefObject<HTMLDivElement>
+}
 
-    // Referencia al contenedor del modal
-    const modalRef = useRef<HTMLDivElement>(null);
-    
-    const [activeSearch, setActiveSearch] = useState(initialState)
+export const useSearchBox = ({ modalRef }: useSearchProps) => {
 
-    const handleOpenSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {
-        e.preventDefault()
-
-        setActiveSearch({
-            id: cat,
-            modal: true,
-        });
-
-        // id: prev.id === cat && prev.modal ? null : cat,
-        // modal: prev.id !== cat || !prev.modal,
-    }
-
-    function handleCloseSearch() {
-        //Se activa unicamente cuando modal es true
-        if (activeSearch.modal) {
-            // Manda a llamar la función al dar clic
-            document.addEventListener('mouseup', handleClickOutside);
-        }
-
-        return () => {
-            // Por default quita el evento
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }
+    const { state, dispatch } = useModal();
 
     const handleClickOutside = (event: MouseEvent) => {
 
         if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-            setActiveSearch((prev) => ({
-                ...prev,
-                modal: false,
-            }));
+            dispatch({ type: 'close-modal' })
         }
     };
 
+    useEffect(() => {
 
-    return {
-        modalRef,
-        activeSearch,
-        handleOpenSearch,
-        handleCloseSearch
-    }
+        if (state.modalState.modal) {
+
+            document.addEventListener("mousedown", handleClickOutside);
+
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+
+    }, [state.modalState.modal])
 
 }
-

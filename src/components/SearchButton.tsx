@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { useRef } from "react";
-import { useSearchBox2 } from "../hooks/useSearchBox2";
+import { useSearchBox } from "../hooks/useSearchBox";
 
 interface SearchBoxProps {
     label: string
@@ -9,7 +9,7 @@ interface SearchBoxProps {
 export default function SearchButton({ label }: SearchBoxProps) {
 
     const modalRef = useRef<HTMLDivElement>(null);
-    useSearchBox2({ modalRef })
+    useSearchBox({ modalRef })
 
     return (
 
@@ -19,7 +19,7 @@ export default function SearchButton({ label }: SearchBoxProps) {
 
             <div className="border-teal-500 border-2 mb-6 flex">
                 <MagnifyingGlassIcon className="bg-teal-500 w-8 text-white inline-block" />
-                <input type="search" name="search" id="search" placeholder="Ej" className="px-2 border-none" />
+                <input type="search" name="search" id="search" placeholder="Ej" className="px-2 border-none w-full" />
             </div>
 
             <table className="w-full border-2">

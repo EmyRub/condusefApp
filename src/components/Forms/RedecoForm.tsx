@@ -1,13 +1,13 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import FragmentComunicacion from "./FragmentComunicacion";
 import FragmentInstitucion from './FragmentInstitucion';
-import { useSearchBox } from "../../hooks/useSearchBox";
 import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
+import { useModal } from "../../hooks/useModal";
 
 export default function RedecoForm() {
 
-    const { activeSearch, handleOpenSearch } = useSearchBox()
+    const { state, dispatch } = useModal()
 
     return (
 
@@ -21,17 +21,15 @@ export default function RedecoForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => handleOpenSearch(e, SearchCategory.Cliente)}
+                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Cliente } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
-                            <SearchButton
-                                label={searchCat.cliente}
-                            />
+                        {SearchCategory.Cliente === state.modalState.id && state.modalState.modal && (
+                            <SearchButton label={searchCat.cliente} />
                         )}
 
                     </div>
@@ -44,17 +42,15 @@ export default function RedecoForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => handleOpenSearch(e, SearchCategory.Sucursal)}
+                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Sucursal } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
-                            <SearchButton
-                                label={searchCat.sucursal}
-                            />
+                        {SearchCategory.Sucursal === state.modalState.id && state.modalState.modal && (
+                            <SearchButton label={searchCat.sucursal} />
                         )}
 
                     </div>

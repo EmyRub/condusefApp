@@ -31,9 +31,7 @@ export default function ReuneForm() {
                         </button>
 
                         {SearchCategory.Cliente === state.modalState.id && state.modalState.modal && (
-                            <SearchButton
-                                label={searchCat.cliente}
-                            />
+                            <SearchButton label={searchCat.cliente} />
                         )}
 
                     </div>
@@ -55,9 +53,7 @@ export default function ReuneForm() {
                         </button>
 
                         {SearchCategory.Sucursal === state.modalState.id && state.modalState.modal && (
-                            <SearchButton
-                                label={searchCat.sucursal}
-                            />
+                            <SearchButton label={searchCat.sucursal} />
                         )}
 
                     </div>
