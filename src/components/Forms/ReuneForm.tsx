@@ -5,15 +5,14 @@ import SearchButton from '../SearchButton';
 import { searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import { useSearchBox } from '../../hooks/useSearchBox';
-import { useReducer } from 'react';
-import { activityReducer, initialState } from '../../reducers/modalReducer';
+import { useModal } from '../../hooks/useModal';
 
 export default function ReuneForm() {
 
     const { activeSearch, handleOpenSearch, modalRef, handleCloseSearch } = useSearchBox()
 
-    //Dispatch.- función especial que permite ejecutar acciones cuando se le llame
-   // const [state, dispatch] = useReducer(activityReducer, initialState)
+    //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
+    const { state, dispatch } = useModal()
 
     return (
 
@@ -27,14 +26,14 @@ export default function ReuneForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => handleOpenSearch(e, SearchCategory.Cliente)}
+                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Cliente } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Cliente === activeSearch.id && activeSearch.modal && (
+                        {SearchCategory.Cliente === state.modalState.id && state.modalState.modal && (
                             <SearchButton
                                 label={searchCat.cliente}
                                 modalRef={modalRef}

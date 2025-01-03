@@ -8,7 +8,9 @@ import BgLogin from "./layouts/BgLogin";
 export default function AppRouter() {
     return (
         <BrowserRouter basename="/condusefApp">
+            
             <Routes>
+
                 <Route element={<BgLogin/>}>
                     <Route path="/" element={<LoginPage />}></Route>
                     <Route path="/newAcount" element={<NewAcountPage />}></Route>
@@ -17,6 +19,7 @@ export default function AppRouter() {
                 <Route element={<Layout />}>
                     <Route path="/quejas" element={<IndexPage />}></Route>
                 </Route>
+
             </Routes>
         </BrowserRouter>
     )

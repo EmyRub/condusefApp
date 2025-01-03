@@ -9,6 +9,7 @@ export const useSearchBox = () => {
 
     // Referencia al contenedor del modal
     const modalRef = useRef<HTMLDivElement>(null);
+    
     const [activeSearch, setActiveSearch] = useState(initialState)
 
     const handleOpenSearch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, cat: number) => {

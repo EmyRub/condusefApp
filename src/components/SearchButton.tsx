@@ -14,7 +14,6 @@ export default function SearchButton({ label, modalRef, activeSearch, handleClos
     useEffect(() => {
 
         handleCloseSearch()
-        console.log(modalRef)
 
     }, [activeSearch.modal])
 

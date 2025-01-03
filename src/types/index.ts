@@ -24,5 +24,5 @@ export enum searchCat {
 
 export interface searchModal {
     id: number | null,
-    modal: boolean
+    modal: boolean,
 }
