@@ -9,7 +9,7 @@ import { useModal } from '../../hooks/useModal';
 
 export default function ReuneForm() {
 
-    const { activeSearch, handleOpenSearch, modalRef, handleCloseSearch } = useSearchBox()
+    const { activeSearch, modalRef, handleCloseSearch } = useSearchBox()
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useModal()
@@ -36,9 +36,6 @@ export default function ReuneForm() {
                         {SearchCategory.Cliente === state.modalState.id && state.modalState.modal && (
                             <SearchButton
                                 label={searchCat.cliente}
-                                modalRef={modalRef}
-                                activeSearch={activeSearch}
-                                handleCloseSearch={handleCloseSearch}
                             />
                         )}
 
@@ -53,19 +50,16 @@ export default function ReuneForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => handleOpenSearch(e, SearchCategory.Sucursal)}
+                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Sucursal } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Sucursal === activeSearch.id && activeSearch.modal && (
+                        {SearchCategory.Sucursal === state.modalState.id && state.modalState.modal && (
                             <SearchButton
                                 label={searchCat.sucursal}
-                                modalRef={modalRef}
-                                activeSearch={activeSearch}
-                                handleCloseSearch={handleCloseSearch}
                             />
                         )}
 

@@ -1,17 +1,13 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
-import { useSearchBox } from "../../hooks/useSearchBox";
+import { useModal } from "../../hooks/useModal";
 
-interface SearchBoxProps {
-  modalRef: React.RefObject<HTMLDivElement>,
-  activeSearch: { id: number | null, modal: boolean },
-  handleCloseSearch: () => void,
-}
 
-export default function FragmentComunicacion({ modalRef, activeSearch, handleCloseSearch, }: SearchBoxProps) {
+export default function FragmentComunicacion() {
 
-  const { handleOpenSearch } = useSearchBox()
+  const { state, dispatch } = useModal()
+
   return (
 
     <fieldset className='p-6 lg:p-12'>
@@ -82,19 +78,16 @@ export default function FragmentComunicacion({ modalRef, activeSearch, handleClo
 
           <div
             className='relative'
-            onClick={(e) => handleOpenSearch(e, SearchCategory.Causa)}
+            onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Causa } })}
           >
             <button
               className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
               <MagnifyingGlassIcon className="w-4 text-white" />
             </button>
 
-            {SearchCategory.Causa === activeSearch.id && activeSearch.modal && (
+            {SearchCategory.Causa === state.modalState.id && state.modalState.modal && (
               <SearchButton
                 label={searchCat.causa}
-                modalRef={modalRef}
-                activeSearch={activeSearch}
-                handleCloseSearch={handleCloseSearch}
               />
             )}
 
