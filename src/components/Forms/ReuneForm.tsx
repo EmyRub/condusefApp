@@ -4,12 +4,9 @@ import FragmentInstitucion from './FragmentInstitucion';
 import SearchButton from '../SearchButton';
 import { searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
-import { useSearchBox } from '../../hooks/useSearchBox';
 import { useModal } from '../../hooks/useModal';
 
 export default function ReuneForm() {
-
-    const { activeSearch, modalRef, handleCloseSearch } = useSearchBox()
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useModal()
@@ -140,11 +137,7 @@ export default function ReuneForm() {
                 </div>
             </fieldset>
 
-            <FragmentComunicacion
-                modalRef={modalRef}
-                activeSearch={activeSearch}
-                handleCloseSearch={handleCloseSearch}
-            />
+            <FragmentComunicacion />
 
             <div className="flex flex-col lg:flex-row gap-2 justify-between items-start mb-8">
 
