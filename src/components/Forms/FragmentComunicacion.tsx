@@ -2,11 +2,13 @@ import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
 import { useModal } from "../../hooks/useModal";
+import { useForm } from "react-hook-form";
 
 
 export default function FragmentComunicacion() {
 
   const { state, dispatch } = useModal()
+  const { register } = useForm()
 
   return (
 
@@ -18,31 +20,75 @@ export default function FragmentComunicacion() {
 
         <div className="basis-full lg:basis-44">
           <label htmlFor="mes" className="w-full lg:w-12 text-center lg:text-left">Mes:</label>
-          <input id="mes" type="number" className="w-full lg:w-32" readOnly disabled />
+          <input
+            id="mes"
+            type="number"
+            className="w-full lg:w-32"
+            readOnly disabled
+            {...register('mes', {
+              required: "El mes es obligatorio",
+              minLength: {
+                value: 1,
+                message: "Formato de mes no válido."
+              },
+              maxLength: {
+                value: 12,
+                message: "Formato de mes no válido."
+              }
+
+            })}
+          />
+
         </div>
 
         <div className="basis-full lg:basis-72">
-          <label htmlFor="FReg" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Fecha de Registro:</label>
-          <input type="date" name="FReg" id="FReg" className="w-full lg:w-36 text-center" />
+          <label htmlFor="fecReg" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Fecha de Registro:</label>
+          <input
+            id="fecReg"
+            type="date"
+            className="w-full lg:w-36 text-center"
+            {...register('fecReg', {
+              required: true
+            })}
+          />
         </div>
 
         <div className="basis-full lg:basis-72">
-          <label htmlFor="FeAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Fecha de Atención</label>
-          <input type="date" name="FeAtn" id="FeAtn" className="w-full lg:w-36 text-center" />
+          <label htmlFor="fecAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Fecha de Atención</label>
+          <input
+            id="fecAtn"
+            type="date"
+            className="w-full lg:w-36 text-center"
+            {...register('fecAtn', {
+              required: true
+            })}
+          />
         </div>
 
         <div className="basis-full lg:basis-72">
           <label htmlFor="eReg" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Estado de registro</label>
 
-          <select name="eReg" id="eReg" className="w-full lg:w-36 text-center">
+          <select
+            id="eReg"
+            className="w-full lg:w-36 text-center"
+            {...register('eReg', {
+              required: true
+            })}
+          >
             <option value="">Concluido</option>
           </select>
         </div>
 
         <div className="basis-full lg:basis-72">
-          <label htmlFor="nAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Nivel de Atención:</label>
+          <label htmlFor="nvlAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Nivel de Atención:</label>
 
-          <select name="nAtn" id="nAtn" className="w-full lg:w-36 text-center">
+          <select
+            id="nvlAtn"
+            className="w-full lg:w-36 text-center"
+            {...register('nvlAtn', {
+              required: true
+            })}
+          >
             <option value="">Vía Eletrónica</option>
           </select>
         </div>
@@ -50,7 +96,13 @@ export default function FragmentComunicacion() {
         <div className="basis-full lg:basis-64">
           <label htmlFor="queja" className="w-full lg:w-28 text-center lg:text-left mb-2 lg:mb-0">Tipo de Queja</label>
 
-          <select name="queja" id="queja" className="w-full lg:w-36 text-center">
+          <select
+            id="queja"
+            className="w-full lg:w-36 text-center"
+            {...register('queja', {
+              required: true
+            })}
+          >
             <option value="">Consulta</option>
           </select>
         </div>
@@ -58,19 +110,43 @@ export default function FragmentComunicacion() {
         <div className="basis-full lg:basis-72">
           <label htmlFor="nProd" className="w-full lg:w-40 text-center lg:text-left mb-2 lg:mb-0">Número de Producto:</label>
 
-          <select name="nProd" id="nProd" className="w-full lg:w-32 text-center">
+          <select
+            id="nProd"
+            className="w-full lg:w-32 text-center"
+            {...register('nProd', {
+              required: true
+            })}
+          >
             <option value="">14653216</option>
           </select>
         </div>
 
         <div className="basis-full lg:basis-72">
-          <label htmlFor="foConduf" className="w-full lg:w-28 text-center lg:text-left">Folio condusef:</label>
-          <input type="number" name="foConduf" id="foConduf" className="w-full lg:w-44" readOnly disabled />
+          <label htmlFor="folConduf" className="w-full lg:w-28 text-center lg:text-left">Folio condusef:</label>
+          <input
+            id="folConduf"
+            type="number"
+            className="w-full lg:w-44"
+            readOnly disabled
+            {...register('folConduf', {
+              required: true,
+              minLength: 1
+            })}
+          />
         </div>
 
         <div className="basis-full lg:basis-56">
-          <label htmlFor="FoAtn" className="w-full lg:w-32 text-center lg:text-left">Folio de Atención</label>
-          <input type="number" name="FoAtn" id="FoAtn" className="w-full lg:w-24" readOnly disabled />
+          <label htmlFor="folAtn" className="w-full lg:w-32 text-center lg:text-left">Folio de Atención</label>
+          <input
+            id="folAtn"
+            type="number"
+            className="w-full lg:w-24"
+            readOnly disabled
+            {...register('folAtn', {
+              required: true,
+              minLength: 1
+            })}
+          />
         </div>
 
         <div className="basis-full lg:basis-96 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
@@ -93,13 +169,28 @@ export default function FragmentComunicacion() {
 
           </div>
 
-          <input type="number" name="causa" id="causa" className="w-full lg:w-72" readOnly disabled />
+          <input
+            id="causa"
+            type="number"
+            className="w-full lg:w-72"
+            readOnly disabled
+            {...register('causa', {
+              required: true,
+              minLength: 1
+            })}
+          />
         </div>
 
         <div className="basis-full lg:basis-96">
-          <label htmlFor="mCom" className="w-full lg:w-48 text-center lg:text-left mb-2 lg:mb-0">Medio de Comunicación:</label>
+          <label htmlFor="medioCmn" className="w-full lg:w-48 text-center lg:text-left mb-2 lg:mb-0">Medio de Comunicación:</label>
 
-          <select name="mCom" id="mCom" className="w-full lg:w-48 text-center">
+          <select
+            id="medioCmn"
+            className="w-full lg:w-48 text-center"
+            {...register('medioCmn', {
+              required: true
+            })}
+          >
             <option value="">Correo Electrónico</option>
           </select>
         </div>
