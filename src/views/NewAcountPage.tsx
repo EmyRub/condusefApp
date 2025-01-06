@@ -37,9 +37,9 @@ export default function NewAcountPage() {
           })}
         />
       </div>
-      
+
       {errors.name && (
-        <Error>{errors.name?.message as string}</Error>
+        <Error login={true}>{errors.name?.message as string}</Error>
       )}
 
       <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
@@ -59,7 +59,7 @@ export default function NewAcountPage() {
         />
       </div>
       {errors.email && (
-        <Error>{errors.email?.message as string}</Error>
+        <Error login={true}>{errors.email?.message as string}</Error>
       )}
 
       <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden">
@@ -79,7 +79,7 @@ export default function NewAcountPage() {
         />
       </div>
       {errors.password && (
-        <Error>{errors.password?.message as string}</Error>
+        <Error login={true}>{errors.password?.message as string}</Error>
       )}
 
       <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden">
@@ -91,15 +91,15 @@ export default function NewAcountPage() {
           {...register('validatePassword', {
             required: 'Favor de confirmar la contraseña',
             minLength: {
-              value:6,
+              value: 6,
               message: "Contraseña menor a 6 carácteres"
-          }
+            }
 
           })}
         />
       </div>
       {errors.validatePassword && (
-        <Error>{errors.validatePassword?.message as string}</Error>
+        <Error login={true}>{errors.validatePassword?.message as string}</Error>
       )}
 
       <input className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950" type="submit" value="Guardar" />

@@ -1,8 +1,13 @@
 import React from "react";
 
-export default function Error({ children }: { children: React.ReactNode }) {
+type errorProps = {
+    children: React.ReactNode,
+    login?: boolean
+}
+
+export default function Error({ children, login }: errorProps) {
 
     return (
-        <p className="text-center text-white bg-rose-800  p-3 mb-3 rounded-3xl">{children}</p>
+        <p className={login ? 'text-center text-white bg-rose-800 p-3 mb-3 rounded-3xl' : 'text-red-800 text-center my-2 font-semibold text-sm'}>{children}</p>
     )
 }

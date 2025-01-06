@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import Error from "../Error";
 import { useForm } from "react-hook-form";
 import styles from './Form.module.css';
 
@@ -45,10 +46,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-
-                        {errors.cp && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.cp?.message}`}</small></p>
-                        )}
+                        {errors.cp && (<Error>*{errors.cp?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-1/2">
@@ -65,9 +63,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.loc && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.loc?.message}`}</small></p>
-                        )}
+                        {errors.loc && (<Error>*{errors.loc?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-5/12">
@@ -84,9 +80,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.edo && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.edo?.message}`}</small></p>
-                        )}
+                        {errors.edo && (<Error>*{errors.edo?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-1/2">
@@ -98,13 +92,12 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                             {...register('muni', {
                                 required: "El Municipio es obligatorio",
                                 minLength: {
-                                    value:2,
-                                       message: 'Municipio no válido'
+                                    value: 2,
+                                    message: 'Municipio no válido'
                                 }
                             })}
                         />
-                        {errors.muni && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.muni?.message}`}</small></p>
+                        {errors.muni && (<Error>*{errors.muni?.message as string}</Error>
                         )}
                     </div>
 

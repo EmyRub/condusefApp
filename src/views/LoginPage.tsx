@@ -35,7 +35,7 @@ export default function LoginPage() {
                 />
             </div>
             {errors.email && (
-                <Error>{errors.email?.message as string}</Error>
+                <Error login={true}>{errors.email?.message as string}</Error>
             )}
 
             <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden">
@@ -54,7 +54,7 @@ export default function LoginPage() {
                 />
             </div>
             {errors.password && (
-                <Error>{errors.password?.message as string}</Error>
+                <Error login={true}>{errors.password?.message as string}</Error>
             )}
 
             <input className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950" type="submit" value="Iniciar Sesión" />

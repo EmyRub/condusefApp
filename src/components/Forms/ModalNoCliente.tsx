@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import Error from "../Error";
 import styles from './Form.module.css';
 import { useForm } from 'react-hook-form';
 
@@ -36,9 +37,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.name && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.name?.message}`}</small></p>
-                        )}
+                        {errors.name && (<Error>*{errors.name?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-80">
@@ -55,9 +54,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.email && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.email?.message}`}</small></p>
-                        )}
+                        {errors.email && (<Error>*{errors.email?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-64">
@@ -74,9 +71,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.tel && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.tel?.message}`}</small></p>
-                        )}
+                        {errors.tel && (<Error>*{errors.tel?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-32">
@@ -94,9 +89,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             }
                             )}
                         />
-                        {errors.age && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.age?.message}`}</small></p>
-                        )}
+                        {errors.age && (<Error>*{errors.age?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-72">
@@ -113,9 +106,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             <option value="1">0</option>
                         </select>
 
-                        {errors.typePer && (
-                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.typePer?.message}`}</small></p>
-                        )}
+                        {errors.typePer && (<Error>*{errors.typePer?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
