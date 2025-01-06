@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from './Form.module.css';
 
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {

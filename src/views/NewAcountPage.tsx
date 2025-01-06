@@ -21,6 +21,7 @@ export default function NewAcountPage() {
       <hr className="my-4" />
 
       <h1 className="text-center text-white mb-4 text-lg uppercase">Nueva Cuenta</h1>
+
       <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
         <UserIcon className="w-8 text-white opacity-50" />
         <input className="block w-full bg-transparent border-none placeholder:text-white placeholder:opacity-50 outline-none"
@@ -31,11 +32,12 @@ export default function NewAcountPage() {
             required: 'El nombre es obligatorio',
             minLength: {
               value: 2,
-              message: "Mínimo 2 carácteres"
+              message: "Nombre no válido"
             }
           })}
         />
       </div>
+      
       {errors.name && (
         <Error>{errors.name?.message as string}</Error>
       )}

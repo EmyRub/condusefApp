@@ -18,7 +18,7 @@ export default function LoginPage() {
             className="w-11/12 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
 
             <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
-         
+
             <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
                 <UserIcon className="w-8 text-white opacity-50" />
                 <input className="block w-full bg-transparent border-none placeholder:text-white placeholder:opacity-50 outline-none"
@@ -26,7 +26,11 @@ export default function LoginPage() {
                     id="email"
                     placeholder="Email:"
                     {...register('email', {
-                        required: 'El email es obligatorio'
+                        required: 'El email es obligatorio',
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: 'Email No Válido'
+                        }
                     })}
                 />
             </div>
@@ -43,7 +47,7 @@ export default function LoginPage() {
                     {...register('password', {
                         required: 'El password es obligatorio',
                         minLength: {
-                            value:6,
+                            value: 6,
                             message: "Mínimo 6 carácteres"
                         }
                     })}
