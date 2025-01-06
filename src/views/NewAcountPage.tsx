@@ -28,7 +28,11 @@ export default function NewAcountPage() {
           id="name"
           placeholder="Nombre"
           {...register('name', {
-            required: 'El nombre es obligatorio'
+            required: 'El nombre es obligatorio',
+            minLength: {
+              value: 2,
+              message: "Mínimo 2 carácteres"
+            }
           })}
         />
       </div>
@@ -64,6 +68,10 @@ export default function NewAcountPage() {
           placeholder="Contraseña"
           {...register('password', {
             required: 'Contraseña Obligatoria',
+            minLength: {
+              value: 6,
+              message: "La contraseña debe tener un mínimo de 6 carácteres"
+            }
 
           })}
         />
@@ -80,6 +88,10 @@ export default function NewAcountPage() {
           placeholder="Confirmar Contraseña"
           {...register('validatePassword', {
             required: 'Favor de confirmar la contraseña',
+            minLength: {
+              value:6,
+              message: "Contraseña menor a 6 carácteres"
+          }
 
           })}
         />

@@ -41,7 +41,11 @@ export default function LoginPage() {
                     id="password"
                     placeholder="Contraseña:"
                     {...register('password', {
-                        required: 'El password es obigatorio'
+                        required: 'El password es obligatorio',
+                        minLength: {
+                            value:6,
+                            message: "Mínimo 6 carácteres"
+                        }
                     })}
                 />
             </div>
