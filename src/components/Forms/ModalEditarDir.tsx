@@ -16,9 +16,8 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
 
     const onSubmit = (data: any) => {
         console.log(data)
-
     }
-    console.log(errors)
+
     return (
 
         <form

@@ -35,8 +35,10 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                     message: 'Nombre no válido.'
                                 }
                             })}
-
                         />
+                        {errors.name && (
+                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.name?.message}`}</small></p>
+                        )}
                     </div>
 
                     <div className="basis-full lg:basis-80">
@@ -53,6 +55,9 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
+                        {errors.email && (
+                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.email?.message}`}</small></p>
+                        )}
                     </div>
 
                     <div className="basis-full lg:basis-64">
@@ -69,6 +74,9 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
+                        {errors.tel && (
+                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.tel?.message}`}</small></p>
+                        )}
                     </div>
 
                     <div className="basis-full lg:basis-32">
@@ -86,6 +94,9 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             }
                             )}
                         />
+                        {errors.age && (
+                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.age?.message}`}</small></p>
+                        )}
                     </div>
 
                     <div className="basis-full lg:basis-72">
@@ -94,24 +105,36 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                         <select
                             id="typePer"
                             className="w-full lg:w-32 text-center"
-                            {...register('typeper', {
+                            {...register('typePer', {
                                 required: 'Campo requerido.'
                             }
                             )}
                         >
-                            <option value="">0</option>
+                            <option value="1">0</option>
                         </select>
+
+                        {errors.typePer && (
+                            <p className='text-red-800 text-center my-2 font-semibold'><small>{`*${errors.typePer?.message}`}</small></p>
+                        )}
                     </div>
 
                     <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
                         <label htmlFor="sex" className="lg:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
-                            <input type="radio" name="sex" id="m" />
+                            <input
+                                id="m"
+                                type="radio"
+                                {...register('sex')}
+                            />
                             <label htmlFor="m">M</label>
                         </div>
                         <div className="flex gap-1">
-                            <input type="radio" name="sex" id="h" />
+                            <input
+                                id="h"
+                                type="radio"
+                                {...register('sex')}
+                            />
                             <label htmlFor="h">H</label>
                         </div>
                     </div>

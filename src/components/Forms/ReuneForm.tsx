@@ -5,15 +5,22 @@ import SearchButton from '../SearchButton';
 import { searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import { useModal } from '../../hooks/useModal';
+import { useForm } from 'react-hook-form';
 
 export default function ReuneForm() {
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useModal()
+    const { register, handleSubmit } = useForm()
+
+    const reuSubmit = () => { }
 
     return (
 
-        <form autoComplete="on" data-formulario>
+        <form
+            onSubmit={handleSubmit(reuSubmit)}
+            autoComplete="on"
+            data-formulario>
 
             <fieldset className="flex justify-between items-center flex-wrap gap-10 md:gap-12 p-6 lg:p-12">
 
@@ -36,7 +43,16 @@ export default function ReuneForm() {
 
                     </div>
 
-                    <input type="number" name="ente" id="ente" className="w-full lg:w-1/2" readOnly />
+                    <input
+                        id="ente"
+                        type="number"
+                        className="w-full lg:w-1/2"
+                        readOnly
+                        {...register('ente', {
+                            required: true,
+                            minLength: 1
+                        })}
+                    />
 
                 </div>
 
@@ -58,17 +74,35 @@ export default function ReuneForm() {
 
                     </div>
 
-                    <input type="number" name="sucur" id="sucur" className="w-full  lg:w-3/5" readOnly disabled />
+                    <input
+                        id="sucur"
+                        type="number"
+                        className="w-full lg:w-3/5"
+                        readOnly disabled
+                        {...register('sucur', {
+                            required: true
+                        })}
+                    />
                 </div>
 
                 <div className="basis-full lg:basis-1/2">
                     <label htmlFor="recl" className="w-full lg:w-56 text-center">¿El reclamo o Aclaración es de objeto monetario?</label>
-                    <input type="checkbox" name="recl" id="recl" className='w-full lg:w-1/5' />
+                    <input
+                        id="recl"
+                        type="checkbox"
+                        className='w-full lg:w-1/5'
+                        {...register('recl')}
+                    />
                 </div>
 
                 <div className="basis-full lg:basis-2/5">
                     <label htmlFor="rever" className="w-full lg:w-16 text-center xl:text-left">Rever:</label>
-                    <input type="checkbox" name="rever" id="rever" className='w-full lg:w-1/6' />
+                    <input
+                        id="rever"
+                        type="checkbox"
+                        className='w-full lg:w-1/6'
+                        {...register('rever')}
+                    />
                 </div>
 
             </fieldset>
@@ -81,33 +115,79 @@ export default function ReuneForm() {
 
                     <div className="basis-full">
                         <label htmlFor="cliente" className="w-full lg:w-36 text-center lg:text-left">Nombre del Cliente:</label>
-                        <input type="text" name="cliente" id="cliente" className="w-full lg:w-3/4" readOnly disabled />
+                        <input
+                            id="cliente"
+                            type="text"
+                            className="w-full lg:w-3/4"
+                            readOnly disabled
+                            {...register('cliente', {
+                                required: true
+                            })}
+                        />
                     </div>
 
                     <div className="basis-full lg:basis-1/2">
                         <label htmlFor="email" className="w-full lg:w-16 text-center lg:text-left">Correo:</label>
-                        <input type="email" name="email" id="email" className="w-full lg:w-3/4" readOnly disabled />
+                        <input
+                            id="email"
+                            type="email"
+                            className="w-full lg:w-3/4"
+                            readOnly disabled
+                            {...register('email', {
+                                required: true,
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                    message: 'Email No Válido'
+                                }
+                            })}
+                        />
                     </div>
 
                     <div className="basis-full lg:basis-5/12">
                         <label htmlFor="tel" className="w-full lg:w-20 text-center xl:text-left">Teléfono:</label>
-                        <input type="tel" name="tel" id="tel" className="w-full lg:w-3/5" readOnly disabled />
+                        <input
+                            id="tel"
+                            type="tel"
+                            className="w-full lg:w-3/5"
+                            readOnly disabled
+                            {...register('tel', {
+                                required: true,
+                                minLength: 5
+                            })}
+                        />
                     </div>
 
                     <div className="basis-full lg:basis-1/5">
                         <label htmlFor="age" className="w-full lg:w-12 text-center lg:text-left">Edad:</label>
-                        <input type="number" name="age" id="age" className="w-full lg:w-1/2" readOnly disabled />
+                        <input
+                            id="age"
+                            type="number"
+                            className="w-full lg:w-1/2"
+                            readOnly disabled
+                            {...register('age', {
+                                required: true,
+                                minLength: 18
+                            })}
+                        />
                     </div>
 
                     <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
                         <label htmlFor="sex" className="lg:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
-                            <input type="radio" name="sex" id="m" />
+                            <input
+                                id="m"
+                                type="radio"
+                                {...register('sex')}
+                            />
                             <label htmlFor="m">M</label>
                         </div>
                         <div className="flex gap-1">
-                            <input type="radio" name="sex" id="h" />
+                            <input
+                                id="h"
+                                type="radio"
+                                {...register('sex')}
+                            />
                             <label htmlFor="h">H</label>
                         </div>
                     </div>
@@ -115,19 +195,35 @@ export default function ReuneForm() {
                     <div className="basis-full lg:basis-5/12">
                         <label htmlFor="typePer" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Tipo de Persona:</label>
 
-                        <select name="typePer" id="typePer" className="w-full lg:w-2/5 text-center lg:text-left">
+                        <select
+                            id="typePer"
+                            className="w-full lg:w-2/5 text-center lg:text-left"
+                            {...register('typePer', {
+                                required: true
+                            })}
+                        >
                             <option value="">Física</option>
                         </select>
                     </div>
 
                     <div className="basis-full lg:basis-5/12">
                         <label htmlFor="pori" className="w-full lg:w-12 text-center lg:text-left">PORI:</label>
-                        <input type="checkbox" name="pori" id="pori" className='lg:w-12 w-full' />
+                        <input
+                            id="pori"
+                            type="checkbox"
+                            className='lg:w-12 w-full'
+                            {...register('pori')}
+                        />
                     </div>
 
                     <div className="basis-full lg:basis-5/12">
                         <label htmlFor="exg" className="w-full lg:w-40 text-center lg:text-left">Si es del extranjero:</label>
-                        <input type="checkbox" name="exg" id="exg" className='w-full lg:w-12' />
+                        <input
+                            id="exg"
+                            type="checkbox"
+                            className='w-full lg:w-12'
+                            {...register('exg')}
+                        />
                     </div>
 
                 </div>
@@ -144,18 +240,38 @@ export default function ReuneForm() {
                     <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
                         <div className="basis-full">
-                            <label htmlFor="fnot" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Notificación:</label>
-                            <input type="date" name="fnot" id="fnot" className="w-full lg:w-3/5 text-center" />
+                            <label htmlFor="fecNot" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Notificación:</label>
+                            <input
+                                id="fecNot"
+                                type="date"
+                                className="w-full lg:w-3/5 text-center"
+                                {...register('fecNot', {
+                                    required: true
+                                })}
+                            />
                         </div>
 
                         <div className="basis-full">
-                            <label htmlFor="freso" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Resolución:</label>
-                            <input type="date" name="freso" id="freso" className="w-full lg:w-3/5 text-center" />
+                            <label htmlFor="fecReso" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Resolución:</label>
+                            <input
+                                id="fecReso"
+                                type="date"
+                                className="w-full lg:w-3/5 text-center"
+                                {...register('fecReso', {
+                                    required: true
+                                })}
+                            />
                         </div>
 
                         <div className="basis-full">
-                            <label htmlFor="tre" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Tipo de Resolución:</label>
-                            <select name="tre" id="tre" className="w-full lg:w-3/5 text-center">
+                            <label htmlFor="typeRe" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Tipo de Resolución:</label>
+                            <select
+                                id="typeRe"
+                                className="w-full lg:w-3/5 text-center"
+                                {...register('typeRe', {
+                                    required: true
+                                })}
+                            >
                                 <option value=""></option>
                             </select>
                         </div>
@@ -171,17 +287,41 @@ export default function ReuneForm() {
 
                         <div className="basis-full">
                             <label htmlFor="montRe" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Reclamado:</label>
-                            <input type="number" name="montRe" id="montRe" className="w-full lg:w-1/2 text-center" />
+                            <input
+                                id="montRe"
+                                type="number"
+                                className="w-full lg:w-1/2 text-center"
+                                {...register('montRe', {
+                                    required: true,
+                                    minLength: 0
+                                })}
+                            />
                         </div>
 
                         <div className="basis-full">
-                            <label htmlFor="fAbon" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Fecha de Abono:</label>
-                            <input type="date" name="fAbon" id="fAbon" className="w-full lg:w-1/2 text-center" />
+                            <label htmlFor="fecAbo" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Fecha de Abono:</label>
+                            <input
+                                id="fecAbo"
+                                type="date"
+                                className="w-full lg:w-1/2 text-center"
+                                {...register('fecAbo', {
+                                    required: true
+                                })}
+                            />
                         </div>
 
                         <div className="basis-full">
-                            <label htmlFor="mAbo" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Abonado:</label>
-                            <input type="number" name="mAbo" id="mAbo" className="w-full lg:w-1/2 text-center" />
+                            <label htmlFor="montAbo" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Abonado:</label>
+                            <input
+                                type="number"
+
+                                id="montAbo"
+                                className="w-full lg:w-1/2 text-center"
+                                {...register('montAbo', {
+                                    required: true,
+                                    minLength: 0
+                                })}
+                            />
                         </div>
                     </div>
                 </fieldset>
