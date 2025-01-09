@@ -2,19 +2,19 @@ import { Dispatch } from 'react';
 import Error from "../Error";
 import styles from './Form.module.css';
 import { useForm } from 'react-hook-form';
+import { DraftnoClient } from '../../types';
 
 export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    //Se le debe agregar el <DrafnoClient> para que no dé error el onSubmit (generar, y registrar)
+    const { register, handleSubmit, formState: { errors } } = useForm<DraftnoClient>()
 
-    const onSubmit = () => {
-
-    }
+    const registerNoClient = (data: DraftnoClient) => { }
 
     return (
 
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(registerNoClient)}
             className={`${styles.bgModal} fixed top-0 left-0 w-full h-full overflow-y-scroll py-12`} data-formulario>
 
             <fieldset className={`${styles.modal} absolute left-1/2 top-1/2 w-11/12 lg:w-3/5 p-6 lg:p-12 `}>
@@ -60,10 +60,10 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                     <div className="basis-full lg:basis-64">
                         <label htmlFor="tel" className="w-full lg:w-20 text-center lg:text-left">Teléfono:</label>
                         <input
+                            id="phone"
                             type="tel"
-                            id="tel"
                             className="w-full lg:w-36"
-                            {...register('tel', {
+                            {...register('phone', {
                                 required: 'Teléfono Obligatorio',
                                 minLength: {
                                     value: 5,
@@ -71,7 +71,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.tel && (<Error>*{errors.tel?.message as string}</Error>)}
+                        {errors.phone && (<Error>*{errors.phone?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-32">
@@ -110,13 +110,13 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                     </div>
 
                     <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
-                        <label htmlFor="sex" className="lg:w-12">Sexo:</label>
+                        <label htmlFor="genre" className="lg:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
                             <input
                                 id="m"
                                 type="radio"
-                                {...register('sex')}
+                                {...register('genre')}
                             />
                             <label htmlFor="m">M</label>
                         </div>
@@ -124,7 +124,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             <input
                                 id="h"
                                 type="radio"
-                                {...register('sex')}
+                                {...register('genre')}
                             />
                             <label htmlFor="h">H</label>
                         </div>

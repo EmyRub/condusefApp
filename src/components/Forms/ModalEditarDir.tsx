@@ -2,10 +2,11 @@ import { Dispatch } from 'react';
 import Error from "../Error";
 import { useForm } from "react-hook-form";
 import styles from './Form.module.css';
+import { DrafteditDirection } from '../../types';
 
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm<DrafteditDirection>({
 
         defaultValues: {
             cp: '123456',
@@ -15,14 +16,14 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
         }
     });
 
-    const onSubmit = (data: any) => {
+    const editDirection = (data: DrafteditDirection) => {
         console.log(data)
     }
 
     return (
 
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(editDirection)}
             className={`${styles.bgModal} fixed top-0 left-0 w-full h-full`} data-formulario>
 
             <fieldset className={`${styles.modal} absolute left-1/2 top-1/2 w-11/12 lg:w-3/5 p-6 lg:p-12`}>

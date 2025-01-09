@@ -8,6 +8,6 @@ type errorProps = {
 export default function Error({ children, login }: errorProps) {
 
     return (
-        <p className={login ? 'text-center text-white bg-rose-800 p-3 mb-3 rounded-3xl' : 'text-red-800 text-center my-2 font-semibold text-sm'}>{children}</p>
+        <p className={login ? 'text-center text-white bg-rose-800 p-3 mb-3 rounded-3xl' : 'text-red-800 text-center my-2 text-sm'}>{children}</p>
     )
 }
