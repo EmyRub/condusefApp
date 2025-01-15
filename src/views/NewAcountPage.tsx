@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
-import { UserIcon, KeyIcon, EnvelopeIcon } from "@heroicons/react/16/solid";
 import Error from "../components/Error";
+import { UserIcon, KeyIcon, EnvelopeIcon, BuildingOffice2Icon, LockClosedIcon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
+import { Link } from "react-router-dom";
+
 
 export default function NewAcountPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,9 +20,45 @@ export default function NewAcountPage() {
 
       <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
 
-      <hr className="my-4" />
+      <hr className="my-4 border-teal-600 border-2" />
 
-      <h1 className="text-center text-white mb-4 text-lg uppercase">Nueva Cuenta</h1>
+      <h1 className="text-center text-teal-100 mb-4 text-lg uppercase">Nueva Cuenta</h1>
+
+      <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
+        <BuildingOffice2Icon className="w-8 text-white opacity-50" />
+        <select
+          id="empresa"
+          className="block w-full bg-transparent border-none text-white opacity-50"
+          {...register('empresa', {
+            required: 'Seleccione una empresa'
+          })}
+        >
+          <option value="">Empresa:</option>
+        </select>
+
+      </div>
+      {errors.empresa && (
+        <Error login={true}>{errors.empresa?.message as string}</Error>
+      )}
+
+      <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
+        <BuildingLibraryIcon className="w-8 text-white opacity-50" />
+        <select
+          id="inst"
+          className="block w-full bg-transparent border-none text-white opacity-50"
+          {...register('inst', {
+            required: 'Seleccione una Instituto'
+          })}
+        >
+          <option value="" disabled selected>Institución:</option>
+          <option value="">Redeco</option>
+          <option value="">Reune</option>
+        </select>
+
+      </div>
+      {errors.inst && (
+        <Error login={true}>{errors.inst?.message as string}</Error>
+      )}
 
       <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
         <UserIcon className="w-8 text-white opacity-50" />
@@ -83,7 +121,7 @@ export default function NewAcountPage() {
       )}
 
       <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden">
-        <KeyIcon className="w-8 text-white opacity-50" />
+        <LockClosedIcon className="w-8 text-white opacity-50" />
         <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50 outline-none"
           type="validatePassword"
           id="validatePassword"
@@ -102,7 +140,16 @@ export default function NewAcountPage() {
         <Error login={true}>{errors.validatePassword?.message as string}</Error>
       )}
 
-      <input className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950" type="submit" value="Guardar" />
+      <input
+        type="submit"
+        value="Guardar"
+        className="bg-teal-900 rounded-3xl uppercase block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950"
+      />
+
+      <Link to={'/'}
+        className="bg-teal-900 rounded-3xl uppercase block w-full mt-2 p-3 cursor-pointer text-center text-white hover:bg-teal-950">
+        Regresar
+      </Link>
 
       <div className="mt-8 flex flex-col center md:flex-row md:justify-between items-center">
 

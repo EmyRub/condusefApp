@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { UserIcon, KeyIcon } from "@heroicons/react/16/solid";
+import { UserIcon, KeyIcon, BuildingOffice2Icon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
 import Error from "../components/Error";
 
 export default function LoginPage() {
@@ -18,6 +18,42 @@ export default function LoginPage() {
             className="w-11/12 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
 
             <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
+
+            <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
+                <BuildingOffice2Icon className="w-8 text-white opacity-50" />
+                <select
+                    id="empresa"
+                    className="block w-full bg-transparent border-none text-white opacity-50"
+                    {...register('empresa', {
+                        required: 'Seleccione una empresa'
+                    })}
+                >
+                    <option value="">Empresa:</option>
+                </select>
+
+            </div>
+            {errors.empresa && (
+                <Error login={true}>{errors.empresa?.message as string}</Error>
+            )}
+
+            <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
+                <BuildingLibraryIcon className="w-8 text-white opacity-50" />
+                <select
+                    id="inst"
+                    className="block w-full bg-transparent border-none text-white opacity-50"
+                    {...register('inst', {
+                        required: 'Seleccione una Instituto'
+                    })}
+                >
+                    <option value="" disabled>Institución:</option>
+                    <option value="">Redeco</option>
+                    <option value="">Reune</option>
+                </select>
+
+            </div>
+            {errors.inst && (
+                <Error login={true}>{errors.inst?.message as string}</Error>
+            )}
 
             <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
                 <UserIcon className="w-8 text-white opacity-50" />
