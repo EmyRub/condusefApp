@@ -93,7 +93,11 @@ export default function LoginPage() {
                 <Error login={true}>{errors.password?.message as string}</Error>
             )}
 
-            <input className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950" type="submit" value="Iniciar Sesión" />
+            <input
+                type="submit"
+                value="Iniciar Sesión"
+                className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950"
+            />
 
             <NavLink to='./newAcount' className='bg-teal-900 rounded-3xl block w-full mt-3 p-3 cursor-pointer text-white text-center hover:bg-teal-950'>Crear Cuenta</NavLink>
 

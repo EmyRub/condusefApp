@@ -13,12 +13,14 @@ export default function ReuneForm() {
     const { state, dispatch } = useModal()
     const { register, handleSubmit } = useForm()
 
-    const reuSubmit = () => { }
+    const reuneSubmit = (data: any) => {
+        console.log(data)
+    }
 
     return (
 
         <form
-            onSubmit={handleSubmit(reuSubmit)}
+            onSubmit={handleSubmit(reuneSubmit)}
             autoComplete="on"
             data-formulario>
 
@@ -47,9 +49,8 @@ export default function ReuneForm() {
                         id="ente"
                         type="number"
                         className="w-full lg:w-1/2"
-                        readOnly
                         {...register('ente', {
-                            required: true,
+                            required: 'Seleccione N° de Ente',
                             minLength: 1
                         })}
                     />
@@ -78,9 +79,8 @@ export default function ReuneForm() {
                         id="sucur"
                         type="number"
                         className="w-full lg:w-3/5"
-                        readOnly disabled
                         {...register('sucur', {
-                            required: true
+                            required: 'Seleccione una sucursal'
                         })}
                     />
                 </div>
@@ -119,9 +119,9 @@ export default function ReuneForm() {
                             id="cliente"
                             type="text"
                             className="w-full lg:w-3/4"
-                            readOnly disabled
+                            disabled
                             {...register('cliente', {
-                                required: true
+                                required: 'El nombre es obligatorio.'
                             })}
                         />
                     </div>
@@ -131,10 +131,10 @@ export default function ReuneForm() {
                         <input
                             id="email"
                             type="email"
+                            disabled
                             className="w-full lg:w-3/4"
-                            readOnly disabled
                             {...register('email', {
-                                required: true,
+                                required: 'El correo es obligatorio',
                                 pattern: {
                                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                     message: 'Email No Válido'
@@ -148,10 +148,10 @@ export default function ReuneForm() {
                         <input
                             id="tel"
                             type="tel"
+                            disabled
                             className="w-full lg:w-3/5"
-                            readOnly disabled
                             {...register('tel', {
-                                required: true,
+                                required: 'El teléfono es obligatorio',
                                 minLength: 5
                             })}
                         />
@@ -163,9 +163,9 @@ export default function ReuneForm() {
                             id="age"
                             type="number"
                             className="w-full lg:w-1/2"
-                            readOnly disabled
+                            disabled
                             {...register('age', {
-                                required: true,
+                                required: 'Agregar una edad',
                                 minLength: 18
                             })}
                         />
@@ -179,6 +179,7 @@ export default function ReuneForm() {
                                 id="m"
                                 type="radio"
                                 {...register('sex')}
+                                disabled
                             />
                             <label htmlFor="m">M</label>
                         </div>
@@ -186,6 +187,7 @@ export default function ReuneForm() {
                             <input
                                 id="h"
                                 type="radio"
+                                disabled
                                 {...register('sex')}
                             />
                             <label htmlFor="h">H</label>
@@ -197,11 +199,13 @@ export default function ReuneForm() {
 
                         <select
                             id="typePer"
+                            disabled
                             className="w-full lg:w-2/5 text-center lg:text-left"
                             {...register('typePer', {
                                 required: true
                             })}
                         >
+                            <option value="">Moral</option>
                             <option value="">Física</option>
                         </select>
                     </div>
@@ -329,6 +333,12 @@ export default function ReuneForm() {
             </div>
 
             <FragmentInstitucion />
+
+            <input
+                type="submit"
+                value="Guardar"
+                className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer uppercase text-white hover:bg-teal-950"
+            />
 
         </form>
 

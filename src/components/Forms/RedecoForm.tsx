@@ -203,6 +203,12 @@ export default function RedecoForm() {
 
             <FragmentInstitucion />
 
+            <input
+                type="submit"
+                value="Guardar"
+                className="bg-teal-900 rounded-3xl block w-full mt-9 p-3 cursor-pointer uppercase text-white hover:bg-teal-950"
+            />
+
         </form>
     )
 }
