@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import IndexPage from "./views/QuejasPage";
 import Layout from "./layouts/Layout";
-import LoginPage from "./views/LoginPage";
 import NewAcountPage from "./views/NewAcountPage";
 import BgLogin from "./layouts/BgLogin";
+import { lazy, Suspense } from "react";
+
+const LoginPage = lazy(() => import("./views/LoginPage"))
 
 export default function AppRouter() {
     return (
@@ -12,12 +14,26 @@ export default function AppRouter() {
             <Routes>
 
                 <Route element={<BgLogin />}>
-                    <Route path="/" element={<LoginPage />} />
-                    <Route path="/newAcount" element={<NewAcountPage />} />
+
+                    <Route path="/" element={
+                        <Suspense fallback='Cargando...'>
+                            <LoginPage />
+                        </Suspense>
+                    } />
+
+                    <Route path="/newAcount" element={
+                        <Suspense>
+                            <NewAcountPage />
+                        </Suspense>
+                    } />
                 </Route>
 
                 <Route element={<Layout />}>
-                    <Route path="/quejas" element={<IndexPage />} index />
+                    <Route path="/quejas" element={
+                        <Suspense>
+                            <IndexPage />
+                        </Suspense>
+                    } index />
                 </Route>
 
             </Routes>

@@ -1,0 +1,1 @@
+//Aqui se agregan los types con zod que vendran de la api
