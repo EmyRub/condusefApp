@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import IndexPage from "./views/QuejasPage";
 import Layout from "./layouts/Layout";
-import NewAcountPage from "./views/NewAcountPage";
 import BgLogin from "./layouts/BgLogin";
 import { lazy, Suspense } from "react";
 
 const LoginPage = lazy(() => import("./views/LoginPage"))
+const IndexPage = lazy(() => import('./views/QuejasPage'))
+const NewAcountPage = lazy(() => import('./views/NewAcountPage'))
 
 export default function AppRouter() {
     return (
