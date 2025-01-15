@@ -81,35 +81,7 @@ export default function FragmentComunicacion() {
           </select>
         </div>
 
-        <div className="basis-full lg:basis-96">
-          <label htmlFor="nvlAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Nivel de Atención:</label>
-
-          <select
-            id="nvlAtn"
-            className="w-full lg:w-52 text-center"
-            {...register('nvlAtn', {
-              required: 'Seleccionar nivel de atención'
-            })}
-          >
-            <option value="">Vía Eletrónica</option>
-          </select>
-        </div>
-
-        <div className="basis-full lg:basis-64">
-          <label htmlFor="queja" className="w-full lg:w-28 text-center lg:text-left mb-2 lg:mb-0">Tipo de Queja</label>
-
-          <select
-            id="queja"
-            className="w-full lg:w-36 text-center"
-            {...register('queja', {
-              required: true
-            })}
-          >
-            <option value="">Consulta</option>
-          </select>
-        </div>
-
-        <div className="basis-full lg:basis-60">
+        <div className="basis-full lg:basis-72">
           <label htmlFor="folAtn" className="w-full lg:w-36 text-center lg:text-left">Folio de Atención</label>
           <input
             id="folAtn"
@@ -122,35 +94,7 @@ export default function FragmentComunicacion() {
             })}
           />
         </div>
-
-        <div className="basis-full lg:basis-60">
-          <label htmlFor="folConduf" className="w-full lg:w-28 text-center lg:text-left">Folio condusef:</label>
-          <input
-            id="folConduf"
-            type="number"
-            className="w-full lg:w-28"
-            readOnly disabled
-            {...register('folConduf', {
-              required: true,
-              minLength: 1
-            })}
-          />
-        </div>
-
-        <div className="basis-full lg:basis-96">
-          <label htmlFor="medioCmn" className="w-full lg:w-48 text-center lg:text-left mb-2 lg:mb-0">Medio de Comunicación:</label>
-
-          <select
-            id="medioCmn"
-            className="w-full lg:w-48 text-center"
-            {...register('medioCmn', {
-              required: true
-            })}
-          >
-            <option value="">Correo Electrónico</option>
-          </select>
-        </div>
-
+        
         <div className="basis-full lg:basis-2/5">
           <label htmlFor="nProd" className="w-full lg:w-40 text-center lg:text-left mb-2 lg:mb-0">Número de Producto:</label>
 
@@ -177,6 +121,63 @@ export default function FragmentComunicacion() {
             <option value="">Crédito Simple Auto</option>
           </select>
         </div>
+
+        <div className="basis-full lg:basis-96">
+          <label htmlFor="nvlAtn" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Nivel de Atención:</label>
+
+          <select
+            id="nvlAtn"
+            className="w-full lg:w-52 text-center"
+            {...register('nvlAtn', {
+              required: 'Seleccionar nivel de atención'
+            })}
+          >
+            <option value="">Vía Eletrónica</option>
+          </select>
+        </div>
+        
+        <div className="basis-full lg:basis-72">
+          <label htmlFor="folConduf" className="w-full lg:w-28 text-center lg:text-left">Folio condusef:</label>
+          <input
+            id="folConduf"
+            type="number"
+            className="w-full lg:w-28"
+            readOnly disabled
+            {...register('folConduf', {
+              required: true,
+              minLength: 1
+            })}
+          />
+        </div>
+
+        <div className="basis-full lg:basis-80">
+          <label htmlFor="queja" className="w-full lg:w-28 text-center lg:text-left mb-2 lg:mb-0">Tipo de Queja</label>
+
+          <select
+            id="queja"
+            className="w-full lg:w-36 text-center"
+            {...register('queja', {
+              required: true
+            })}
+          >
+            <option value="">Consulta</option>
+          </select>
+        </div>    
+
+        <div className="basis-full lg:basis-96">
+          <label htmlFor="medioCmn" className="w-full lg:w-48 text-center lg:text-left mb-2 lg:mb-0">Medio de Comunicación:</label>
+
+          <select
+            id="medioCmn"
+            className="w-full lg:w-48 text-center"
+            {...register('medioCmn', {
+              required: true
+            })}
+          >
+            <option value="">Correo Electrónico</option>
+          </select>
+        </div>
+
 
         <div className="basis-full flex gap-1 flex-wrap justify-center lg:justify-start items-center">
           <label htmlFor="causa" className="w-12 text-center lg:text-left">Causa:</label>
