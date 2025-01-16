@@ -85,26 +85,6 @@ export default function ReuneForm() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-1/2">
-                    <label htmlFor="recl" className="w-full lg:w-56 text-center">¿El reclamo o Aclaración es de objeto monetario?</label>
-                    <input
-                        id="recl"
-                        type="checkbox"
-                        className='w-full lg:w-1/5'
-                        {...register('recl')}
-                    />
-                </div>
-
-                <div className="basis-full lg:basis-2/5">
-                    <label htmlFor="rever" className="w-full lg:w-16 text-center xl:text-left">Rever:</label>
-                    <input
-                        id="rever"
-                        type="checkbox"
-                        className='w-full lg:w-1/6'
-                        {...register('rever')}
-                    />
-                </div>
-
             </fieldset>
 
             <fieldset className='p-6 lg:p-12'>
@@ -118,7 +98,7 @@ export default function ReuneForm() {
                         <input
                             id="cliente"
                             type="text"
-                            className="w-full lg:w-3/4"
+                            className="w-full lg:w-5/6"
                             disabled
                             {...register('cliente', {
                                 required: 'El nombre es obligatorio.'
@@ -126,13 +106,13 @@ export default function ReuneForm() {
                         />
                     </div>
 
-                    <div className="basis-full lg:basis-1/2">
+                    <div className="basis-full lg:basis-96">
                         <label htmlFor="email" className="w-full lg:w-16 text-center lg:text-left">Correo:</label>
                         <input
                             id="email"
                             type="email"
                             disabled
-                            className="w-full lg:w-3/4"
+                            className="w-full lg:w-80"
                             {...register('email', {
                                 required: 'El correo es obligatorio',
                                 pattern: {
@@ -171,7 +151,7 @@ export default function ReuneForm() {
                         />
                     </div>
 
-                    <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
+                    <div className="basis-full lg:basis-96 flex gap-3 items-center justify-center lg:justify-start">
                         <label htmlFor="sex" className="lg:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
@@ -210,7 +190,7 @@ export default function ReuneForm() {
                         </select>
                     </div>
 
-                    <div className="basis-full lg:basis-5/12">
+                    <div className="basis-full lg:basis-1/5">
                         <label htmlFor="pori" className="w-full lg:w-12 text-center lg:text-left">PORI:</label>
                         <input
                             id="pori"
@@ -218,17 +198,7 @@ export default function ReuneForm() {
                             className='lg:w-12 w-full'
                             {...register('pori')}
                         />
-                    </div>
-
-                    <div className="basis-full lg:basis-5/12">
-                        <label htmlFor="exg" className="w-full lg:w-40 text-center lg:text-left">Si es del extranjero:</label>
-                        <input
-                            id="exg"
-                            type="checkbox"
-                            className='w-full lg:w-12'
-                            {...register('exg')}
-                        />
-                    </div>
+                    </div>                
 
                 </div>
             </fieldset>
