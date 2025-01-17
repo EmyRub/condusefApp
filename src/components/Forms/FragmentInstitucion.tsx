@@ -6,18 +6,18 @@ export default function FragmentInstitucion() {
 
     return (
 
-        <fieldset className='p-6 lg:p-12 lg:basis-1/2'>
+        <fieldset className='p-6 xl:p-12 xl:basis-1/2'>
 
-            <legend className='w-full md:w-1/2 lg:px-4'>Datos de la institución</legend>
+            <legend className='w-full md:w-1/2 xl:px-4'>Datos de la institución</legend>
 
             <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
                 <div className="basis-full">
-                    <label htmlFor="inst" className="w-full lg:w-1/5 text-center lg:text-left mb-2">Nombre de la institución:</label>
+                    <label htmlFor="inst" className="w-full xl:w-1/5 text-center xl:text-left mb-2">Nombre de la institución:</label>
                     <input
                         id="inst"
                         type="text"
-                        className="w-full lg:w-4/5"
+                        className="w-full xl:w-4/5"
                         readOnly disabled
                         {...register('inst', {
                             required: 'La institución es requerida'
@@ -25,12 +25,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-4/6">
-                    <label htmlFor="sector" className="w-full lg:w-14 text-center lg:text-left mb-2">Sector:</label>
+                <div className="basis-full xl:basis-4/6">
+                    <label htmlFor="sector" className="w-full xl:w-14 text-center xl:text-left mb-2">Sector:</label>
                     <input
                         id="sect"
                         type="text"
-                        className="w-full lg:w-4/5"
+                        className="w-full xl:w-4/5"
                         readOnly disabled
                         {...register('sector', {
                             required: 'El sector es requerido'
@@ -38,12 +38,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-48">
-                    <label htmlFor="cp" className="w-full lg:w-8 text-center lg:text-left mb-2">C.P.</label>
+                <div className="basis-full xl:basis-48">
+                    <label htmlFor="cp" className="w-full xl:w-8 text-center xl:text-left mb-2">C.P.</label>
                     <input
                         id="cp"
                         type="text"
-                        className="w-full lg:w-32"
+                        className="w-full xl:w-32"
                         readOnly disabled
                         {...register('cp', {
                             required: "El C.P. es obligatorio",
@@ -55,12 +55,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-60">
-                    <label htmlFor="edo" className="w-full lg:w-14 text-center lg:text-left mb-2">Estado:</label>
+                <div className="basis-full xl:basis-60">
+                    <label htmlFor="edo" className="w-full xl:w-14 text-center xl:text-left mb-2">Estado:</label>
                     <input
                         id="edo"
                         type="text"
-                        className="w-full lg:w-36"
+                        className="w-full xl:w-36"
                         readOnly disabled
                         {...register('edo', {
                             required: "El Estado es obligatorio",
@@ -72,12 +72,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-60">
-                    <label htmlFor="muni" className="w-full lg:w-20 text-center lg:text-left mb-2">Municipio:</label>
+                <div className="basis-full xl:basis-60">
+                    <label htmlFor="muni" className="w-full xl:w-20 text-center xl:text-left mb-2">Municipio:</label>
                     <input
                         id="muni"
                         type="text"
-                        className="w-full lg:w-36"
+                        className="w-full xl:w-36"
                         readOnly disabled
                         {...register('muni', {
                             required: "El Municipio es obligatorio",
@@ -89,12 +89,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-60">
-                    <label htmlFor="loc" className="w-full lg:w-20 text-center lg:text-left mb-2">Localidad:</label>
+                <div className="basis-full xl:basis-60">
+                    <label htmlFor="loc" className="w-full xl:w-20 text-center xl:text-left mb-2">Localidad:</label>
                     <input
                         id="loc"
                         type="text"
-                        className="w-full lg:w-36"
+                        className="w-full xl:w-36"
                         readOnly disabled
                         {...register('loc', {
                             required: "La localidad es obligatoria",
@@ -106,12 +106,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-64">
-                    <label htmlFor="tyLoc" className="w-full lg:w-28 text-center lg:text-left mb-2">Tipo Localidad:</label>
+                <div className="basis-full xl:basis-64">
+                    <label htmlFor="tyLoc" className="w-full xl:w-28 text-center xl:text-left mb-2">Tipo Localidad:</label>
                     <input
                         id="tyLoc"
                         type="text"
-                        className="w-full lg:w-36"
+                        className="w-full xl:w-36"
                         readOnly disabled
                         {...register('tyLoc', {
                             required: "El tipo de localidad es obligatoria",
@@ -123,12 +123,12 @@ export default function FragmentInstitucion() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-1/2 lg:flex gap-2 items-center">
-                    <label htmlFor="col" className="w-full lg:w-16 text-center lg:text-left">Colonia:</label>
+                <div className="basis-full xl:basis-1/2 xl:flex gap-2 items-center">
+                    <label htmlFor="col" className="w-full xl:w-16 text-center xl:text-left">Colonia:</label>
                     <input
                         id="col"
                         type="text"
-                        className="w-full lg:w-12 mb-2"
+                        className="w-full xl:w-12 mb-2"
                         readOnly disabled
                         {...register('col', {
                             required: "El tipo de localidad es obligatoria",
@@ -141,7 +141,7 @@ export default function FragmentInstitucion() {
                     />
                     <select
                         id=""
-                        className="w-full lg:w-72 text-center"
+                        className="w-full xl:w-72 text-center"
                         {...register('col2', {
                             required: "Colonia no válida"
                         })}

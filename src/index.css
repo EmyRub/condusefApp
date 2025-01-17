@@ -17,6 +17,11 @@ input[type='submit']:hover {
     transition: translateY 2s ease-in-out;
 }
 
+option {
+    color: rgb(2, 32, 32);
+    background-color: #d9fffdbc;
+}
+
 th,
 td {
     text-align: center;

@@ -28,7 +28,7 @@ export default function LoginPage() {
                         required: 'Seleccione una empresa'
                     })}
                 >
-                    <option value="">Empresa:</option>
+                    <option value="" className="bg-teal-100">Empresa:</option>
                 </select>
 
             </div>
@@ -46,7 +46,7 @@ export default function LoginPage() {
                     })}
                 >
                     <option value="" disabled>Institución:</option>
-                    <option value="">Redeco</option>
+                    <option value="" className="">Redeco</option>
                     <option value="">Reune</option>
                 </select>
 

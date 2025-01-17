@@ -94,11 +94,11 @@ export default function ReuneForm() {
                 <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
 
                     <div className="basis-full">
-                        <label htmlFor="cliente" className="w-full lg:w-36 text-center lg:text-left">Nombre del Cliente:</label>
+                        <label htmlFor="cliente" className="w-full xl:w-36 text-center xl:text-left">Nombre del Cliente:</label>
                         <input
                             id="cliente"
                             type="text"
-                            className="w-full lg:w-5/6"
+                            className="w-full xl:w-5/6"
                             disabled
                             {...register('cliente', {
                                 required: 'El nombre es obligatorio.'
@@ -106,13 +106,13 @@ export default function ReuneForm() {
                         />
                     </div>
 
-                    <div className="basis-full lg:basis-96">
-                        <label htmlFor="email" className="w-full lg:w-16 text-center lg:text-left">Correo:</label>
+                    <div className="basis-full xl:basis-96">
+                        <label htmlFor="email" className="w-full xl:w-16 text-center xl:text-left">Correo:</label>
                         <input
                             id="email"
                             type="email"
                             disabled
-                            className="w-full lg:w-80"
+                            className="w-full xl:w-80"
                             {...register('email', {
                                 required: 'El correo es obligatorio',
                                 pattern: {
@@ -123,13 +123,13 @@ export default function ReuneForm() {
                         />
                     </div>
 
-                    <div className="basis-full lg:basis-5/12">
-                        <label htmlFor="tel" className="w-full lg:w-20 text-center xl:text-left">Teléfono:</label>
+                    <div className="basis-full xl:basis-56">
+                        <label htmlFor="tel" className="w-full xl:w-20 text-center xl:text-left">Teléfono:</label>
                         <input
                             id="tel"
                             type="tel"
                             disabled
-                            className="w-full lg:w-3/5"
+                            className="w-full xl:w-3/5"
                             {...register('tel', {
                                 required: 'El teléfono es obligatorio',
                                 minLength: 5
@@ -137,12 +137,12 @@ export default function ReuneForm() {
                         />
                     </div>
 
-                    <div className="basis-full lg:basis-1/5">
-                        <label htmlFor="age" className="w-full lg:w-12 text-center lg:text-left">Edad:</label>
+                    <div className="basis-full xl:basis-1/5">
+                        <label htmlFor="age" className="w-full xl:w-12 text-center xl:text-left">Edad:</label>
                         <input
                             id="age"
                             type="number"
-                            className="w-full lg:w-1/2"
+                            className="w-full xl:w-1/2"
                             disabled
                             {...register('age', {
                                 required: 'Agregar una edad',
@@ -151,8 +151,8 @@ export default function ReuneForm() {
                         />
                     </div>
 
-                    <div className="basis-full lg:basis-96 flex gap-3 items-center justify-center lg:justify-start">
-                        <label htmlFor="sex" className="lg:w-12">Sexo:</label>
+                    <div className="basis-full xl:basis-56 flex gap-3 items-center justify-center xl:justify-start">
+                        <label htmlFor="sex" className="xl:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
                             <input
@@ -174,13 +174,13 @@ export default function ReuneForm() {
                         </div>
                     </div>
 
-                    <div className="basis-full lg:basis-5/12">
-                        <label htmlFor="typePer" className="w-full lg:w-36 text-center lg:text-left mb-2 lg:mb-0">Tipo de Persona:</label>
+                    <div className="basis-full xl:basis-5/12">
+                        <label htmlFor="typePer" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Tipo de Persona:</label>
 
                         <select
                             id="typePer"
                             disabled
-                            className="w-full lg:w-2/5 text-center lg:text-left"
+                            className="w-full xl:w-2/5 text-center xl:text-left"
                             {...register('typePer', {
                                 required: true
                             })}
@@ -190,12 +190,12 @@ export default function ReuneForm() {
                         </select>
                     </div>
 
-                    <div className="basis-full lg:basis-1/5">
-                        <label htmlFor="pori" className="w-full lg:w-12 text-center lg:text-left">PORI:</label>
+                    <div className="basis-full xl:basis-1/5">
+                        <label htmlFor="pori" className="w-full xl:w-12 text-center xl:text-left">PORI:</label>
                         <input
                             id="pori"
                             type="checkbox"
-                            className='lg:w-12 w-full'
+                            className='xl:w-12 w-full'
                             {...register('pori')}
                         />
                     </div>                
