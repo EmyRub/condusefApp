@@ -11,7 +11,7 @@ export type ModalState = {
     modalState: searchModal
 }
 
-export const initialState: ModalState = {
+export const modalInitialState: ModalState = {
     
     modalState: {
         id: null as number | null,
@@ -20,7 +20,7 @@ export const initialState: ModalState = {
 }
 
 export const modalReducer = (
-    state: ModalState = initialState,
+    state: ModalState = modalInitialState,
     action: ModalActions
 
 ): ModalState => {

@@ -60,7 +60,7 @@ export type reuneData = {
     age: number,
     sexo: string,
     typePer: string,
-    pori: boolean,
+    pori: number,
     mes: number,
     fecReg: string,
     fecAtn: string,

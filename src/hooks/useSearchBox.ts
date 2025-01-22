@@ -1,14 +1,13 @@
 import {  useEffect } from "react";
-import { useModal } from "./useModal";
+import { useGlobal } from "./useGlobal";
 
-/** HOOK DESACTUALIZADO, SE PASÓ A REDUCER */
 interface useSearchProps {
     modalRef: React.RefObject<HTMLDivElement>
 }
 
 export const useSearchBox = ({ modalRef }: useSearchProps) => {
 
-    const { state, dispatch } = useModal();
+    const { state, dispatch } = useGlobal();
 
     const handleClickOutside = (event: MouseEvent) => {
 
@@ -19,7 +18,7 @@ export const useSearchBox = ({ modalRef }: useSearchProps) => {
 
     useEffect(() => {
 
-        if (state.modalState.modal) {
+        if (state.modalState.modalState.modal) {
 
             document.addEventListener("mousedown", handleClickOutside);
 
@@ -31,6 +30,6 @@ export const useSearchBox = ({ modalRef }: useSearchProps) => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
 
-    }, [state.modalState.modal])
+    }, [state.modalState.modalState.modal])
 
 }

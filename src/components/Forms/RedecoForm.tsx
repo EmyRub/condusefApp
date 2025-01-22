@@ -3,12 +3,12 @@ import FragmentComunicacion from "./FragmentComunicacion";
 import FragmentInstitucion from './FragmentInstitucion';
 import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
-import { useModal } from "../../hooks/useModal";
+import { useGlobal } from "../../hooks/useGlobal";
 import { useForm } from "react-hook-form";
 
 export default function RedecoForm() {
 
-    const { state, dispatch } = useModal()
+    const { state, dispatch } = useGlobal()
     const { register, handleSubmit } = useForm()
 
     const redeSubmit = () => { }
@@ -35,7 +35,7 @@ export default function RedecoForm() {
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Cliente === state.modalState.id && state.modalState.modal && (
+                        {SearchCategory.Cliente === state.modalState.modalState.id && state.modalState.modalState.modal && (
                             <SearchButton label={searchCat.cliente} />
                         )}
 
@@ -65,7 +65,7 @@ export default function RedecoForm() {
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Sucursal === state.modalState.id && state.modalState.modal && (
+                        {SearchCategory.Sucursal === state.modalState.modalState.id && state.modalState.modalState.modal && (
                             <SearchButton label={searchCat.sucursal} />
                         )}
 

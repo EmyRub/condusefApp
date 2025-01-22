@@ -8,13 +8,13 @@ export type reuneState = {
     reuneData: reuneData[]
 }
 
-export const initialState: reuneState = {
+export const reuneInitialState: reuneState = {
     reuneData: []
 }
 
 
 export const reuneReducer = (
-    state: reuneState = initialState,
+    state: reuneState = reuneInitialState,
     action: reuneActions
 
 ): reuneState => {

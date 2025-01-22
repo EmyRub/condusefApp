@@ -1,14 +1,14 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
-import { useModal } from "../../hooks/useModal";
+import { useGlobal } from "../../hooks/useGlobal";
 import { useForm } from "react-hook-form";
 import { useMemo } from "react";
 
 
 export default function FragmentComunicacion() {
 
-  const { state, dispatch } = useModal()
+  const { state, dispatch } = useGlobal()
   const { register } = useForm()
 
  // const claimType = useMemo(()=>{
@@ -200,7 +200,7 @@ export default function FragmentComunicacion() {
                 <MagnifyingGlassIcon className="w-4 text-white" />
               </button>
 
-              {SearchCategory.Causa === state.modalState.id && state.modalState.modal && (
+              {SearchCategory.Causa === state.modalState.modalState.id && state.modalState.modalState.modal && (
                 <SearchButton
                   label={searchCat.causa}
                 />

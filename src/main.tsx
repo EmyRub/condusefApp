@@ -2,12 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import AppRouter from './router'
-import { ModalProvider } from './context/modalContext'
+import { GlobalProvider } from './context/GlobalContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ModalProvider>
+    <GlobalProvider>
       <AppRouter />
-    </ModalProvider>
+    </GlobalProvider>
   </StrictMode>,
 )

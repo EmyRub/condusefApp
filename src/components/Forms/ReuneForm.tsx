@@ -4,14 +4,15 @@ import FragmentInstitucion from './FragmentInstitucion';
 import SearchButton from '../SearchButton';
 import { reuneData, searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
-import { useModal } from '../../hooks/useModal';
+import { useGlobal } from '../../hooks/useGlobal';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 export default function ReuneForm() {
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
-    const { state, dispatch } = useModal()
+    const { state, dispatch } = useGlobal()
+
     const { register, handleSubmit } = useForm()
 
     const reuneSubmit = (data: any) => {
@@ -27,7 +28,7 @@ export default function ReuneForm() {
         age: 18,
         sexo: '',
         typePer: '',
-        pori: false,
+        pori: 0,
         mes: 0,
         fecReg: '',
         fecAtn: '',
@@ -86,7 +87,7 @@ export default function ReuneForm() {
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Cliente === state.modalState.id && state.modalState.modal && (
+                        {SearchCategory.Cliente === state.modalState.modalState.id && state.modalState.modalState.modal && (
                             <SearchButton label={searchCat.cliente} />
                         )}
 
@@ -118,7 +119,7 @@ export default function ReuneForm() {
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Sucursal === state.modalState.id && state.modalState.modal && (
+                        {SearchCategory.Sucursal === state.modalState.modalState.id && state.modalState.modalState.modal && (
                             <SearchButton label={searchCat.sucursal} />
                         )}
 
