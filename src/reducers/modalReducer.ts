@@ -7,11 +7,11 @@ export type ModalActions =
     { type: 'close-modal' }
 
 // Lo que se devuelve
-export type ModalState = {
+export type ModalStateProps = {
     modalState: searchModal
 }
 
-export const modalInitialState: ModalState = {
+export const modalInitialState: ModalStateProps = {
     
     modalState: {
         id: null as number | null,
@@ -20,10 +20,10 @@ export const modalInitialState: ModalState = {
 }
 
 export const modalReducer = (
-    state: ModalState = modalInitialState,
+    state: ModalStateProps = modalInitialState,
     action: ModalActions
 
-): ModalState => {
+): ModalStateProps => {
 
     if (action.type === 'open-modal') {
 

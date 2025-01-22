@@ -200,7 +200,7 @@ export default function FragmentComunicacion() {
                 <MagnifyingGlassIcon className="w-4 text-white" />
               </button>
 
-              {SearchCategory.Causa === state.modalState.modalState.id && state.modalState.modalState.modal && (
+              {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
                 <SearchButton
                   label={searchCat.causa}
                 />

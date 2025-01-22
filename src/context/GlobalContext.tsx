@@ -1,12 +1,12 @@
 import { createContext, Dispatch, ReactNode, useReducer } from "react"
-import { ModalActions, modalInitialState, modalReducer, ModalState } from "../reducers/modalReducer"
+import { ModalActions, modalInitialState, modalReducer, ModalStateProps } from "../reducers/modalReducer"
 import { reuneActions, reuneInitialState, reuneReducer, reuneState } from "../reducers/reuneReducer"
 
 
 //Definir los tipos de estado y acciones combinados
 type GlobalState = {
-    modalState: ModalState,
-    reuneState: reuneState
+    modalStateG: ModalStateProps,
+    reuneStateG: reuneState
 }
 
 type GlobalActions = ModalActions | reuneActions;
@@ -32,24 +32,24 @@ export const GlobalContext = createContext<GlobalContextProps>(null!)
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
     // Configurar cada reducer
-    const [modalState, modalDispatch] = useReducer(modalReducer, modalInitialState)
-    const [reuneState, reuneDispatch] = useReducer(reuneReducer, reuneInitialState)
+    const [modalStateG, modalDispatchG] = useReducer(modalReducer, modalInitialState)
+    const [reuneStateG, reuneDispatchG] = useReducer(reuneReducer, reuneInitialState)
+
+    //Combina los estados
+    const state: GlobalState = {
+        modalStateG,
+        reuneStateG
+    }
 
     // Combina los dispatchers
     const dispatch: Dispatch<GlobalActions> = (action) => {
         if ('type' in action) {
             if (action.type.startsWith('modal')) {
-                modalDispatch(action as ModalActions)
+                modalDispatchG(action as ModalActions)
             } else if (action.type.startsWith('reune_')) {
-                reuneDispatch(action as reuneActions)
+                reuneDispatchG(action as reuneActions)
             }
         }
-    }
-
-    //Combina los estados
-    const state: GlobalState = {
-        modalState,
-        reuneState
     }
 
     return (

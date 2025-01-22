@@ -35,7 +35,7 @@ export default function RedecoForm() {
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Cliente === state.modalState.modalState.id && state.modalState.modalState.modal && (
+                        {SearchCategory.Cliente === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
                             <SearchButton label={searchCat.cliente} />
                         )}
 
@@ -65,7 +65,7 @@ export default function RedecoForm() {
                             <MagnifyingGlassIcon className="w-4 text-white" />
                         </button>
 
-                        {SearchCategory.Sucursal === state.modalState.modalState.id && state.modalState.modalState.modal && (
+                        {SearchCategory.Sucursal === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
                             <SearchButton label={searchCat.sucursal} />
                         )}
 
