@@ -211,7 +211,7 @@ export default function FragmentComunicacion() {
             <input
               id="causa"
               type="number"
-              className="basis-full xl:w-3/4 text-center"
+              className="basis-full lg:basis-4/5 text-center"
               readOnly disabled
               {...register('causa', {
                 required: true,
@@ -233,7 +233,7 @@ export default function FragmentComunicacion() {
           <section className="flex flex-col items-center lg:items-start justify-center gap-y-10 gap-x-2">
 
             <div className="">
-              <label htmlFor="rever" className="w-full lg:w-16  xl:text-left">Reversa:</label>
+              <label htmlFor="rever" className="w-full lg:w-16 text-center xl:text-left">Reversa:</label>
               <input
                 id="rever"
                 type="checkbox"
@@ -243,7 +243,7 @@ export default function FragmentComunicacion() {
             </div>
 
             <div className="">
-              <label htmlFor="recl" className="w-full lg:w-96 ">¿El reclamo o Aclaración es de objeto monetario?</label>
+              <label htmlFor="recl" className="w-full lg:w-96 text-center xl:text-left">¿El reclamo o Aclaración es de objeto monetario?</label>
               <input
                 id="recl"
                 type="checkbox"
@@ -253,8 +253,8 @@ export default function FragmentComunicacion() {
             </div>
 
             <div className="">
-              <hr className="pb-2 w-96 " />
-              <label htmlFor="exg" className="w-full lg:w-40  lg:text-left">Si es del extranjero:</label>
+              <hr className="pb-4 w-44 lg:w-96 " />
+              <label htmlFor="exg" className="w-full lg:w-40 text-center lg:text-left">Si es del extranjero:</label>
               <input
                 id="exg"
                 type="checkbox"

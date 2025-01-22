@@ -3,12 +3,18 @@
 @tailwind utilities;
 
 body {
+    color: #374645;
     font-family: "Kanit", sans-serif;
 }
 
 input:focus,
 select:focus {
     outline: none;
+}
+
+label {
+    font-weight: 500;
+    color: rgb(19 78 74)
 }
 
 button:hover,

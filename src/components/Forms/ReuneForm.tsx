@@ -207,6 +207,23 @@ export default function ReuneForm() {
                         />
                     </div>
 
+                    <div className="basis-full xl:basis-5/12">
+                        <label htmlFor="typePer" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Tipo de Persona:</label>
+
+                        <select
+                            id="typePer"
+                            disabled
+                            value={reuneData.typePer}
+                            className="w-full xl:w-2/5 text-center xl:text-left"
+                            {...register('typePer', {
+                                required: true
+                            })}
+                        >
+                            <option value="1">Moral</option>
+                            <option value="2">Física</option>
+                        </select>
+                    </div>
+
                     <div className="basis-full xl:basis-56 flex gap-3 items-center justify-center xl:justify-start">
                         <label htmlFor="sex" className="xl:w-12">Sexo:</label>
 
@@ -231,22 +248,6 @@ export default function ReuneForm() {
                         </div>
                     </div>
 
-                    <div className="basis-full xl:basis-5/12">
-                        <label htmlFor="typePer" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Tipo de Persona:</label>
-
-                        <select
-                            id="typePer"
-                            disabled
-                            value={reuneData.typePer}
-                            className="w-full xl:w-2/5 text-center xl:text-left"
-                            {...register('typePer', {
-                                required: true
-                            })}
-                        >
-                            <option value="1">Moral</option>
-                            <option value="2">Física</option>
-                        </select>
-                    </div>
 
                     <div className="basis-full xl:basis-1/5">
                         <label htmlFor="pori" className="w-full xl:w-12 text-center xl:text-left">PORI:</label>

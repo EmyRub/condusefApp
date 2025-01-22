@@ -47,7 +47,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.cp && (<Error>*{errors.cp?.message as string}</Error>)}
+                        {errors.cp && (<Error>{errors.cp?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-1/2">
@@ -64,7 +64,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.loc && (<Error>*{errors.loc?.message as string}</Error>)}
+                        {errors.loc && (<Error>{errors.loc?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-5/12">
@@ -81,7 +81,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.edo && (<Error>*{errors.edo?.message as string}</Error>)}
+                        {errors.edo && (<Error>{errors.edo?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-1/2">
@@ -98,7 +98,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.muni && (<Error>*{errors.muni?.message as string}</Error>
+                        {errors.muni && (<Error>{errors.muni?.message as string}</Error>
                         )}
                     </div>
 

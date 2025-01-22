@@ -37,7 +37,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.name && (<Error>*{errors.name?.message as string}</Error>)}
+                        {errors.name && (<Error>{errors.name?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-80">
@@ -54,7 +54,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.email && (<Error>*{errors.email?.message as string}</Error>)}
+                        {errors.email && (<Error>{errors.email?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-64">
@@ -71,7 +71,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.phone && (<Error>*{errors.phone?.message as string}</Error>)}
+                        {errors.phone && (<Error>{errors.phone?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-32">
@@ -89,7 +89,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             }
                             )}
                         />
-                        {errors.age && (<Error>*{errors.age?.message as string}</Error>)}
+                        {errors.age && (<Error>{errors.age?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-72">
@@ -106,7 +106,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             <option value="1">0</option>
                         </select>
 
-                        {errors.typePer && (<Error>*{errors.typePer?.message as string}</Error>)}
+                        {errors.typePer && (<Error>{errors.typePer?.message as string}</Error>)}
                     </div>
 
                     <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
