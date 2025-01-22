@@ -12,10 +12,16 @@ export default function ReuneForm() {
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useGlobal()
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
 
     const reuneSubmit = (data: any) => {
         console.log(data)
+    }
+
+    const handleError = () => {
+
+   
+
     }
 
     const [reuneData, setReuneData] = useState<reuneData>({
@@ -60,14 +66,10 @@ export default function ReuneForm() {
     })
 
 
-    const statusQueja = () => {
-        //  const { queja, edoReg } = reuneData
-    }
-
     return (
 
         <form
-            onSubmit={handleSubmit(reuneSubmit)}
+            onSubmit={handleSubmit(reuneSubmit, handleError)}
             autoComplete="on"
             data-formulario>
 
@@ -79,7 +81,7 @@ export default function ReuneForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Cliente } })}
+                        onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Cliente } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -111,7 +113,7 @@ export default function ReuneForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Sucursal } })}
+                        onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Sucursal } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">

@@ -43,10 +43,11 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
     // Combina los dispatchers
     const dispatch: Dispatch<GlobalActions> = (action) => {
+        //verifica si la acción tiene la propiedad type
         if ('type' in action) {
-            if (action.type.startsWith('modal')) {
+            if (action.type.startsWith('modal-')) {
                 modalDispatchG(action as ModalActions)
-            } else if (action.type.startsWith('reune_')) {
+            } else if (action.type.startsWith('Reune_')) {
                 reuneDispatchG(action as reuneActions)
             }
         }

@@ -193,7 +193,7 @@ export default function FragmentComunicacion() {
 
             <div
               className='relative'
-              onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Causa } })}
+              onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Causa } })}
             >
               <button
                 className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">

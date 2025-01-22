@@ -12,13 +12,13 @@ export const useSearchBox = ({ modalRef }: useSearchProps) => {
     const handleClickOutside = (event: MouseEvent) => {
 
         if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-            dispatch({ type: 'close-modal' })
+            dispatch({ type: 'modal-close' })
         }
     };
 
     useEffect(() => {
 
-        if (state.modalState.modalState.modal) {
+        if (state.modalStateG.modalState.modal) {
 
             document.addEventListener("mousedown", handleClickOutside);
 
@@ -30,6 +30,6 @@ export const useSearchBox = ({ modalRef }: useSearchProps) => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
 
-    }, [state.modalState.modalState.modal])
+    }, [state.modalStateG.modalState.modal])
 
 }
