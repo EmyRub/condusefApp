@@ -1,7 +1,7 @@
 import {  useEffect } from "react";
 import { useModal } from "./useModal";
 
-
+/** HOOK DESACTUALIZADO, SE PASÓ A REDUCER */
 interface useSearchProps {
     modalRef: React.RefObject<HTMLDivElement>
 }

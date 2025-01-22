@@ -2,10 +2,11 @@ import './form.module.css';
 import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';
 import SearchButton from '../SearchButton';
-import { searchCat, SearchCategory } from '../../types';
+import { reuneData, searchCat, SearchCategory } from '../../types';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import { useModal } from '../../hooks/useModal';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
 export default function ReuneForm() {
 
@@ -15,6 +16,52 @@ export default function ReuneForm() {
 
     const reuneSubmit = (data: any) => {
         console.log(data)
+    }
+
+    const [reuneData, setReuneData] = useState<reuneData>({
+        ente: 0,
+        sucursal: 0,
+        cliente: 'Perez',
+        email: 'prueba@grudis.com',
+        telefono: 77712458,
+        age: 18,
+        sexo: '',
+        typePer: '',
+        pori: false,
+        mes: 0,
+        fecReg: '',
+        fecAtn: '',
+        folAtn: '',
+        folConduf: 0,
+        queja: '',
+        edoReg: '',
+        nProd: 0,
+        nProdS: '',
+        nvlAtn: '',
+        medioCmn: '',
+        causa: '',
+        rever: 0,
+        recl: 0,
+        exg: 0,
+        fecNot: '',
+        fecReso: '',
+        typeRe: '',
+        montRe: 0,
+        fecAbo: '',
+        montAbo: 0,
+        inst: '',
+        sector: '',
+        cp: '',
+        edo: '',
+        muni: '',
+        loc: '',
+        tyLoc: '',
+        col: ''
+    })
+
+
+    const statusQueja = () => {
+      //  const { queja, edoReg } = reuneData
     }
 
     return (
@@ -48,7 +95,8 @@ export default function ReuneForm() {
                     <input
                         id="ente"
                         type="number"
-                        className="w-full lg:w-1/2"
+                        value={reuneData.ente}
+                        className="w-full text-center lg:w-1/2"
                         {...register('ente', {
                             required: 'Seleccione N° de Ente',
                             minLength: 1
@@ -58,7 +106,8 @@ export default function ReuneForm() {
                 </div>
 
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
-                    <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
+
+                    <label htmlFor="sucursal" className="w-16 text-center lg:text-left">Sucursal:</label>
 
                     <div
                         className='relative'
@@ -76,9 +125,10 @@ export default function ReuneForm() {
                     </div>
 
                     <input
-                        id="sucur"
+                        id="sucursal"
                         type="number"
-                        className="w-full lg:w-3/5"
+                        value={reuneData.sucursal}
+                        className="w-full text-center lg:w-3/5"
                         {...register('sucur', {
                             required: 'Seleccione una sucursal'
                         })}
@@ -98,7 +148,8 @@ export default function ReuneForm() {
                         <input
                             id="cliente"
                             type="text"
-                            className="w-full xl:w-5/6"
+                            value={reuneData.cliente}
+                            className="w-full xl:w-5/6 text-center"
                             disabled
                             {...register('cliente', {
                                 required: 'El nombre es obligatorio.'
@@ -112,7 +163,8 @@ export default function ReuneForm() {
                             id="email"
                             type="email"
                             disabled
-                            className="w-full xl:w-80"
+                            value={reuneData.email}
+                            className="w-full xl:w-80 text-center"
                             {...register('email', {
                                 required: 'El correo es obligatorio',
                                 pattern: {
@@ -129,7 +181,8 @@ export default function ReuneForm() {
                             id="tel"
                             type="tel"
                             disabled
-                            className="w-full xl:w-3/5"
+                            value={reuneData.telefono}
+                            className="w-full xl:w-3/5 text-center"
                             {...register('tel', {
                                 required: 'El teléfono es obligatorio',
                                 minLength: 5
@@ -142,7 +195,8 @@ export default function ReuneForm() {
                         <input
                             id="age"
                             type="number"
-                            className="w-full xl:w-1/2"
+                            value={reuneData.age}
+                            className="w-full xl:w-1/2 text-center"
                             disabled
                             {...register('age', {
                                 required: 'Agregar una edad',
@@ -163,6 +217,7 @@ export default function ReuneForm() {
                             />
                             <label htmlFor="m">M</label>
                         </div>
+
                         <div className="flex gap-1">
                             <input
                                 id="h"
@@ -180,13 +235,14 @@ export default function ReuneForm() {
                         <select
                             id="typePer"
                             disabled
+                            value={reuneData.typePer}
                             className="w-full xl:w-2/5 text-center xl:text-left"
                             {...register('typePer', {
                                 required: true
                             })}
                         >
-                            <option value="">Moral</option>
-                            <option value="">Física</option>
+                            <option value="1">Moral</option>
+                            <option value="2">Física</option>
                         </select>
                     </div>
 
@@ -195,112 +251,16 @@ export default function ReuneForm() {
                         <input
                             id="pori"
                             type="checkbox"
+                            value={reuneData.pori}
                             className='xl:w-12 w-full'
                             {...register('pori')}
                         />
-                    </div>                
+                    </div>
 
                 </div>
             </fieldset>
 
             <FragmentComunicacion />
-
-            <div className="flex flex-col lg:flex-row gap-2 justify-between items-start mb-8">
-
-                <fieldset className="p-6 lg:p-12 lg:basis-1/2">
-
-                    <legend className='w-full lg:w-11/12 lg:px-4'>Datos Generales</legend>
-
-                    <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
-
-                        <div className="basis-full">
-                            <label htmlFor="fecNot" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Notificación:</label>
-                            <input
-                                id="fecNot"
-                                type="date"
-                                className="w-full lg:w-3/5 text-center"
-                                {...register('fecNot', {
-                                    required: true
-                                })}
-                            />
-                        </div>
-
-                        <div className="basis-full">
-                            <label htmlFor="fecReso" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Resolución:</label>
-                            <input
-                                id="fecReso"
-                                type="date"
-                                className="w-full lg:w-3/5 text-center"
-                                {...register('fecReso', {
-                                    required: true
-                                })}
-                            />
-                        </div>
-
-                        <div className="basis-full">
-                            <label htmlFor="typeRe" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Tipo de Resolución:</label>
-                            <select
-                                id="typeRe"
-                                className="w-full lg:w-3/5 text-center"
-                                {...register('typeRe', {
-                                    required: true
-                                })}
-                            >
-                                <option value=""></option>
-                            </select>
-                        </div>
-
-                    </div>
-                </fieldset>
-
-                <fieldset className="p-6 lg:p-12 lg:basis-1/2">
-
-                    <legend className="w-full lg:w-11/12 lg:px-4">Datos del Reclamo por Abono</legend>
-
-                    <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
-
-                        <div className="basis-full">
-                            <label htmlFor="montRe" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Reclamado:</label>
-                            <input
-                                id="montRe"
-                                type="number"
-                                className="w-full lg:w-1/2 text-center"
-                                {...register('montRe', {
-                                    required: true,
-                                    minLength: 0
-                                })}
-                            />
-                        </div>
-
-                        <div className="basis-full">
-                            <label htmlFor="fecAbo" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Fecha de Abono:</label>
-                            <input
-                                id="fecAbo"
-                                type="date"
-                                className="w-full lg:w-1/2 text-center"
-                                {...register('fecAbo', {
-                                    required: true
-                                })}
-                            />
-                        </div>
-
-                        <div className="basis-full">
-                            <label htmlFor="montAbo" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Abonado:</label>
-                            <input
-                                type="number"
-
-                                id="montAbo"
-                                className="w-full lg:w-1/2 text-center"
-                                {...register('montAbo', {
-                                    required: true,
-                                    minLength: 0
-                                })}
-                            />
-                        </div>
-                    </div>
-                </fieldset>
-
-            </div>
 
             <FragmentInstitucion />
 

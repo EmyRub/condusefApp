@@ -12,6 +12,7 @@ export type ModalState = {
 }
 
 export const initialState: ModalState = {
+    
     modalState: {
         id: null as number | null,
         modal: false

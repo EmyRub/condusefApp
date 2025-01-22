@@ -49,3 +49,45 @@ export type editDirection = {
 }
 
 export type DrafteditDirection = Omit<editDirection, 'ente'>
+
+/**================================================================================ */
+export type reuneData = {
+    ente: number,
+    sucursal: number,
+    cliente: string,
+    email: string,
+    telefono: number,
+    age: number,
+    sexo: string,
+    typePer: string,
+    pori: boolean,
+    mes: number,
+    fecReg: string,
+    fecAtn: string,
+    folAtn: string,
+    folConduf: number,
+    queja: string,
+    edoReg: string,
+    nProd: number,
+    nProdS: string,
+    nvlAtn: string,
+    medioCmn: string,
+    causa: string,
+    rever: number,
+    recl: number,
+    exg: number,
+    fecNot: string,
+    fecReso: string,
+    typeRe: string,
+    montRe: number,
+    fecAbo: string,
+    montAbo: number,
+    inst: string,
+    sector: string,
+    cp: string,
+    edo: string,
+    muni: string,
+    loc: string,
+    tyLoc: string,
+    col: string
+}

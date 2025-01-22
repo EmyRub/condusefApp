@@ -3,12 +3,17 @@ import { searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
 import { useModal } from "../../hooks/useModal";
 import { useForm } from "react-hook-form";
+import { useMemo } from "react";
 
 
 export default function FragmentComunicacion() {
 
   const { state, dispatch } = useModal()
   const { register } = useForm()
+
+ // const claimType = useMemo(()=>{
+
+ // })
 
   return (
     <>
@@ -19,11 +24,13 @@ export default function FragmentComunicacion() {
         <div className="flex justify-center lg:justify-between align-middle flex-wrap gap-y-16 gap-x-2">
 
           <div className="basis-full xl:basis-24">
+
             <label htmlFor="mes" className="w-full xl:w-10 text-center xl:text-left">Mes:</label>
             <input
               id="mes"
               type="number"
               disabled
+              
               className="w-full xl:w-14"
               {...register('mes', {
                 required: "El mes es obligatorio",
@@ -93,22 +100,6 @@ export default function FragmentComunicacion() {
             />
           </div>
 
-          <div className="basis-full xl:basis-72">
-            <label htmlFor="eReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Estado de registro</label>
-
-            <select
-              id="eReg"
-              className="w-full xl:w-36 text-center"
-              {...register('eReg', {
-                required: true
-              })}
-            >
-              <option value="">Ninguno</option>
-              <option value="">Pendiente</option>
-              <option value="">Concluido</option>
-            </select>
-          </div>
-          
           <div className="basis-full xl:basis-64">
             <label htmlFor="queja" className="w-full xl:w-28 text-center xl:text-left mb-2 xl:mb-0">Tipo de Queja</label>
 
@@ -119,9 +110,25 @@ export default function FragmentComunicacion() {
                 required: true
               })}
             >
-              <option value="">Consulta</option>
-              <option value="">Reclamo</option>
-              <option value="">Aclaración</option>
+              <option value="1">Consulta</option>
+              <option value="2">Reclamo</option>
+              <option value="3">Aclaración</option>
+            </select>
+          </div>
+
+          <div className="basis-full xl:basis-72">
+            <label htmlFor="edoReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Estado de registro</label>
+
+            <select
+              id="edoReg"
+              className="w-full xl:w-36 text-center"
+              {...register('eReg', {
+                required: true
+              })}
+            >
+              <option value="">Ninguno</option>
+              <option value="">Pendiente</option>
+              <option value="">Concluido</option>
             </select>
           </div>
 
@@ -142,7 +149,7 @@ export default function FragmentComunicacion() {
               })} />
 
             <select
-              id="nProd"
+              id="nProdS"
               className="w-full xl:w-44 text-center"
               {...register('nProd', {
                 required: true
@@ -151,7 +158,6 @@ export default function FragmentComunicacion() {
               <option value="">Crédito Simple Auto</option>
             </select>
           </div>
-
 
           <div className="basis-full xl:basis-96">
             <label htmlFor="nvlAtn" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Nivel de Atención:</label>
@@ -167,7 +173,6 @@ export default function FragmentComunicacion() {
             </select>
           </div>
 
-
           <div className="basis-full xl:basis-96">
             <label htmlFor="medioCmn" className="w-full xl:w-48 text-center xl:text-left mb-2 xl:mb-0">Medio de Comunicación:</label>
 
@@ -182,8 +187,8 @@ export default function FragmentComunicacion() {
             </select>
           </div>
 
-        
           <div className="basis-full flex gap-1 flex-wrap justify-center xl:justify-start items-center">
+           
             <label htmlFor="causa" className="w-12 text-center xl:text-left">Causa:</label>
 
             <div
@@ -206,7 +211,7 @@ export default function FragmentComunicacion() {
             <input
               id="causa"
               type="number"
-              className="w-3/4"
+              className="basis-full xl:w-3/4 text-center"
               readOnly disabled
               {...register('causa', {
                 required: true,
@@ -224,6 +229,40 @@ export default function FragmentComunicacion() {
         <legend className='w-full md:w-1/2 lg:px-4'>Datos Generales</legend>
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+          <section className="flex flex-col items-center lg:items-start justify-center gap-y-10 gap-x-2">
+
+            <div className="">
+              <label htmlFor="rever" className="w-full lg:w-16  xl:text-left">Reversa:</label>
+              <input
+                id="rever"
+                type="checkbox"
+                className='w-full lg:w-4'
+                {...register('rever')}
+              />
+            </div>
+
+            <div className="">
+              <label htmlFor="recl" className="w-full lg:w-96 ">¿El reclamo o Aclaración es de objeto monetario?</label>
+              <input
+                id="recl"
+                type="checkbox"
+                className='w-full lg:w-4'
+                {...register('recl')}
+              />
+            </div>
+
+            <div className="">
+              <hr className="pb-2 w-96 " />
+              <label htmlFor="exg" className="w-full lg:w-40  lg:text-left">Si es del extranjero:</label>
+              <input
+                id="exg"
+                type="checkbox"
+                className='w-full lg:w-4'
+                {...register('exg')}
+              />
+            </div>
+          </section>
 
           <section className="flex justify-between flex-wrap gap-y-10 gap-x-1">
 
@@ -265,39 +304,56 @@ export default function FragmentComunicacion() {
             </div>
           </section>
 
-          <section className="flex flex-col items-center lg:items-end justify-center gap-y-16 gap-x-2">
 
-            <div className="">
-              <label htmlFor="recl" className="w-full lg:w-96 text-center">¿El reclamo o Aclaración es de objeto monetario?</label>
-              <input
-                id="recl"
-                type="checkbox"
-                className='w-full lg:w-4'
-                {...register('recl')}
-              />
-            </div>
+        </div>
 
-            <div className="">
-              <label htmlFor="exg" className="w-full lg:w-40 text-center lg:text-left">Si es del extranjero:</label>
-              <input
-                id="exg"
-                type="checkbox"
-                className='w-full lg:w-4'
-                {...register('exg')}
-              />
-            </div>
+      </fieldset>
 
-            <div className="">
-              <label htmlFor="rever" className="w-full lg:w-16 text-center xl:text-left">Rever:</label>
-              <input
-                id="rever"
-                type="checkbox"
-                className='w-full lg:w-4'
-                {...register('rever')}
-              />
-            </div>
-          </section>
+      <fieldset className="p-6 lg:p-12">
 
+        <legend className='w-full md:w-1/2 lg:px-4'>Datos del Reclamo por Abono</legend>
+
+
+        <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
+
+          <div className="basis-full xl:basis-72">
+            <label htmlFor="montRe" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Reclamado:</label>
+            <input
+              id="montRe"
+              type="number"
+              className="w-full lg:w-1/2 text-center"
+              {...register('montRe', {
+                required: true,
+                minLength: 0
+              })}
+            />
+          </div>
+
+          <div className="basis-full xl:basis-72">
+            <label htmlFor="fecAbo" className="w-full lg:w-32 text-center lg:text-left mb-2">Fecha de Abono:</label>
+            <input
+              id="fecAbo"
+              type="date"
+              className="w-full lg:w-1/2 text-center"
+              {...register('fecAbo', {
+                required: true
+              })}
+            />
+          </div>
+
+          <div className="basis-full xl:basis-72">
+            <label htmlFor="montAbo" className="w-full lg:w-32 text-center lg:text-left mb-2">Monto Abonado:</label>
+            <input
+              type="number"
+
+              id="montAbo"
+              className="w-full lg:w-1/2 text-center"
+              {...register('montAbo', {
+                required: true,
+                minLength: 0
+              })}
+            />
+          </div>
         </div>
 
       </fieldset>
