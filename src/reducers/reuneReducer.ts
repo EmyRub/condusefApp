@@ -1,30 +1,74 @@
-import { reuneData } from "../types"
+import { reuneDataType } from "../types"
 
 export type reuneActions =
-    { type: 'add-client', payload: { newClient: reuneData } } |
-    { type: 'get-client' }
+    { type: 'client-add', payload: { newClient: reuneDataType } } |
+    { type: 'client-get' }
 
-export type reuneState = {
-    reuneData: reuneData[]
+export type reuneStateProps = {
+    reuneData: reuneDataType
 }
 
-export const reuneInitialState: reuneState = {
-    reuneData: []
+export const reuneInitialState: reuneStateProps = {
+
+    reuneData: {
+        ente: 0,
+        sucursal: 6,
+        cliente: 'Juan Perez',
+        email: 'prueba@grudis.com',
+        telefono: 77712458,
+        age: 18,
+        typePer: 2,
+        genero: 'femenino',      
+        pori: false,
+        mes: 5,
+        fecReg: '',
+        fecAtn: '',
+        folAtn: '',
+        folConduf: 0,
+        queja: '',
+        edoReg: '',
+        nProd: 0,
+        nProdS: '',
+        nvlAtn: '',
+        medioCmn: '',
+        causa: '',
+        rever: 0,
+        recl: 0,
+        exg: 0,
+        fecNot: '',
+        fecReso: '',
+        typeRe: '',
+        montRe: 0,
+        fecAbo: '',
+        montAbo: 0,
+        inst: '',
+        sector: '',
+        cp: '',
+        edo: '',
+        muni: '',
+        loc: '',
+        tyLoc: '',
+        col: ''
+    }
 }
 
 
 export const reuneReducer = (
-    state: reuneState = reuneInitialState,
+    state: reuneStateProps = reuneInitialState,
     action: reuneActions
 
-): reuneState => {
+): reuneStateProps => {
 
 
-    if (action.type === 'add-client') {
+    if (action.type === 'client-add') {
 
     }
 
-    if (action.type === 'get-client') {
+    if (action.type === 'client-get') {
+
+        return {
+            ...state
+        }
 
     }
 

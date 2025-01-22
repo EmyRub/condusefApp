@@ -11,27 +11,29 @@ export default function FragmentComunicacion() {
   const { state, dispatch } = useGlobal()
   const { register } = useForm()
 
- // const claimType = useMemo(()=>{
+  // const claimType = useMemo(()=>{
 
- // })
+  // })
 
   return (
     <>
+
       <fieldset className='p-6 lg:p-12'>
 
         <legend className='w-full md:w-1/2 lg:px-4'>Datos de Comunicación</legend>
 
-        <div className="flex justify-center lg:justify-between align-middle flex-wrap gap-y-16 gap-x-2">
+        <section className="grid grid-cols-1 xl:grid-cols-2 gap-y-16 gap-x-10">
 
-          <div className="basis-full xl:basis-24">
+          <div>
 
             <label htmlFor="mes" className="w-full xl:w-10 text-center xl:text-left">Mes:</label>
             <input
               id="mes"
               type="number"
               disabled
-              
-              className="w-full xl:w-14"
+              className="w-4/5 text-center"
+              value={state.reuneStateG.reuneData.mes}
+
               {...register('mes', {
                 required: "El mes es obligatorio",
                 minLength: {
@@ -48,91 +50,7 @@ export default function FragmentComunicacion() {
 
           </div>
 
-          <div className="basis-full xl:basis-72">
-            <label htmlFor="fecReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Fecha de Registro:</label>
-            <input
-              id="fecReg"
-              type="date"
-              className="w-full xl:w-36 text-center"
-              {...register('fecReg', {
-                required: 'Seleccionar Fecha de Registro.'
-              })}
-            />
-          </div>
-
-          <div className="basis-full xl:basis-72">
-            <label htmlFor="fecAtn" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Fecha de Atención</label>
-            <input
-              id="fecAtn"
-              type="date"
-              className="w-full xl:w-36 text-center"
-              {...register('fecAtn', {
-                required: 'Seleccionar Fecha de Atención.'
-              })}
-            />
-          </div>
-
-          <div className="basis-full xl:basis-64">
-            <label htmlFor="folAtn" className="w-full xl:w-36 text-center xl:text-left">Folio de Atención</label>
-            <input
-              id="folAtn"
-              type="number"
-              className="w-full xl:w-24"
-              readOnly disabled
-              {...register('folAtn', {
-                required: true,
-                minLength: 1
-              })}
-            />
-          </div>
-
-          <div className="basis-full xl:basis-60">
-            <label htmlFor="folConduf" className="w-full xl:w-28 text-center xl:text-left">Folio condusef:</label>
-            <input
-              id="folConduf"
-              type="number"
-              className="w-full xl:w-28"
-              readOnly disabled
-              {...register('folConduf', {
-                required: true,
-                minLength: 1
-              })}
-            />
-          </div>
-
-          <div className="basis-full xl:basis-64">
-            <label htmlFor="queja" className="w-full xl:w-28 text-center xl:text-left mb-2 xl:mb-0">Tipo de Queja</label>
-
-            <select
-              id="queja"
-              className="w-full xl:w-36 text-center"
-              {...register('queja', {
-                required: true
-              })}
-            >
-              <option value="1">Consulta</option>
-              <option value="2">Reclamo</option>
-              <option value="3">Aclaración</option>
-            </select>
-          </div>
-
-          <div className="basis-full xl:basis-72">
-            <label htmlFor="edoReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Estado de registro</label>
-
-            <select
-              id="edoReg"
-              className="w-full xl:w-36 text-center"
-              {...register('eReg', {
-                required: true
-              })}
-            >
-              <option value="">Ninguno</option>
-              <option value="">Pendiente</option>
-              <option value="">Concluido</option>
-            </select>
-          </div>
-
-          <div className="basis-full xl:basis-auto">
+          <div>
             <label htmlFor="nProd" className="w-full xl:w-40 text-center xl:text-left mb-2 xl:mb-0">Número de Producto:</label>
 
             <input
@@ -159,12 +77,96 @@ export default function FragmentComunicacion() {
             </select>
           </div>
 
-          <div className="basis-full xl:basis-96">
+          <div>
+            <label htmlFor="fecReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Fecha de Registro:</label>
+            <input
+              id="fecReg"
+              type="date"
+              className="w-full xl:w-72 text-center"
+              {...register('fecReg', {
+                required: 'Seleccionar Fecha de Registro.'
+              })}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="fecAtn" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Fecha de Atención</label>
+            <input
+              id="fecAtn"
+              type="date"
+              className="w-full xl:w-72 text-center"
+              {...register('fecAtn', {
+                required: 'Seleccionar Fecha de Atención.'
+              })}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="folAtn" className="w-full xl:w-36 text-center xl:text-left">Folio de Atención</label>
+            <input
+              id="folAtn"
+              type="number"
+              className="w-full xl:w-72"
+              readOnly disabled
+              {...register('folAtn', {
+                required: true,
+                minLength: 1
+              })}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="folConduf" className="w-full xl:w-36 text-center xl:text-left">Folio condusef:</label>
+            <input
+              id="folConduf"
+              type="number"
+              className="w-full xl:w-72"
+              readOnly disabled
+              {...register('folConduf', {
+                required: true,
+                minLength: 1
+              })}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="queja" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Tipo de Queja</label>
+
+            <select
+              id="queja"
+              className="w-full xl:w-72 text-center"
+              {...register('queja', {
+                required: true
+              })}
+            >
+              <option value="1">Consulta</option>
+              <option value="2">Reclamo</option>
+              <option value="3">Aclaración</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="edoReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Estado de registro</label>
+
+            <select
+              id="edoReg"
+              className="w-full xl:w-72 text-center"
+              {...register('eReg', {
+                required: true
+              })}
+            >
+              <option value="">Ninguno</option>
+              <option value="">Pendiente</option>
+              <option value="">Concluido</option>
+            </select>
+          </div>
+
+          <div>
             <label htmlFor="nvlAtn" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Nivel de Atención:</label>
 
             <select
               id="nvlAtn"
-              className="w-full xl:w-52 text-center"
+              className="w-full xl:w-72 text-center"
               {...register('nvlAtn', {
                 required: 'Seleccionar nivel de atención'
               })}
@@ -173,12 +175,12 @@ export default function FragmentComunicacion() {
             </select>
           </div>
 
-          <div className="basis-full xl:basis-96">
+          <div>
             <label htmlFor="medioCmn" className="w-full xl:w-48 text-center xl:text-left mb-2 xl:mb-0">Medio de Comunicación:</label>
 
             <select
               id="medioCmn"
-              className="w-full xl:w-48 text-center"
+              className="w-full xl:w-64 text-center"
               {...register('medioCmn', {
                 required: true
               })}
@@ -187,39 +189,39 @@ export default function FragmentComunicacion() {
             </select>
           </div>
 
-          <div className="basis-full flex gap-1 flex-wrap justify-center xl:justify-start items-center">
-           
-            <label htmlFor="causa" className="w-12 text-center xl:text-left">Causa:</label>
+        </section>
 
-            <div
-              className='relative'
-              onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Causa } })}
-            >
-              <button
-                className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
-                <MagnifyingGlassIcon className="w-4 text-white" />
-              </button>
+        <div className="pt-16 flex gap-1 flex-wrap justify-center xl:justify-start items-center">
 
-              {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-                <SearchButton
-                  label={searchCat.causa}
-                />
-              )}
+          <label htmlFor="causa" className="w-12 text-center xl:text-left">Causa:</label>
 
-            </div>
+          <div
+            className='relative'
+            onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Causa } })}
+          >
+            <button
+              className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
+              <MagnifyingGlassIcon className="w-4 text-white" />
+            </button>
 
-            <input
-              id="causa"
-              type="number"
-              className="basis-full lg:basis-4/5 text-center"
-              readOnly disabled
-              {...register('causa', {
-                required: true,
-                minLength: 1
-              })}
-            />
+            {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
+              <SearchButton
+                label={searchCat.causa}
+              />
+            )}
+
           </div>
 
+          <input
+            id="causa"
+            type="number"
+            className="basis-full lg:basis-4/5 text-center"
+            readOnly disabled
+            {...register('causa', {
+              required: true,
+              minLength: 1
+            })}
+          />
         </div>
 
       </fieldset>

@@ -1,12 +1,12 @@
 import { createContext, Dispatch, ReactNode, useReducer } from "react"
 import { ModalActions, modalInitialState, modalReducer, ModalStateProps } from "../reducers/modalReducer"
-import { reuneActions, reuneInitialState, reuneReducer, reuneState } from "../reducers/reuneReducer"
+import { reuneActions, reuneInitialState, reuneReducer, reuneStateProps } from "../reducers/reuneReducer"
 
 
 //Definir los tipos de estado y acciones combinados
 type GlobalState = {
     modalStateG: ModalStateProps,
-    reuneStateG: reuneState
+    reuneStateG: reuneStateProps
 }
 
 type GlobalActions = ModalActions | reuneActions;
@@ -47,7 +47,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         if ('type' in action) {
             if (action.type.startsWith('modal-')) {
                 modalDispatchG(action as ModalActions)
-            } else if (action.type.startsWith('Reune_')) {
+            } else if (action.type.startsWith('client-')) {
                 reuneDispatchG(action as reuneActions)
             }
         }

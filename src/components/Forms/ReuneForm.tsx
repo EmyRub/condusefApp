@@ -1,12 +1,17 @@
+
 import './form.module.css';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
+
+import Error from '../Error';
+import SearchButton from '../SearchButton';
 import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';
-import SearchButton from '../SearchButton';
-import { reuneData, searchCat, SearchCategory } from '../../types';
-import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
+
 import { useGlobal } from '../../hooks/useGlobal';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { searchCat, SearchCategory } from '../../types';
+
 
 export default function ReuneForm() {
 
@@ -16,25 +21,13 @@ export default function ReuneForm() {
 
     const reuneSubmit = (data: any) => {
         console.log(data)
+        //const newClient = dispatch({ type: 'client-add', payload: { data } })
     }
 
-    const handleError = () => {
 
-   
+    const [reuneData, setReuneData] = useState({
 
-    }
-
-    const [reuneData, setReuneData] = useState<reuneData>({
-        ente: 0,
-        sucursal: 0,
-        cliente: 'Perez',
-        email: 'prueba@grudis.com',
-        telefono: 77712458,
-        age: 18,
-        sexo: '',
-        typePer: '',
-        pori: 0,
-        mes: 0,
+        mes: 5,
         fecReg: '',
         fecAtn: '',
         folAtn: '',
@@ -69,7 +62,7 @@ export default function ReuneForm() {
     return (
 
         <form
-            onSubmit={handleSubmit(reuneSubmit, handleError)}
+            onSubmit={handleSubmit(reuneSubmit)}
             autoComplete="on"
             data-formulario>
 
@@ -97,13 +90,14 @@ export default function ReuneForm() {
                     <input
                         id="ente"
                         type="number"
-                        value={reuneData.ente}
+                        value={state.reuneStateG.reuneData.ente}
                         className="w-full text-center lg:w-1/2"
                         {...register('ente', {
                             required: 'Seleccione N° de Ente',
                             minLength: 1
                         })}
                     />
+                   
 
                 </div>
 
@@ -129,7 +123,7 @@ export default function ReuneForm() {
                     <input
                         id="sucursal"
                         type="number"
-                        value={reuneData.sucursal}
+                        value={state.reuneStateG.reuneData.sucursal}
                         className="w-full text-center lg:w-3/5"
                         {...register('sucur', {
                             required: 'Seleccione una sucursal'
@@ -143,20 +137,21 @@ export default function ReuneForm() {
 
                 <legend className='w-full md:w-1/2 xl:px-4'>Datos de la persona</legend>
 
-                <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
+                <div className="flex justify-between flex-wrap gap-y-16 gap-x-2">
 
                     <div className="basis-full">
                         <label htmlFor="cliente" className="w-full xl:w-36 text-center xl:text-left">Nombre del Cliente:</label>
                         <input
                             id="cliente"
                             type="text"
-                            value={reuneData.cliente}
+                            value={state.reuneStateG.reuneData.cliente}
                             className="w-full xl:w-5/6 text-center"
                             disabled
                             {...register('cliente', {
                                 required: 'El nombre es obligatorio.'
                             })}
                         />
+       
                     </div>
 
                     <div className="basis-full xl:basis-96">
@@ -165,7 +160,7 @@ export default function ReuneForm() {
                             id="email"
                             type="email"
                             disabled
-                            value={reuneData.email}
+                            value={state.reuneStateG.reuneData.email}
                             className="w-full xl:w-80 text-center"
                             {...register('email', {
                                 required: 'El correo es obligatorio',
@@ -183,7 +178,7 @@ export default function ReuneForm() {
                             id="tel"
                             type="tel"
                             disabled
-                            value={reuneData.telefono}
+                            value={state.reuneStateG.reuneData.telefono}
                             className="w-full xl:w-3/5 text-center"
                             {...register('tel', {
                                 required: 'El teléfono es obligatorio',
@@ -197,7 +192,7 @@ export default function ReuneForm() {
                         <input
                             id="age"
                             type="number"
-                            value={reuneData.age}
+                            value={state.reuneStateG.reuneData.age}
                             className="w-full xl:w-1/2 text-center"
                             disabled
                             {...register('age', {
@@ -213,13 +208,13 @@ export default function ReuneForm() {
                         <select
                             id="typePer"
                             disabled
-                            value={reuneData.typePer}
+                            value={state.reuneStateG.reuneData.typePer}
                             className="w-full xl:w-2/5 text-center xl:text-left"
                             {...register('typePer', {
                                 required: true
                             })}
                         >
-                            <option value="1">Moral</option>
+                            <option value='1'>Moral</option>
                             <option value="2">Física</option>
                         </select>
                     </div>
@@ -229,33 +224,37 @@ export default function ReuneForm() {
 
                         <div className="flex gap-1">
                             <input
-                                id="m"
+                                id="f"
                                 type="radio"
                                 {...register('sex')}
+                                value='femenino'
+                                checked={state.reuneStateG.reuneData.genero === 'femenino'}
                                 disabled
                             />
-                            <label htmlFor="m">M</label>
+                            <label htmlFor="f">M</label>
                         </div>
 
                         <div className="flex gap-1">
                             <input
-                                id="h"
+                                id="m"
                                 type="radio"
                                 disabled
+                                value='masculino'
+                                checked={state.reuneStateG.reuneData.genero === 'masculino'}
                                 {...register('sex')}
                             />
-                            <label htmlFor="h">H</label>
+                            <label htmlFor="m">H</label>
                         </div>
                     </div>
-
 
                     <div className="basis-full xl:basis-1/5">
                         <label htmlFor="pori" className="w-full xl:w-12 text-center xl:text-left">PORI:</label>
                         <input
                             id="pori"
                             type="checkbox"
-                            value={reuneData.pori}
+                            value='true'
                             className='xl:w-12 w-full'
+                            checked={state.reuneStateG.reuneData.pori === true}
                             {...register('pori')}
                         />
                     </div>
