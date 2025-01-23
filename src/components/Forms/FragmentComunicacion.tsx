@@ -54,11 +54,13 @@ export default function FragmentComunicacion() {
             <label htmlFor="nProd" className="w-full xl:w-40 text-center xl:text-left mb-2 xl:mb-0">Número de Producto:</label>
 
             <input
-              id="nProd"
+              id="nProdn"
               type="number"
-              className="w-full xl:w-32 mb-2"
+              className="w-full xl:w-32 mb-2 text-center"
+              value={state.reuneStateG.reuneData.nProdn}
               readOnly disabled
-              {...register('nProd', {
+
+              {...register('nProdn', {
                 required: "El tipo de localidad es obligatoria",
                 minLength: {
                   value: 0,
@@ -69,11 +71,13 @@ export default function FragmentComunicacion() {
             <select
               id="nProdS"
               className="w-full xl:w-44 text-center"
-              {...register('nProd', {
+              value={state.reuneStateG.reuneData.nProdS}
+
+              {...register('nProdS', {
                 required: true
               })}
             >
-              <option value="">Crédito Simple Auto</option>
+              <option value="1">Crédito Simple Auto</option>
             </select>
           </div>
 
@@ -82,7 +86,9 @@ export default function FragmentComunicacion() {
             <input
               id="fecReg"
               type="date"
+
               className="w-full xl:w-72 text-center"
+
               {...register('fecReg', {
                 required: 'Seleccionar Fecha de Registro.'
               })}
@@ -105,8 +111,9 @@ export default function FragmentComunicacion() {
             <label htmlFor="folAtn" className="w-full xl:w-36 text-center xl:text-left">Folio de Atención</label>
             <input
               id="folAtn"
-              type="number"
-              className="w-full xl:w-72"
+              type="text"
+              className="w-full xl:w-72 text-center"
+              value={state.reuneStateG.reuneData.folAtn}
               readOnly disabled
               {...register('folAtn', {
                 required: true,
@@ -119,8 +126,9 @@ export default function FragmentComunicacion() {
             <label htmlFor="folConduf" className="w-full xl:w-36 text-center xl:text-left">Folio condusef:</label>
             <input
               id="folConduf"
-              type="number"
-              className="w-full xl:w-72"
+              type="text"
+              className="w-full xl:w-72 text-center"
+              value={state.reuneStateG.reuneData.folConduf}
               readOnly disabled
               {...register('folConduf', {
                 required: true,
@@ -134,6 +142,7 @@ export default function FragmentComunicacion() {
 
             <select
               id="queja"
+              value={state.reuneStateG.reuneData.queja}
               className="w-full xl:w-72 text-center"
               {...register('queja', {
                 required: true
@@ -151,13 +160,14 @@ export default function FragmentComunicacion() {
             <select
               id="edoReg"
               className="w-full xl:w-72 text-center"
+              value={state.reuneStateG.reuneData.edoReg}
               {...register('eReg', {
                 required: true
               })}
             >
-              <option value="">Ninguno</option>
-              <option value="">Pendiente</option>
-              <option value="">Concluido</option>
+              <option value="1">Ninguno</option>
+              <option value="2">Pendiente</option>
+              <option value="3">Concluido</option>
             </select>
           </div>
 
@@ -167,11 +177,13 @@ export default function FragmentComunicacion() {
             <select
               id="nvlAtn"
               className="w-full xl:w-72 text-center"
+              value={state.reuneStateG.reuneData.nvlAtn}
               {...register('nvlAtn', {
                 required: 'Seleccionar nivel de atención'
               })}
             >
-              <option value="">Vía Eletrónica</option>
+              <option value="1">Vía Eletrónica</option>
+              <option value="2">Vía Teléfonica</option>
             </select>
           </div>
 
@@ -181,11 +193,13 @@ export default function FragmentComunicacion() {
             <select
               id="medioCmn"
               className="w-full xl:w-64 text-center"
+              value={state.reuneStateG.reuneData.medioCmn}
               {...register('medioCmn', {
                 required: true
               })}
             >
-              <option value="">Correo Electrónico</option>
+              <option value="1">Correo Electrónico</option>
+              <option value="2">Página web</option>
             </select>
           </div>
 
@@ -214,8 +228,9 @@ export default function FragmentComunicacion() {
 
           <input
             id="causa"
-            type="number"
+            type="text"
             className="basis-full lg:basis-4/5 text-center"
+            value={state.reuneStateG.reuneData.causa}
             readOnly disabled
             {...register('causa', {
               required: true,
@@ -239,6 +254,8 @@ export default function FragmentComunicacion() {
               <input
                 id="rever"
                 type="checkbox"
+                value="true"
+                checked={state.reuneStateG.reuneData.rever === true}
                 className='w-full lg:w-4'
                 {...register('rever')}
               />
@@ -249,6 +266,8 @@ export default function FragmentComunicacion() {
               <input
                 id="recl"
                 type="checkbox"
+                value='true'
+                checked={state.reuneStateG.reuneData.recl === true}
                 className='w-full lg:w-4'
                 {...register('recl')}
               />
@@ -260,6 +279,8 @@ export default function FragmentComunicacion() {
               <input
                 id="exg"
                 type="checkbox"
+                value='true'
+                checked={state.reuneStateG.reuneData.exg === true}
                 className='w-full lg:w-4'
                 {...register('exg')}
               />
@@ -297,11 +318,13 @@ export default function FragmentComunicacion() {
               <select
                 id="typeRe"
                 className="w-full lg:w-3/5 text-center"
+                value={state.reuneStateG.reuneData.typeRe}
                 {...register('typeRe', {
                   required: true
                 })}
               >
-                <option value=""></option>
+                <option value="1">Demandar</option>
+                <option value="2">Acusarlo con tu mamá</option>
               </select>
             </div>
           </section>
@@ -324,6 +347,7 @@ export default function FragmentComunicacion() {
               id="montRe"
               type="number"
               className="w-full lg:w-1/2 text-center"
+              value={state.reuneStateG.reuneData.montRe}
               {...register('montRe', {
                 required: true,
                 minLength: 0
@@ -350,6 +374,7 @@ export default function FragmentComunicacion() {
 
               id="montAbo"
               className="w-full lg:w-1/2 text-center"
+              value={state.reuneStateG.reuneData.montAbo}
               {...register('montAbo', {
                 required: true,
                 minLength: 0
