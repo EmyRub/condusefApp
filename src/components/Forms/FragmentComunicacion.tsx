@@ -31,7 +31,7 @@ export default function FragmentComunicacion() {
               id="mes"
               type="number"
               disabled
-              className="w-4/5 text-center"
+              className="w-full xl:w-4/5 text-center"
               value={state.reuneStateG.reuneData.mes}
 
               {...register('mes', {

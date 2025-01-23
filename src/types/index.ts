@@ -89,5 +89,6 @@ export type reuneDataType = {
     muni: string,
     loc: string,
     tyLoc: string,
-    col: string
+    col: number,
+    col2: string
 }

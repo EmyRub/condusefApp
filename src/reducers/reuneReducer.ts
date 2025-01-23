@@ -41,14 +41,15 @@ export const reuneInitialState: reuneStateProps = {
         montRe: 3000,
         fecAbo: '',
         montAbo: 10000,
-        inst: '',
-        sector: '',
-        cp: '',
-        edo: '',
-        muni: '',
-        loc: '',
+        inst: 'Instito de Crédito bla bla',
+        sector: 'Credito y Finanzas',
+        cp: '32487sd',
+        edo: 'Cdmx',
+        muni: 'Benito Juarez',
+        loc: 'Benito Juarez',
         tyLoc: '',
-        col: ''
+        col: 4,
+        col2:'2'
     }
 }
 
