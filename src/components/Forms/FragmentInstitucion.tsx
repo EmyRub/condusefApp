@@ -46,12 +46,12 @@ export default function FragmentInstitucion() {
 
             <section className="grid grid-cols-1 xl:grid-cols-3 gap-y-16 gap-x-10 pt-16">
 
-                <div className="basis-full xl:basis-48">
+                <div>
                     <label htmlFor="cp" className="w-full xl:w-8 text-center xl:text-left mb-2">C.P.</label>
                     <input
                         id="cp"
                         type="text"
-                        className="w-full xl:w-32"
+                        className="w-full xl:w-auto"
                         value={state.reuneStateG.reuneData.cp}
 
                         readOnly disabled
