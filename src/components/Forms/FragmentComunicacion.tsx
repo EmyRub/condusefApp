@@ -3,8 +3,6 @@ import { reuneDataType, searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
 import { useGlobal } from "../../hooks/useGlobal";
 import { UseFormRegister } from "react-hook-form";
-import { useMemo } from "react";
-import { dataFormatted } from "../../hooks/dataFormat";
 
 type FragmentComunicationProps = {
   register: UseFormRegister<reuneDataType>
@@ -17,7 +15,6 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
    * */
   //const { register } = useForm()
   const { state, dispatch } = useGlobal()
-  const { numberFormat } = dataFormatted()
 
 
   // const claimType = useMemo(()=>{

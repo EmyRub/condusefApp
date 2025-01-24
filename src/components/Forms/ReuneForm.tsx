@@ -3,7 +3,6 @@ import './form.module.css';
 import { useForm } from 'react-hook-form';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
-import Error from '../Error';
 import SearchButton from '../SearchButton';
 import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';

@@ -9,7 +9,7 @@ type FragmentInstitucionProps = {
 
 export default function FragmentInstitucion({ register }: FragmentInstitucionProps) {
 
-    const { state, dispatch } = useGlobal()
+    const { state } = useGlobal()
 
     return (
 
