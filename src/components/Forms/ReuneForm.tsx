@@ -1,6 +1,5 @@
 
 import './form.module.css';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
@@ -10,59 +9,41 @@ import FragmentComunicacion from './FragmentComunicacion';
 import FragmentInstitucion from './FragmentInstitucion';
 
 import { useGlobal } from '../../hooks/useGlobal';
-import { searchCat, SearchCategory } from '../../types';
+import { reuneDataType, searchCat, SearchCategory } from '../../types';
+import { dataFormatted } from '../../hooks/dataFormat';
+import { useEffect } from 'react';
 
 
 export default function ReuneForm() {
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useGlobal()
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<reuneDataType>({
+        //defaultValues es clave para cargar valores iniciales en el formulario.
+        defaultValues: state.reuneStateG.reuneData
+    })
 
-    const reuneSubmit = (data: any) => {
+    useEffect(() => {
+        //key es de tipo string (derivado de Object.entries)
+        Object.entries(state.reuneStateG.reuneData).forEach(([key, value]) => {
+            setValue(key as keyof reuneDataType, value)
+        })
+    }, [state.reuneStateG.reuneData, setValue])
+
+    const reuneSubmit = (data: reuneDataType) => {
         console.log(data)
         //const newClient = dispatch({ type: 'client-add', payload: { data } })
     }
 
-
-    const [reuneData, setReuneData] = useState({
-
-        mes: 5,
-        fecReg: '',
-        fecAtn: '',
-        folAtn: '',
-        folConduf: 0,
-        queja: '',
-        edoReg: '',
-        nProd: 0,
-        nProdS: '',
-        nvlAtn: '',
-        medioCmn: '',
-        causa: '',
-        rever: 0,
-        recl: 0,
-        exg: 0,
-        fecNot: '',
-        fecReso: '',
-        typeRe: '',
-        montRe: 0,
-        fecAbo: '',
-        montAbo: 0,
-        inst: '',
-        sector: '',
-        cp: '',
-        edo: '',
-        muni: '',
-        loc: '',
-        tyLoc: '',
-        col: ''
-    })
-
+    const handleError = () => {
+        console.log(errors)
+    }
+    const { numberFormat } = dataFormatted()
 
     return (
 
         <form
-            onSubmit={handleSubmit(reuneSubmit)}
+            onSubmit={handleSubmit(reuneSubmit, handleError)}
             autoComplete="on"
             data-formulario>
 
@@ -97,8 +78,6 @@ export default function ReuneForm() {
                             minLength: 1
                         })}
                     />
-                   
-
                 </div>
 
                 <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
@@ -125,7 +104,7 @@ export default function ReuneForm() {
                         type="number"
                         value={state.reuneStateG.reuneData.sucursal}
                         className="w-full text-center lg:w-3/5"
-                        {...register('sucur', {
+                        {...register('sucursal', {
                             required: 'Seleccione una sucursal'
                         })}
                     />
@@ -151,7 +130,7 @@ export default function ReuneForm() {
                                 required: 'El nombre es obligatorio.'
                             })}
                         />
-       
+
                     </div>
 
                     <div className="basis-full xl:basis-96">
@@ -178,9 +157,9 @@ export default function ReuneForm() {
                             id="tel"
                             type="tel"
                             disabled
-                            value={state.reuneStateG.reuneData.telefono}
+                            value={numberFormat(state.reuneStateG.reuneData.telefono)}
                             className="w-full xl:w-3/5 text-center"
-                            {...register('tel', {
+                            {...register('telefono', {
                                 required: 'El teléfono es obligatorio',
                                 minLength: 5
                             })}
@@ -197,7 +176,7 @@ export default function ReuneForm() {
                             disabled
                             {...register('age', {
                                 required: 'Agregar una edad',
-                                minLength: 18
+                                min: 18
                             })}
                         />
                     </div>
@@ -220,13 +199,13 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-full xl:basis-56 flex gap-3 items-center justify-center xl:justify-start">
-                        <label htmlFor="sex" className="xl:w-12">Sexo:</label>
+                        <label htmlFor="genero" className="xl:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
                             <input
-                                id="f"
+                                id="genero"
                                 type="radio"
-                                {...register('sex')}
+                                {...register('genero')}
                                 value='femenino'
                                 checked={state.reuneStateG.reuneData.genero === 'femenino'}
                                 disabled
@@ -241,7 +220,7 @@ export default function ReuneForm() {
                                 disabled
                                 value='masculino'
                                 checked={state.reuneStateG.reuneData.genero === 'masculino'}
-                                {...register('sex')}
+                                {...register('genero')}
                             />
                             <label htmlFor="m">H</label>
                         </div>
@@ -262,9 +241,9 @@ export default function ReuneForm() {
                 </div>
             </fieldset>
 
-            <FragmentComunicacion />
+            <FragmentComunicacion register={register} />
 
-            <FragmentInstitucion />
+            <FragmentInstitucion register={register} />
 
             <input
                 type="submit"

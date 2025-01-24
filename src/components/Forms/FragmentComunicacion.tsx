@@ -1,15 +1,24 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { searchCat, SearchCategory } from "../../types";
+import { reuneDataType, searchCat, SearchCategory } from "../../types";
 import SearchButton from "../SearchButton";
 import { useGlobal } from "../../hooks/useGlobal";
-import { useForm } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 import { useMemo } from "react";
+import { dataFormatted } from "../../hooks/dataFormat";
 
+type FragmentComunicationProps = {
+  register: UseFormRegister<reuneDataType>
+}
+export default function FragmentComunicacion({ register }: FragmentComunicationProps) {
 
-export default function FragmentComunicacion() {
-
+  /**
+   * No se puede llamar a otro register directamente porque sería como una dependencia nueva 
+   * El uso simultáneo de value (estado controlado) y register (estado no controlado) no es compatible. React lanzará advertencias o ignorará el manejo de los valores.
+   * */
+  //const { register } = useForm()
   const { state, dispatch } = useGlobal()
-  const { register } = useForm()
+  const { numberFormat } = dataFormatted()
+
 
   // const claimType = useMemo(()=>{
 
@@ -55,7 +64,7 @@ export default function FragmentComunicacion() {
 
             <input
               id="nProdn"
-              type="number"
+              type="text"
               className="w-full xl:w-32 mb-2 text-center"
               value={state.reuneStateG.reuneData.nProdn}
               readOnly disabled
@@ -161,7 +170,7 @@ export default function FragmentComunicacion() {
               id="edoReg"
               className="w-full xl:w-72 text-center"
               value={state.reuneStateG.reuneData.edoReg}
-              {...register('eReg', {
+              {...register('edoReg', {
                 required: true
               })}
             >

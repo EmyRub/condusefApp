@@ -11,24 +11,24 @@ export type reuneStateProps = {
 export const reuneInitialState: reuneStateProps = {
 
     reuneData: {
-        ente: 0,
+        ente: 54,
         sucursal: 6,
         cliente: 'Juan Perez',
         email: 'prueba@grudis.com',
         telefono: 77712458,
-        age: 18,
+        age: 38,
         typePer: 2,
-        genero: 'femenino',      
+        genero: 'femenino',
         pori: false,
         mes: 5,
-        nProdn: 45797676,
-        nProdS: 1,
+        nProdn: '45797676',
+        nProdS: '1',
         fecReg: new Date('2024-02-03').toISOString(),
         fecAtn: '',
-        folAtn: 'c2390sdo',
-        folConduf: 'jka32891',
+        folAtn: '22',
+        folConduf: 'RDUA-23',
         queja: 3,
-        edoReg: 2,       
+        edoReg: 2,
         nvlAtn: 2,
         medioCmn: '2',
         causa: 'Lo dejó el novio y esta despechado',
@@ -43,13 +43,13 @@ export const reuneInitialState: reuneStateProps = {
         montAbo: 10000,
         inst: 'Instito de Crédito bla bla',
         sector: 'Credito y Finanzas',
-        cp: '32487sd',
+        cp: 2487,
         edo: 'Cdmx',
         muni: 'Benito Juarez',
         loc: 'Benito Juarez',
-        tyLoc: '',
+        tyLoc: 'hola',
         col: 4,
-        col2:'2'
+        col2: '2'
     }
 }
 
@@ -62,7 +62,7 @@ export const reuneReducer = (
 
 
     if (action.type === 'client-add') {
-
+        console.log(action.payload.newClient)
     }
 
     if (action.type === 'client-get') {

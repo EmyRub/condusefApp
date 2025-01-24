@@ -1,9 +1,14 @@
-import { useForm } from "react-hook-form"
+import { UseFormRegister } from "react-hook-form"
 import { useGlobal } from "../../hooks/useGlobal"
+import { reuneDataType } from "../../types"
 
-export default function FragmentInstitucion() {
 
-    const { register } = useForm()
+type FragmentInstitucionProps = {
+    register: UseFormRegister<reuneDataType>
+}
+
+export default function FragmentInstitucion({ register }: FragmentInstitucionProps) {
+
     const { state, dispatch } = useGlobal()
 
     return (
