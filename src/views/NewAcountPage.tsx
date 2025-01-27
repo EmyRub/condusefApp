@@ -146,7 +146,7 @@ export default function NewAcountPage() {
       />
 
       <Link to={'/'}
-        className="submit mt-3">
+        className="submit mt-2">
         Regresar
       </Link>
 

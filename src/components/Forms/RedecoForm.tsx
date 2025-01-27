@@ -28,7 +28,7 @@ export default function RedecoForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Cliente } })}
+                        onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Cliente } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -58,7 +58,7 @@ export default function RedecoForm() {
 
                     <div
                         className='relative'
-                        onClick={(e) => dispatch({ type: 'open-modal', payload: { event: e, category: SearchCategory.Sucursal } })}
+                        onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Sucursal } })}
                     >
                         <button
                             className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
@@ -199,9 +199,9 @@ export default function RedecoForm() {
                 </div>
             </fieldset>
 
-            <FragmentComunicacion />
+            <FragmentComunicacion register={register} />
 
-            <FragmentInstitucion />
+            <FragmentInstitucion register={register} />
 
             <input
                 type="submit"

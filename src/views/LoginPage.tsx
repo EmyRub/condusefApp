@@ -100,7 +100,7 @@ export default function LoginPage() {
                 className="mt-9"
             />
 
-            <NavLink to='./newAcount' className='mt-3 submit'>Crear Cuenta</NavLink>
+            <NavLink to='./newAcount' className='mt-2 submit'>Crear Cuenta</NavLink>
 
             <div className="boxImg">
 

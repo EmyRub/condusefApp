@@ -61,7 +61,7 @@ input[type='submit']:hover {
 }
 
 .boxImg {
-    @apply mt-8 flex flex-col center md:flex-row md:justify-between items-center;
+    @apply mt-8 flex flex-col md:flex-row md:justify-between items-center;
 }
 
 .logo {
