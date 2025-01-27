@@ -16,19 +16,19 @@ export default function NewAcountPage() {
 
     <form
       onSubmit={handleSubmit(newUser)}
-      className="w-11/12 md:w-2/4 md:max-w-2xl mx-auto my-20 p-8 bg-gradient-to-t from-cyan-500 to-slate-800 rounded-xl shadow-lg opacity-90">
+      className="formLog">
 
-      <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="w-6/12 md:w-1/4 mx-auto" />
+      <img src="/condusefApp/logoGrudis.gif" alt="Logo Grudis" className="logo" />
 
       <hr className="my-4 border-teal-600 border-2" />
 
       <h1 className="text-center text-teal-100 mb-4 text-lg uppercase">Nueva Cuenta</h1>
 
-      <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
-        <BuildingOffice2Icon className="w-8 text-white opacity-50" />
+      <div className="divStyleLog">
+        <BuildingOffice2Icon className="icon" />
         <select
           id="empresa"
-          className="block w-full bg-transparent border-none text-white opacity-50"
+          className="selectLog"
           {...register('empresa', {
             required: 'Seleccione una empresa'
           })}
@@ -41,16 +41,16 @@ export default function NewAcountPage() {
         <Error login={true}>{errors.empresa?.message as string}</Error>
       )}
 
-      <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
-        <BuildingLibraryIcon className="w-8 text-white opacity-50" />
+      <div className="divStyleLog">
+        <BuildingLibraryIcon className="icon" />
         <select
           id="inst"
-          className="block w-full bg-transparent border-none text-white opacity-50"
+          className="selectLog"
           {...register('inst', {
             required: 'Seleccione una Instituto'
           })}
         >
-          <option value="" disabled selected>Institución:</option>
+          <option value="" disabled>Institución:</option>
           <option value="">Redeco</option>
           <option value="">Reune</option>
         </select>
@@ -60,9 +60,9 @@ export default function NewAcountPage() {
         <Error login={true}>{errors.inst?.message as string}</Error>
       )}
 
-      <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
-        <UserIcon className="w-8 text-white opacity-50" />
-        <input className="block w-full bg-transparent border-none placeholder:text-white placeholder:opacity-50 outline-none"
+      <div className="divStyleLog">
+        <UserIcon className="icon" />
+        <input className="inputLog"
           type="text"
           id="name"
           placeholder="Nombre"
@@ -75,15 +75,14 @@ export default function NewAcountPage() {
           })}
         />
       </div>
-
       {errors.name && (
         <Error login={true}>{errors.name?.message as string}</Error>
       )}
 
-      <div className="bg-teal-600	p-2 mb-2 flex gap-3 rounded-3xl overflow-hidden">
-        <EnvelopeIcon className="w-8 text-white opacity-50" />
+      <div className="divStyleLog">
+        <EnvelopeIcon className="icon" />
 
-        <input className="block w-full bg-transparent border-none placeholder:text-white placeholder:opacity-50 outline-none"
+        <input className="inputLog"
           type="email"
           id="email"
           placeholder="Email"
@@ -100,9 +99,9 @@ export default function NewAcountPage() {
         <Error login={true}>{errors.email?.message as string}</Error>
       )}
 
-      <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden">
-        <KeyIcon className="w-8 text-white opacity-50" />
-        <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50 outline-none"
+      <div className="divStyleLog">
+        <KeyIcon className="icon" />
+        <input className="inputLog"
           type="password"
           id="password"
           placeholder="Contraseña"
@@ -120,9 +119,9 @@ export default function NewAcountPage() {
         <Error login={true}>{errors.password?.message as string}</Error>
       )}
 
-      <div className="bg-teal-600 p-2 mb-3 flex gap-3 rounded-3xl overflow-hidden">
-        <LockClosedIcon className="w-8 text-white opacity-50" />
-        <input className="block w-full bg-transparent placeholder:text-white placeholder:opacity-50 outline-none"
+      <div className="divStyleLog">
+        <LockClosedIcon className="icon" />
+        <input className="inputLog"
           type="validatePassword"
           id="validatePassword"
           placeholder="Confirmar Contraseña"
@@ -143,15 +142,15 @@ export default function NewAcountPage() {
       <input
         type="submit"
         value="Guardar"
-        className="bg-teal-900 rounded-3xl uppercase block w-full mt-9 p-3 cursor-pointer text-white hover:bg-teal-950"
+        className="mt-9"
       />
 
       <Link to={'/'}
-        className="bg-teal-900 rounded-3xl uppercase block w-full mt-2 p-3 cursor-pointer text-center text-white hover:bg-teal-950">
+        className="submit mt-3">
         Regresar
       </Link>
 
-      <div className="mt-8 flex flex-col center md:flex-row md:justify-between items-center">
+      <div className="boxImg">
 
         <img src="/condusefApp/logo-micro.png" alt="Logo Microfinix" className="w-52" />
 
