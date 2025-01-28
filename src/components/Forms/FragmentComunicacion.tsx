@@ -1,8 +1,14 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { reuneDataType, searchCat, SearchCategory } from "../../types";
+import './form.module.css';
+import styles from './form.module.css';
+
 import SearchButton from "../SearchButton";
+
 import { useGlobal } from "../../hooks/useGlobal";
 import { UseFormRegister } from "react-hook-form";
+
+import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import { reuneDataType, searchCat, SearchCategory } from "../../types";
+import clsx from 'clsx';
 
 type FragmentComunicationProps = {
   register: UseFormRegister<reuneDataType>
@@ -24,20 +30,20 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
   return (
     <>
 
-      <fieldset className='p-6 lg:p-12'>
+      <fieldset>
 
-        <legend className='w-full md:w-1/2 lg:px-4'>Datos de Comunicación</legend>
+        <legend>Datos de Comunicación</legend>
 
-        <section className="grid grid-cols-1 xl:grid-cols-2 gap-y-16 gap-x-10">
+        <section className={clsx(styles.gridColumns, 'gap-y-16')}>
 
           <div>
 
-            <label htmlFor="mes" className="w-full xl:w-10 text-center xl:text-left">Mes:</label>
+            <label htmlFor="mes" className="w-full xl:w-10">Mes:</label>
             <input
               id="mes"
               type="number"
               disabled
-              className="w-full xl:w-4/5 text-center"
+              className="w-full xl:w-4/5"
               value={state.reuneStateG.reuneData.mes}
 
               {...register('mes', {
@@ -57,12 +63,12 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="nProd" className="w-full xl:w-40 text-center xl:text-left mb-2 xl:mb-0">Número de Producto:</label>
+            <label htmlFor="nProd" className="w-full xl:w-40">Número de Producto:</label>
 
             <input
               id="nProdn"
               type="text"
-              className="w-full xl:w-32 mb-2 text-center"
+              className="w-full xl:w-28"
               value={state.reuneStateG.reuneData.nProdn}
               readOnly disabled
 
@@ -76,7 +82,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
             <select
               id="nProdS"
-              className="w-full xl:w-44 text-center"
+              className="w-full xl:w-40"
               value={state.reuneStateG.reuneData.nProdS}
 
               {...register('nProdS', {
@@ -88,12 +94,11 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="fecReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Fecha de Registro:</label>
+            <label htmlFor="fecReg" className="w-full xl:w-36">Fecha de Registro:</label>
             <input
               id="fecReg"
               type="date"
-
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
 
               {...register('fecReg', {
                 required: 'Seleccionar Fecha de Registro.'
@@ -102,11 +107,11 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="fecAtn" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Fecha de Atención</label>
+            <label htmlFor="fecAtn" className="w-full xl:w-36">Fecha de Atención</label>
             <input
               id="fecAtn"
               type="date"
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
               {...register('fecAtn', {
                 required: 'Seleccionar Fecha de Atención.'
               })}
@@ -114,11 +119,11 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="folAtn" className="w-full xl:w-36 text-center xl:text-left">Folio de Atención</label>
+            <label htmlFor="folAtn" className="w-full xl:w-36">Folio de Atención</label>
             <input
               id="folAtn"
               type="text"
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
               value={state.reuneStateG.reuneData.folAtn}
               readOnly disabled
               {...register('folAtn', {
@@ -129,11 +134,11 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="folConduf" className="w-full xl:w-36 text-center xl:text-left">Folio condusef:</label>
+            <label htmlFor="folConduf" className="w-full xl:w-36">Folio condusef:</label>
             <input
               id="folConduf"
               type="text"
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
               value={state.reuneStateG.reuneData.folConduf}
               readOnly disabled
               {...register('folConduf', {
@@ -144,45 +149,45 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="queja" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Tipo de Queja</label>
+            <label htmlFor="queja" className="w-full xl:w-36">Tipo de Queja</label>
 
             <select
               id="queja"
               value={state.reuneStateG.reuneData.queja}
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
               {...register('queja', {
                 required: true
               })}
             >
-              <option value="1">Consulta</option>
-              <option value="2">Reclamo</option>
-              <option value="3">Aclaración</option>
+              <option value="consulta">Consulta</option>
+              <option value="reclamo">Reclamo</option>
+              <option value="aclaracion">Aclaración</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="edoReg" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Estado de registro</label>
+            <label htmlFor="edoReg" className="w-full xl:w-36">Estado de registro</label>
 
             <select
               id="edoReg"
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
               value={state.reuneStateG.reuneData.edoReg}
               {...register('edoReg', {
                 required: true
               })}
             >
-              <option value="1">Ninguno</option>
-              <option value="2">Pendiente</option>
-              <option value="3">Concluido</option>
+              <option value="ninguno">Ninguno</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="concluido">Concluido</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="nvlAtn" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Nivel de Atención:</label>
+            <label htmlFor="nvlAtn" className="w-full xl:w-36">Nivel de Atención:</label>
 
             <select
               id="nvlAtn"
-              className="w-full xl:w-72 text-center"
+              className="w-full xl:w-72"
               value={state.reuneStateG.reuneData.nvlAtn}
               {...register('nvlAtn', {
                 required: 'Seleccionar nivel de atención'
@@ -194,34 +199,34 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div>
-            <label htmlFor="medioCmn" className="w-full xl:w-48 text-center xl:text-left mb-2 xl:mb-0">Medio de Comunicación:</label>
+            <label htmlFor="medioCmn" className="w-full xl:w-48">Medio de Comunicación:</label>
 
             <select
               id="medioCmn"
-              className="w-full xl:w-64 text-center"
+              className="w-full xl:w-60"
               value={state.reuneStateG.reuneData.medioCmn}
               {...register('medioCmn', {
                 required: true
               })}
             >
-              <option value="1">Correo Electrónico</option>
-              <option value="2">Página web</option>
+              <option value="email">Correo Electrónico</option>
+              <option value="web">Página web</option>
             </select>
           </div>
 
         </section>
 
-        <div className="pt-16 flex gap-1 flex-wrap justify-center xl:justify-start items-center">
+        <div className={clsx(styles.divForm, 'pt-16')}>
 
-          <label htmlFor="causa" className="w-12 text-center xl:text-left">Causa:</label>
+          <label htmlFor="causa" className="w-12">Causa:</label>
 
           <div
             className='relative'
             onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Causa } })}
           >
             <button
-              className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
-              <MagnifyingGlassIcon className="w-4 text-white" />
+              className={styles.buttonSearch}>
+              <MagnifyingGlassIcon className={styles.iconSearch} />
             </button>
 
             {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
@@ -235,7 +240,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           <input
             id="causa"
             type="text"
-            className="basis-full lg:basis-4/5 text-center"
+            className="basis-full xl:basis-4/5"
             value={state.reuneStateG.reuneData.causa}
             readOnly disabled
             {...register('causa', {
@@ -247,60 +252,60 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
       </fieldset>
 
-      <fieldset className="p-6 lg:p-12">
+      <fieldset >
 
-        <legend className='w-full md:w-1/2 lg:px-4'>Datos Generales</legend>
+        <legend>Datos Generales</legend>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <div className={styles.gridColumns}>
 
-          <section className="flex flex-col items-center lg:items-start justify-center gap-y-10 gap-x-2">
+          <section className="flex flex-col items-center xl:items-start justify-center gap-y-10 gap-x-1">
 
-            <div className="">
-              <label htmlFor="rever" className="w-full lg:w-16 text-center xl:text-left">Reversa:</label>
+            <div>
+              <label htmlFor="rever" className="w-full xl:w-16">Reversa:</label>
               <input
                 id="rever"
                 type="checkbox"
                 value="true"
                 checked={state.reuneStateG.reuneData.rever === true}
-                className='w-full lg:w-4'
+                className='w-full xl:w-4'
                 {...register('rever')}
               />
             </div>
 
-            <div className="">
-              <label htmlFor="recl" className="w-full lg:w-96 text-center xl:text-left">¿El reclamo o Aclaración es de objeto monetario?</label>
+            <div>
+              <label htmlFor="recl" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
               <input
                 id="recl"
                 type="checkbox"
                 value='true'
                 checked={state.reuneStateG.reuneData.recl === true}
-                className='w-full lg:w-4'
+                className='w-full xl:w-4'
                 {...register('recl')}
               />
             </div>
 
-            <div className="">
-              <hr className="pb-4 w-44 lg:w-96 " />
-              <label htmlFor="exg" className="w-full lg:w-40 text-center lg:text-left">Si es del extranjero:</label>
+            <div>
+              <hr className="pb-4 w-44 xl:w-96 " />
+              <label htmlFor="exg" className="w-full xl:w-40">Si es del extranjero:</label>
               <input
                 id="exg"
                 type="checkbox"
                 value='true'
                 checked={state.reuneStateG.reuneData.exg === true}
-                className='w-full lg:w-4'
+                className='w-full xl:w-4'
                 {...register('exg')}
               />
             </div>
           </section>
 
-          <section className="flex justify-between flex-wrap gap-y-10 gap-x-1">
+          <section className= {clsx(styles.flexColumns, 'mt-16 xl:mt-0')}>
 
             <div className="basis-full">
-              <label htmlFor="fecNot" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Notificación:</label>
+              <label htmlFor="fecNot" className="w-full xl:w-2/5">Fecha de Notificación:</label>
               <input
                 id="fecNot"
                 type="date"
-                className="w-full lg:w-3/5 text-center"
+                className="w-full xl:w-3/5"
                 {...register('fecNot', {
                   required: true
                 })}
@@ -308,11 +313,11 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
             </div>
 
             <div className="basis-full">
-              <label htmlFor="fecReso" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Fecha de Resolución:</label>
+              <label htmlFor="fecReso" className="w-full xl:w-2/5">Fecha de Resolución:</label>
               <input
                 id="fecReso"
                 type="date"
-                className="w-full lg:w-3/5 text-center"
+                className="w-full xl:w-3/5"
                 {...register('fecReso', {
                   required: true
                 })}
@@ -320,10 +325,10 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
             </div>
 
             <div className="basis-full">
-              <label htmlFor="typeRe" className="w-full lg:w-2/5 text-center lg:text-left mb-2">Tipo de Resolución:</label>
+              <label htmlFor="typeRe" className="w-full xl:w-2/5">Tipo de Resolución:</label>
               <select
                 id="typeRe"
-                className="w-full lg:w-3/5 text-center"
+                className="w-full xl:w-3/5"
                 value={state.reuneStateG.reuneData.typeRe}
                 {...register('typeRe', {
                   required: true
@@ -334,25 +339,22 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
               </select>
             </div>
           </section>
-
-
         </div>
 
       </fieldset>
 
-      <fieldset className="p-6 lg:p-12">
+      <fieldset >
 
-        <legend className='w-full md:w-1/2 lg:px-4'>Datos del Reclamo por Abono</legend>
+        <legend>Datos del Reclamo por Abono</legend>
 
-
-        <div className="flex justify-between flex-wrap gap-y-10 gap-x-1">
+        <div className={styles.flexColumns}>
 
           <div className="basis-full xl:basis-72">
-            <label htmlFor="montRe" className="w-full lg:w-1/2 text-center lg:text-left mb-2">Monto Reclamado:</label>
+            <label htmlFor="montRe" className="w-full xl:w-1/2">Monto Reclamado:</label>
             <input
               id="montRe"
               type="number"
-              className="w-full lg:w-1/2 text-center"
+              className="w-full xl:w-1/2"
               value={state.reuneStateG.reuneData.montRe}
               {...register('montRe', {
                 required: true,
@@ -362,11 +364,11 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div className="basis-full xl:basis-72">
-            <label htmlFor="fecAbo" className="w-full lg:w-32 text-center lg:text-left mb-2">Fecha de Abono:</label>
+            <label htmlFor="fecAbo" className="w-full xl:w-32">Fecha de Abono:</label>
             <input
               id="fecAbo"
               type="date"
-              className="w-full lg:w-1/2 text-center"
+              className="w-full xl:w-1/2"
               {...register('fecAbo', {
                 required: true
               })}
@@ -374,12 +376,12 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
           </div>
 
           <div className="basis-full xl:basis-72">
-            <label htmlFor="montAbo" className="w-full lg:w-32 text-center lg:text-left mb-2">Monto Abonado:</label>
+            <label htmlFor="montAbo" className="w-full xl:w-32">Monto Abonado:</label>
             <input
               type="number"
 
               id="montAbo"
-              className="w-full lg:w-1/2 text-center"
+              className="w-full xl:w-1/2"
               value={state.reuneStateG.reuneData.montAbo}
               {...register('montAbo', {
                 required: true,

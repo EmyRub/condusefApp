@@ -1,10 +1,16 @@
+import './form.module.css';
+import styles from './form.module.css';
+import { useForm } from "react-hook-form";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+
+import SearchButton from "../SearchButton";
 import FragmentComunicacion from "./FragmentComunicacion";
 import FragmentInstitucion from './FragmentInstitucion';
-import { searchCat, SearchCategory } from "../../types";
-import SearchButton from "../SearchButton";
+
 import { useGlobal } from "../../hooks/useGlobal";
-import { useForm } from "react-hook-form";
+import { searchCat, SearchCategory } from "../../types";
+import clsx from 'clsx';
+
 
 export default function RedecoForm() {
 
@@ -20,19 +26,19 @@ export default function RedecoForm() {
             autoComplete="on"
             data-formulario>
 
-            <fieldset className="flex justify-between items-center flex-wrap gap-12 md:gap-12 p-6 lg:p-12">
+            <fieldset className={styles.double}>
 
-                <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                <div className={clsx(styles.divForm, 'basis-full lg:basis-1/2')}>
 
-                    <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
+                    <label htmlFor="ente" className="w-32">Número del ente:</label>
 
                     <div
                         className='relative'
                         onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Cliente } })}
                     >
                         <button
-                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
-                            <MagnifyingGlassIcon className="w-4 text-white" />
+                            className={styles.buttonSearch}>
+                            <MagnifyingGlassIcon className={styles.iconSearch} />
                         </button>
 
                         {SearchCategory.Cliente === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
@@ -53,16 +59,17 @@ export default function RedecoForm() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
-                    <label htmlFor="sucur" className="w-16 text-center lg:text-left">Sucursal:</label>
+                <div className={clsx(styles.divForm, 'basis-full lg:basis-2/5')}>
+
+                    <label htmlFor="sucur" className="w-16">Sucursal:</label>
 
                     <div
                         className='relative'
                         onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Sucursal } })}
                     >
                         <button
-                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
-                            <MagnifyingGlassIcon className="w-4 text-white" />
+                            className={styles.buttonSearch}>
+                            <MagnifyingGlassIcon className={styles.iconSearch} />
                         </button>
 
                         {SearchCategory.Sucursal === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
@@ -84,7 +91,7 @@ export default function RedecoForm() {
 
             </fieldset>
 
-            <fieldset className='p-6 lg:p-12'>
+            <fieldset>
 
                 <legend className='w-full md:w-1/2 xl:px-4'>Datos de la persona</legend>
 

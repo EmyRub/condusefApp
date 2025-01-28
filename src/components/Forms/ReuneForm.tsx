@@ -1,5 +1,6 @@
 
 import './form.module.css';
+import styles from './form.module.css';
 import { useForm } from 'react-hook-form';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
@@ -11,6 +12,7 @@ import { useGlobal } from '../../hooks/useGlobal';
 import { reuneDataType, searchCat, SearchCategory } from '../../types';
 import { dataFormatted } from '../../hooks/dataFormat';
 import { useEffect } from 'react';
+import clsx from 'clsx';
 
 
 export default function ReuneForm() {
@@ -46,19 +48,19 @@ export default function ReuneForm() {
             autoComplete="on"
             data-formulario>
 
-            <fieldset className="flex justify-between items-center flex-wrap gap-10 md:gap-12 p-6 lg:p-12">
+            <fieldset className='flex justify-between items-center flex-wrap gap-10 md:gap-12'>
 
-                <div className="basis-full lg:basis-1/2 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                <div className={clsx(styles.divForm, 'basis-full xl:basis-1/2')}>
 
-                    <label htmlFor="ente" className="w-32 text-center lg:text-left">Número del ente:</label>
+                    <label htmlFor="ente" className="w-32">Número del ente:</label>
 
                     <div
                         className='relative'
                         onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Cliente } })}
                     >
                         <button
-                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
-                            <MagnifyingGlassIcon className="w-4 text-white" />
+                            className={styles.buttonSearch}>
+                            <MagnifyingGlassIcon className={styles.iconSearch} />
                         </button>
 
                         {SearchCategory.Cliente === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
@@ -71,7 +73,7 @@ export default function ReuneForm() {
                         id="ente"
                         type="number"
                         value={state.reuneStateG.reuneData.ente}
-                        className="w-full text-center lg:w-1/2"
+                        className="w-full xl:w-1/2"
                         {...register('ente', {
                             required: 'Seleccione N° de Ente',
                             minLength: 1
@@ -79,17 +81,17 @@ export default function ReuneForm() {
                     />
                 </div>
 
-                <div className="basis-full lg:basis-2/5 flex gap-1 flex-wrap justify-center lg:justify-start items-center">
+                <div className={clsx(styles.divForm, 'basis-full xl:basis-2/5')}>
 
-                    <label htmlFor="sucursal" className="w-16 text-center lg:text-left">Sucursal:</label>
+                    <label htmlFor="sucursal" className="w-16">Sucursal:</label>
 
                     <div
                         className='relative'
                         onClick={(e) => dispatch({ type: 'modal-open', payload: { event: e, category: SearchCategory.Sucursal } })}
                     >
                         <button
-                            className="bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow ">
-                            <MagnifyingGlassIcon className="w-4 text-white" />
+                            className={styles.buttonSearch}>
+                            <MagnifyingGlassIcon className={styles.iconSearch} />
                         </button>
 
                         {SearchCategory.Sucursal === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
@@ -102,7 +104,7 @@ export default function ReuneForm() {
                         id="sucursal"
                         type="number"
                         value={state.reuneStateG.reuneData.sucursal}
-                        className="w-full text-center lg:w-3/5"
+                        className="w-full xl:w-3/5"
                         {...register('sucursal', {
                             required: 'Seleccione una sucursal'
                         })}
@@ -111,19 +113,21 @@ export default function ReuneForm() {
 
             </fieldset>
 
-            <fieldset className='p-6 lg:p-12'>
+            <fieldset>
 
-                <legend className='w-full md:w-1/2 xl:px-4'>Datos de la persona</legend>
+                <legend>Datos de la persona</legend>
 
                 <div className="flex justify-between flex-wrap gap-y-16 gap-x-2">
 
                     <div className="basis-full">
-                        <label htmlFor="cliente" className="w-full xl:w-36 text-center xl:text-left">Nombre del Cliente:</label>
+
+                        <label htmlFor="cliente" className="w-full xl:w-36">Nombre del Cliente:</label>
+
                         <input
                             id="cliente"
                             type="text"
                             value={state.reuneStateG.reuneData.cliente}
-                            className="w-full xl:w-5/6 text-center"
+                            className="w-full xl:w-5/6"
                             disabled
                             {...register('cliente', {
                                 required: 'El nombre es obligatorio.'
@@ -133,13 +137,13 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-full xl:basis-96">
-                        <label htmlFor="email" className="w-full xl:w-16 text-center xl:text-left">Correo:</label>
+                        <label htmlFor="email" className="w-full xl:w-16">Correo:</label>
                         <input
                             id="email"
                             type="email"
                             disabled
                             value={state.reuneStateG.reuneData.email}
-                            className="w-full xl:w-80 text-center"
+                            className="w-full xl:w-80"
                             {...register('email', {
                                 required: 'El correo es obligatorio',
                                 pattern: {
@@ -151,13 +155,13 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-full xl:basis-56">
-                        <label htmlFor="tel" className="w-full xl:w-20 text-center xl:text-left">Teléfono:</label>
+                        <label htmlFor="tel" className="w-full xl:w-20">Teléfono:</label>
                         <input
                             id="tel"
                             type="tel"
                             disabled
                             value={numberFormat(state.reuneStateG.reuneData.telefono)}
-                            className="w-full xl:w-3/5 text-center"
+                            className="w-full xl:w-3/5"
                             {...register('telefono', {
                                 required: 'El teléfono es obligatorio',
                                 minLength: 5
@@ -166,12 +170,12 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-full xl:basis-1/5">
-                        <label htmlFor="age" className="w-full xl:w-12 text-center xl:text-left">Edad:</label>
+                        <label htmlFor="age" className="w-full xl:w-12">Edad:</label>
                         <input
                             id="age"
                             type="number"
                             value={state.reuneStateG.reuneData.age}
-                            className="w-full xl:w-1/2 text-center"
+                            className="w-full xl:w-1/2"
                             disabled
                             {...register('age', {
                                 required: 'Agregar una edad',
@@ -181,19 +185,19 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-full xl:basis-5/12">
-                        <label htmlFor="typePer" className="w-full xl:w-36 text-center xl:text-left mb-2 xl:mb-0">Tipo de Persona:</label>
+                        <label htmlFor="typePer" className="w-full xl:w-36">Tipo de Persona:</label>
 
                         <select
                             id="typePer"
                             disabled
                             value={state.reuneStateG.reuneData.typePer}
-                            className="w-full xl:w-2/5 text-center xl:text-left"
+                            className="w-full xl:w-2/5"
                             {...register('typePer', {
                                 required: true
                             })}
                         >
-                            <option value='1'>Moral</option>
-                            <option value="2">Física</option>
+                            <option value='moral'>Moral</option>
+                            <option value="fisica">Física</option>
                         </select>
                     </div>
 
@@ -226,7 +230,7 @@ export default function ReuneForm() {
                     </div>
 
                     <div className="basis-full xl:basis-1/5">
-                        <label htmlFor="pori" className="w-full xl:w-12 text-center xl:text-left">PORI:</label>
+                        <label htmlFor="pori" className="w-full xl:w-12">PORI:</label>
                         <input
                             id="pori"
                             type="checkbox"
@@ -238,6 +242,7 @@ export default function ReuneForm() {
                     </div>
 
                 </div>
+
             </fieldset>
 
             <FragmentComunicacion register={register} />

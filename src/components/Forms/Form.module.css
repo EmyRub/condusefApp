@@ -1,31 +1,48 @@
+.double {
+    @apply flex justify-between items-center flex-wrap gap-10 md:gap-12;
+}
+
+.divForm {
+    @apply flex gap-1 flex-wrap justify-center xl:justify-start items-center
+}
+
+.flexColumns {
+    @apply flex justify-between flex-wrap gap-y-10 gap-x-1;
+}
+
+.gridColumns {
+    @apply grid grid-cols-1 xl:grid-cols-2 gap-x-10;
+}
+
+.iconSearch {
+    @apply w-4 text-white;
+}
+
+.buttonSearch {
+    @apply bg-teal-400 hover:bg-teal-500 p-2 rounded-md shadow;
+}
+
 [data-formulario] fieldset {
-    border-width: 2px;
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    border-color: rgb(45 212 191);
-    background-color: #e9ffff;
+    @apply bg-teal-50 mb-8 border-2 border-teal-400 rounded-2xl px-6 py-12 xl:p-12;
     box-shadow: 0 15px 20px -12px rgba(45, 58, 58, 0.25);
 }
 
 [data-formulario] legend {
-    font-weight: bold;
-    text-align: center;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    border-radius: 9rem;
-    color: rgb(19 78 74);
-    text-transform: uppercase;
-    background-color: rgb(94 234 212);
+    background-color: rgb(94, 234, 212);
+    @apply font-bold text-center py-2 rounded-3xl text-teal-900 uppercase w-full md:w-1/2 xl:px-4;
+}
+
+[data-formulario] label {
+    @apply xl:text-left
 }
 
 [data-formulario] label,
 [data-formulario] select {
-    display: inline-block;
+    @apply inline-block text-center mb-2 xl:mb-0
 }
 
 [data-formulario] input {
-    border-bottom-width: 2px;
-    border-bottom-color: rgb(94 234 212);
+    @apply border-b-2 border-teal-400 text-center;
 }
 
 .bgModal {
@@ -36,7 +53,7 @@
     transform: translate(-50%, -50%);
 }
 
-.close{
-	right: -0.5rem;
-	transform: translateY(-50%);
+.close {
+    right: -0.5rem;
+    transform: translateY(-50%);
 }

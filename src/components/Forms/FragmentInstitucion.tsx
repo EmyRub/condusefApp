@@ -1,6 +1,10 @@
+import './form.module.css';
+import styles from './form.module.css';
+
 import { UseFormRegister } from "react-hook-form"
 import { useGlobal } from "../../hooks/useGlobal"
 import { reuneDataType } from "../../types"
+import clsx from 'clsx';
 
 
 type FragmentInstitucionProps = {
@@ -13,14 +17,14 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
 
     return (
 
-        <fieldset className='p-6 xl:p-12 xl:basis-1/2'>
+        <fieldset className='xl:basis-1/2'>
 
-            <legend className='w-full md:w-1/2 xl:px-4'>Datos de la institución</legend>
+            <legend>Datos de la institución</legend>
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-10 gap-x-1">
+            <div className={clsx(styles.gridColumns, 'gap-y-10')}>
 
                 <div>
-                    <label htmlFor="inst" className="w-full xl:w-48 text-center xl:text-left mb-2">Nombre de la institución:</label>
+                    <label htmlFor="inst" className="w-full xl:w-48">Nombre de la institución:</label>
                     <input
                         id="inst"
                         type="text"
@@ -34,7 +38,7 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                 </div>
 
                 <div>
-                    <label htmlFor="sector" className="w-full xl:w-14 text-center xl:text-left mb-2">Sector:</label>
+                    <label htmlFor="sector" className="w-full xl:w-14">Sector:</label>
                     <input
                         id="sect"
                         type="text"
@@ -52,7 +56,7 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
             <section className="grid grid-cols-1 xl:grid-cols-3 gap-y-16 gap-x-10 pt-16">
 
                 <div>
-                    <label htmlFor="cp" className="w-full xl:w-8 text-center xl:text-left mb-2">C.P.</label>
+                    <label htmlFor="cp" className="w-full xl:w-8">C.P.</label>
                     <input
                         id="cp"
                         type="text"
@@ -70,48 +74,47 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                     />
                 </div>
 
-
                 <div className="xl:flex gap-2 items-center">
-                    <label htmlFor="col" className="w-full xl:w-16 text-center xl:text-left">Colonia:</label>
+                    <label htmlFor="colNumber" className="w-full xl:w-16">Colonia:</label>
                     <input
-                        id="col"
+                        id="colNumber"
                         type="number"
-                        className="w-full xl:w-12 mb-2 xl:mb-0"
-                        value={state.reuneStateG.reuneData.col}
-
+                        className="w-full xl:w-12"
+                        value={state.reuneStateG.reuneData.colNumber}
                         readOnly disabled
-                        {...register('col', {
+                        {...register('colNumber', {
                             required: "El tipo de localidad es obligatoria",
                             minLength: {
                                 value: 0,
                                 message: 'Colonia no válida'
                             }
                         })}
-
                     />
+
                     <select
-                        id=""
-                        className="w-full xl:w-72 text-center"
-                        value={state.reuneStateG.reuneData.col2}
-                        {...register('col2', {
+                        id="colName"
+                        className="w-full xl:w-72"
+                        value={state.reuneStateG.reuneData.colName}
+                        {...register('colName', {
                             required: "Colonia no válida"
                         })}
                     >
                         <option value="1">Ninguno</option>
                         <option value="2">Fresas</option>
                     </select>
+
                 </div>
 
-                <div>
-                    <label htmlFor="edo" className="w-full xl:w-14 text-center xl:text-left mb-2">Estado:</label>
+                <div className="xl:flex gap-2 items-center">
+                    <label htmlFor="edo" className="w-full xl:w-14">Estado:</label>
+
                     <input
                         id="edo"
-                        type="text"
-                        className="w-full xl:w-52"
-                        value={state.reuneStateG.reuneData.edo}
-
+                        type="number"
+                        className="w-full xl:w-12"
+                        value={state.reuneStateG.reuneData.edoNumber}
                         readOnly disabled
-                        {...register('edo', {
+                        {...register('edoNumber', {
                             required: "El Estado es obligatorio",
                             minLength: {
                                 value: 3,
@@ -119,18 +122,30 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                             }
                         })}
                     />
+
+                    <select
+                        id="edoName"
+                        className="w-full xl:w-52"
+                        value={state.reuneStateG.reuneData.edoName}
+                        {...register('edoName', {
+                            required: "Estado no válido"
+                        })}
+                    >
+                        <option value="1">Ninguno</option>
+                        <option value="2">Benito Juarez</option>
+                        <option value="3">Tlalpan</option>
+                    </select>
                 </div>
 
-                <div>
-                    <label htmlFor="muni" className="w-full xl:w-20 text-center xl:text-left mb-2">Municipio:</label>
+                <div className="xl:flex gap-2 items-center">
+                    <label htmlFor="muniNumber" className="w-full xl:w-20">Municipio:</label>
                     <input
-                        id="muni"
-                        type="text"
-                        className="w-full xl:w-auto"
-                        value={state.reuneStateG.reuneData.muni}
-
+                        id="muniNumber"
+                        type="number"
+                        className="w-full xl:w-12"
+                        value={state.reuneStateG.reuneData.muniNumber}
                         readOnly disabled
-                        {...register('muni', {
+                        {...register('muniNumber', {
                             required: "El Municipio es obligatorio",
                             minLength: {
                                 value: 2,
@@ -138,18 +153,29 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                             }
                         })}
                     />
+                    
+                    <select
+                        id="muniName"
+                        className="w-full xl:w-72"
+                        value={state.reuneStateG.reuneData.edoName}
+                        {...register('muniName', {
+                            required: "Municipio no válido"
+                        })}
+                    >
+                        <option value="1">Ninguno</option>
+                        <option value="2">cdmx</option>
+                    </select>
                 </div>
 
                 <div>
-                    <label htmlFor="loc" className="w-full xl:w-20 text-center xl:text-left mb-2">Localidad:</label>
+                    <label htmlFor="locNumber" className="w-full xl:w-20">Localidad:</label>
                     <input
-                        id="loc"
-                        type="text"
-                        className="w-full xl:w-auto"
-                        value={state.reuneStateG.reuneData.loc}
-
+                        id="locNumber"
+                        type="number"
+                        className="w-full xl:w-12"
+                        value={state.reuneStateG.reuneData.locNumber}
                         readOnly disabled
-                        {...register('loc', {
+                        {...register('locNumber', {
                             required: "La localidad es obligatoria",
                             minLength: {
                                 value: 0,
@@ -157,25 +183,46 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                             }
                         })}
                     />
+                       <select
+                        id="muniName"
+                        className="w-full xl:w-36"
+                        value={state.reuneStateG.reuneData.locName}
+                        {...register('locName', {
+                            required: "Localidad no válida"
+                        })}
+                    >
+                        <option value="1">Ninguno</option>
+                        <option value="2">cdmx</option>
+                    </select>
                 </div>
 
                 <div>
-                    <label htmlFor="tyLoc" className="w-full xl:w-28 text-center xl:text-left mb-2">Tipo Localidad:</label>
+                    <label htmlFor="tyLocNumber" className="w-full xl:w-28">Tipo Localidad:</label>
                     <input
-                        id="tyLoc"
-                        type="text"
-                        className="w-full xl:w-40"
-                        value={state.reuneStateG.reuneData.tyLoc}
-
+                        id="tyLocNumber"
+                        type="number"
+                        className="w-full xl:w-12"
+                        value={state.reuneStateG.reuneData.tyLocNumber}
                         readOnly disabled
-                        {...register('tyLoc', {
+                        {...register('tyLocNumber', {
                             required: "El tipo de localidad es obligatoria",
                             minLength: {
                                 value: 0,
-                                message: 'Localidad no válida'
+                                message: 'Tipo de Localidad no válida'
                             }
                         })}
                     />
+                    <select
+                        id="tyLocName"
+                        className="w-full xl:w-28"
+                        value={state.reuneStateG.reuneData.tyLocName}
+                        {...register('tyLocName', {
+                            required: "Tipo de Localidad no válida"
+                        })}
+                    >
+                        <option value="1">Ninguno</option>
+                        <option value="2">Localidad</option>
+                    </select>
                 </div>
             </section>
 
