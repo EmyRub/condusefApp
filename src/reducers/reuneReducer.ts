@@ -2,6 +2,7 @@ import { reuneDataType } from "../types"
 
 export type reuneActions =
     { type: 'client-add', payload: { newClient: reuneDataType } } |
+    { type: 'client-update', payload: { field: string, value: any } } |
     { type: 'client-get' }
 
 export type reuneStateProps = {
@@ -46,7 +47,7 @@ export const reuneInitialState: reuneStateProps = {
         cp: 2487,
         colNumber: 4,
         colName: '2',
-        edoNumber:13,
+        edoNumber: 13,
         edoName: '2',
         muniNumber: 14,
         muniName: '2',
@@ -54,10 +55,9 @@ export const reuneInitialState: reuneStateProps = {
         locName: '2',
         tyLocNumber: 2,
         tyLocName: '2',
-        
+
     }
 }
-
 
 export const reuneReducer = (
     state: reuneStateProps = reuneInitialState,
@@ -76,6 +76,13 @@ export const reuneReducer = (
             ...state
         }
 
+    }
+
+    if (action.type === 'client-update') {
+        return {
+            ...state,
+            reuneData: { ...state.reuneData, [action.payload.field]: action.payload.value }
+        }
     }
 
 

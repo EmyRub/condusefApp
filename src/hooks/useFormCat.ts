@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { Categories, ModalIds } from "../types";
 
-
+/** FUNCIÓN QUE CONTROLA LA SELECCIÓN DE FORMULARIO REUNE/REDECO */
 const initialState = {
     modal: false,
     idModal: 0 as ModalIds,

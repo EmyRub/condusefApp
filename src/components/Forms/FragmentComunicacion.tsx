@@ -1,31 +1,40 @@
+import clsx from 'clsx';
 import './form.module.css';
 import styles from './form.module.css';
 
 import SearchButton from "../SearchButton";
 
+import { useMemo } from 'react';
 import { useGlobal } from "../../hooks/useGlobal";
-import { UseFormRegister } from "react-hook-form";
+import { useForm, UseFormRegister } from "react-hook-form";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { reuneDataType, searchCat, SearchCategory } from "../../types";
-import clsx from 'clsx';
+
 
 type FragmentComunicationProps = {
-  register: UseFormRegister<reuneDataType>
+  register: UseFormRegister<reuneDataType>,
 }
+
 export default function FragmentComunicacion({ register }: FragmentComunicationProps) {
 
   /**
    * No se puede llamar a otro register directamente porque sería como una dependencia nueva 
    * El uso simultáneo de value (estado controlado) y register (estado no controlado) no es compatible. React lanzará advertencias o ignorará el manejo de los valores.
    * */
-  //const { register } = useForm()
   const { state, dispatch } = useGlobal()
+  const { watch } = useForm();
 
 
-  // const claimType = useMemo(()=>{
+  // Observa valor dinámico del select
+  const edoReg = watch('edoReg')
+  const claimType = watch('queja')
 
-  // })
+  const isRever = useMemo(() => claimType === 'reclamo' && edoReg === 'pendiente', [claimType, edoReg])
+
+  console.log(edoReg)
+  console.log(claimType)
+  console.log(isRever)
 
   return (
     <>
@@ -260,29 +269,34 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
           <section className="flex flex-col items-center xl:items-start justify-center gap-y-10 gap-x-1">
 
-            <div>
-              <label htmlFor="rever" className="w-full xl:w-16">Reversa:</label>
-              <input
-                id="rever"
-                type="checkbox"
-                value="true"
-                checked={state.reuneStateG.reuneData.rever === true}
-                className='w-full xl:w-4'
-                {...register('rever')}
-              />
-            </div>
+            {isRever && (
+              <span className='flex flex-col items-center xl:items-start justify-center gap-y-10 gap-x-1'>
 
-            <div>
-              <label htmlFor="recl" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
-              <input
-                id="recl"
-                type="checkbox"
-                value='true'
-                checked={state.reuneStateG.reuneData.recl === true}
-                className='w-full xl:w-4'
-                {...register('recl')}
-              />
-            </div>
+                <div>
+                  <label htmlFor="rever" className="w-full xl:w-16">Reversa:</label>
+                  <input
+                    id="rever"
+                    type="checkbox"
+                    value="true"
+                    checked={state.reuneStateG.reuneData.rever === true}
+                    className='w-full xl:w-4'
+                    {...register('rever')}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="recl" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
+                  <input
+                    id="recl"
+                    type="checkbox"
+                    value='true'
+                    checked={state.reuneStateG.reuneData.recl === true}
+                    className='w-full xl:w-4'
+                    {...register('recl')}
+                  />
+                </div>
+              </span>
+            )}
 
             <div>
               <hr className="pb-4 w-44 xl:w-96 " />
@@ -296,9 +310,10 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                 {...register('exg')}
               />
             </div>
+
           </section>
 
-          <section className= {clsx(styles.flexColumns, 'mt-16 xl:mt-0')}>
+          <section className={clsx(styles.flexColumns, 'mt-16 xl:mt-0')}>
 
             <div className="basis-full">
               <label htmlFor="fecNot" className="w-full xl:w-2/5">Fecha de Notificación:</label>
