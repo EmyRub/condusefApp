@@ -37,11 +37,11 @@ input[type='submit'] {
 }
 
 button:hover,
+input[type='button']:hover,
 input[type='submit']:hover {
     transform: translateY(.2rem);
     transition: translateY 2s ease-in-out;
 }
-
 
 
 .formLog {

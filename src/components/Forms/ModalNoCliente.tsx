@@ -3,6 +3,7 @@ import Error from "../Error";
 import styles from './Form.module.css';
 import { useForm } from 'react-hook-form';
 import { DraftnoClient } from '../../types';
+import clsx from 'clsx';
 
 export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
@@ -15,20 +16,22 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
 
         <form
             onSubmit={handleSubmit(registerNoClient)}
-            className={`${styles.bgModal} fixed top-0 left-0 w-full h-full overflow-y-scroll py-12`} data-formulario>
+            className={styles.bgModal} data-formulario>
 
-            <fieldset className={`${styles.modal} absolute left-1/2 top-1/2 w-11/12 lg:w-3/5 p-6 lg:p-12 `}>
+            <fieldset className={styles.modal}>
 
-                <legend className='w-full lg:w-3/4 xl:px-4'>Registro No Cliente</legend>
+                <legend className={styles.legend}>Registro No Cliente</legend>
 
-                <div className="flex justify-between flex-wrap gap-y-10 gap-x-2">
+                <div className="flex justify-center flex-wrap gap-6 mb-10">
 
-                    <div className="basis-full">
-                        <label htmlFor="name" className="w-full lg:w-44 text-center lg:text-left">Nombre de la Persona:</label>
+                    <div className="w-full xl:w-4/5">
+
+                        <label htmlFor="name" className="w-full xl:w-44">Nombre de la Persona:</label>
+
                         <input
-                            type="text"
                             id="name"
-                            className="w-full lg:w-3/4"
+                            type="text"
+                            className="w-full xl:w-[27rem]"
                             {...register('name', {
                                 required: 'El nombre es obligatorio.',
                                 minLength: {
@@ -40,12 +43,38 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                         {errors.name && (<Error>{errors.name?.message as string}</Error>)}
                     </div>
 
-                    <div className="basis-full lg:basis-80">
-                        <label htmlFor="email" className="w-full lg:w-16 text-center lg:text-left">Correo:</label>
+                    <div className="basis-full xl:basis-1/5 flex gap-3 items-center justify-center xl:justify-start">
+
+                        <label htmlFor="genre" className="xl:w-12">Sexo:</label>
+
+                        <div className="flex gap-1">
+                            <input
+                                id="m"
+                                type="radio"
+                                {...register('genre')}
+                            />
+                            <label htmlFor="m" className='m-0'>M</label>
+                        </div>
+                        <div className="flex gap-1">
+                            <input
+                                id="h"
+                                type="radio"
+                                {...register('genre')}
+                            />
+                            <label htmlFor="h" className='m-0'>H</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={clsx(styles.gridColumns, 'gap-y-10 mb-10')}>
+
+                    <div>
+                        <label htmlFor="email" className="w-full xl:w-16">Correo:</label>
+
                         <input
                             type="email"
                             id="email"
-                            className="w-full lg:w-64"
+                            className="w-full xl:w-[19rem]"
                             {...register('email', {
                                 required: 'Correo Obligatorio.',
                                 pattern: {
@@ -57,12 +86,13 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                         {errors.email && (<Error>{errors.email?.message as string}</Error>)}
                     </div>
 
-                    <div className="basis-full lg:basis-64">
-                        <label htmlFor="tel" className="w-full lg:w-20 text-center lg:text-left">Teléfono:</label>
+                    <div>
+                        <label htmlFor="tel" className="w-full xl:w-20">Teléfono:</label>
+
                         <input
                             id="phone"
                             type="tel"
-                            className="w-full lg:w-36"
+                            className="w-full xl:w-64"
                             {...register('phone', {
                                 required: 'Teléfono Obligatorio',
                                 minLength: {
@@ -74,12 +104,30 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                         {errors.phone && (<Error>{errors.phone?.message as string}</Error>)}
                     </div>
 
-                    <div className="basis-full lg:basis-32">
-                        <label htmlFor="age" className="w-full lg:w-12 text-center lg:text-left mb-2">Edad:</label>
+                    <div>
+                        <label htmlFor="typePer" className="w-full xl:w-32">Tipo de Cliente:</label>
+
+                        <select
+                            id="typePer"
+                            className="w-full xl:w-60"
+                            {...register('typePer', {
+                                required: 'Campo requerido.'
+                            }
+                            )}
+                        >
+                            <option value="1">0</option>
+                        </select>
+
+                        {errors.typePer && (<Error>{errors.typePer?.message as string}</Error>)}
+                    </div>
+
+                    <div>
+                        <label htmlFor="age" className="w-full xl:w-12">Edad:</label>
+
                         <input
-                            type="number"
                             id="age"
-                            className="w-full lg:w-20"
+                            type="number"
+                            className="w-full xl:w-72"
                             {...register('age', {
                                 required: 'Edad requerida.',
                                 minLength: {
@@ -92,59 +140,23 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                         {errors.age && (<Error>{errors.age?.message as string}</Error>)}
                     </div>
 
-                    <div className="basis-full lg:basis-72">
-                        <label htmlFor="typePer" className="w-full lg:w-32 text-center lg:text-left">Tipo de Cliente:</label>
-
-                        <select
-                            id="typePer"
-                            className="w-full lg:w-32 text-center"
-                            {...register('typePer', {
-                                required: 'Campo requerido.'
-                            }
-                            )}
-                        >
-                            <option value="1">0</option>
-                        </select>
-
-                        {errors.typePer && (<Error>{errors.typePer?.message as string}</Error>)}
-                    </div>
-
-                    <div className="basis-full lg:basis-1/5 flex gap-3 items-center justify-center lg:justify-start">
-                        <label htmlFor="genre" className="lg:w-12">Sexo:</label>
-
-                        <div className="flex gap-1">
-                            <input
-                                id="m"
-                                type="radio"
-                                {...register('genre')}
-                            />
-                            <label htmlFor="m">M</label>
-                        </div>
-                        <div className="flex gap-1">
-                            <input
-                                id="h"
-                                type="radio"
-                                {...register('genre')}
-                            />
-                            <label htmlFor="h">H</label>
-                        </div>
-                    </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row items-center justify-center gap-5 mt-12">
+                <div className={clsx(styles.gridColumns,'gap-y-6')}>
                     <input
                         type="submit"
                         value="Guardar"
-                        className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold inline-block w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
+                        className={styles.btnForm} />
 
                     <input
                         type="button"
                         value="Cancelar"
                         onClick={() => setModal(false)}
-                        className='bg-teal-400 text-white py-2 px-8 rounded-xl border-none uppercase font-semibold inline-block w-3/5 lg:w-2/5 cursor-pointer hover:bg-teal-600 hover:text-white' />
+                        className={styles.btnForm} />
                 </div>
 
             </fieldset>
+
         </form>
 
     )
