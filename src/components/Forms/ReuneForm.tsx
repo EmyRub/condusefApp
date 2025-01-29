@@ -18,6 +18,7 @@ export default function ReuneForm() {
 
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useGlobal()
+    const { numberFormat } = dataFormatted()
     const { register, watch, handleSubmit, formState: { errors }, setValue, control } = useForm<reuneDataType>({
         //defaultValues es clave para cargar valores iniciales en el formulario.
         defaultValues: state.reuneStateG.reuneData
@@ -27,6 +28,10 @@ export default function ReuneForm() {
     const reuneSubmit = (data: reuneDataType) => {
         console.log(data)
         //const newClient = dispatch({ type: 'client-add', payload: { data } })
+    }
+
+    const handleError = () => {
+        console.log(errors)
     }
 
     //Efecto para cargar datos iniciales
@@ -41,14 +46,8 @@ export default function ReuneForm() {
     // Observa valor dinámico del select
     const edoReg = watch('edoReg')
     const claimType = watch('queja')
-
     const isRever = useMemo(() => claimType === 'reclamo' && edoReg === 'pendiente', [claimType, edoReg])
 
-
-    const handleError = () => {
-        console.log(errors)
-    }
-    const { numberFormat } = dataFormatted()
 
     return (
 
@@ -90,7 +89,7 @@ export default function ReuneForm() {
                                 <input
                                     id="ente"
                                     type="number"
-                                    
+
                                     {...field} // Propiedades del input controlado por React Hook Form
                                     onChange={(e) => {
                                         field.onChange(e)//Actualiza hook con el nuevo valor
@@ -121,17 +120,28 @@ export default function ReuneForm() {
                         )}
 
                     </div>
-
-                    <input
-                        id="sucursal"
-                        type="number"
-                        value={state.reuneStateG.reuneData.sucursal}
-                        className="w-full xl:w-3/5"
-                        {...register('sucursal', {
+                    <Controller
+                        name='sucursal'
+                        control={control}
+                        rules={{
                             required: 'Seleccione una sucursal',
                             min: 1
-                        })}
+                        }}
+                        render={({ field, fieldState: { error } }) => (
+                            <div className="w-full xl:w-3/5">
+                                <input
+                                    id="sucursal"
+                                    type="number"
+                                    {...field}
+                                    onChange={(e) => {
+                                        field.onChange(e)
+                                        dispatch({ type: 'client-update', payload: { field: 'sucursal', value: e.target.value } })
+                                    }}
+                                />
+                            </div>
+                        )}
                     />
+
                 </div>
 
             </fieldset>
@@ -140,135 +150,242 @@ export default function ReuneForm() {
 
                 <legend>Datos de la persona</legend>
 
-                <div className="flex justify-between flex-wrap gap-y-16 gap-x-2">
+                <div className="w-full mb-16">
 
-                    <div className="basis-full">
+                    <label htmlFor="cliente" className="w-full xl:w-36">Nombre del Cliente:</label>
 
-                        <label htmlFor="cliente" className="w-full xl:w-36">Nombre del Cliente:</label>
+                    <Controller
+                        name='cliente'
+                        control={control}
+                        rules={{
+                            required: 'El nombre es obligatorio.',
+                            minLength: {
+                                value: 2,
+                                message: 'Nombre no válido'
+                            }
+                        }}
+                        render={({ field, fieldState: { error } }) => (
 
-                        <input
-                            id="cliente"
-                            type="text"
-                            value={state.reuneStateG.reuneData.cliente}
-                            className="w-full xl:w-5/6"
-                            disabled
-                            {...register('cliente', {
-                                required: 'El nombre es obligatorio.',
-                                minLength: {
-                                    value: 2,
-                                    message: 'Nombre no válido'
-                                }
-                            })}
-                        />
+                            <span className="w-full xl:w-5/6 inline-block">
+                                <input
+                                    id="cliente"
+                                    type="text"
+                                    disabled
 
-                    </div>
+                                    {...field}
+                                    onChange={(e) => {
+                                        field.onChange(e)
+                                        dispatch({ type: 'client-update', payload: { field: 'cliente', value: e.target.value } })
+                                    }}
+                                />
+                            </span>
+                        )}
+                    />
+                </div>
 
-                    <div className="basis-full xl:basis-96">
+                <section className={clsx(styles.gridColumns3, 'gap-y-16 gap-x-2')}>
+
+                    <div className="xl:flex">
                         <label htmlFor="email" className="w-full xl:w-16">Correo:</label>
-                        <input
-                            id="email"
-                            type="email"
-                            disabled
-                            value={state.reuneStateG.reuneData.email}
-                            className="w-full xl:w-80"
-                            {...register('email', {
+
+                        <Controller
+                            name='email'
+                            control={control}
+                            rules={{
                                 required: 'El correo es obligatorio',
                                 pattern: {
                                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                     message: 'Email No Válido'
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full">
+                                    <input
+                                        id="email"
+                                        type="email"
+
+                                        {...field}
+                                        disabled
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'email', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                     </div>
 
-                    <div className="basis-full xl:basis-56">
+                    <div className="xl:flex">
+
                         <label htmlFor="tel" className="w-full xl:w-20">Teléfono:</label>
-                        <input
-                            id="tel"
-                            type="tel"
-                            disabled
-                            value={numberFormat(state.reuneStateG.reuneData.telefono)}
-                            className="w-full xl:w-3/5"
-                            {...register('telefono', {
+
+                        <Controller
+                            name='telefono'
+                            control={control}
+                            rules={{
                                 required: 'El teléfono es obligatorio',
                                 minLength: 5
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full">
+                                    <input
+                                        id="tel"
+                                        type="tel"
+                                        disabled
+
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'telefono', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                     </div>
 
-                    <div className="basis-full xl:basis-1/5">
-                        <label htmlFor="age" className="w-full xl:w-12">Edad:</label>
-                        <input
-                            id="age"
-                            type="number"
-                            value={state.reuneStateG.reuneData.age}
-                            className="w-full xl:w-1/2"
-                            disabled
-                            {...register('age', {
-                                required: 'Agregar una edad',
-                                min: 18
-                            })}
-                        />
-                    </div>
-
-                    <div className="basis-full xl:basis-5/12">
-                        <label htmlFor="typePer" className="w-full xl:w-36">Tipo de Persona:</label>
-
-                        <select
-                            id="typePer"
-                            disabled
-                            value={state.reuneStateG.reuneData.typePer}
-                            className="w-full xl:w-2/5"
-                            {...register('typePer', {
-                                required: true
-                            })}
-                        >
-                            <option value='moral'>Moral</option>
-                            <option value="fisica">Física</option>
-                        </select>
-                    </div>
-
-                    <div className="basis-full xl:basis-56 flex gap-3 items-center justify-center xl:justify-start">
+                    <div className="flex gap-3 items-center xl:items-start justify-center">
                         <label htmlFor="genero" className="xl:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
-                            <input
-                                id="genero"
-                                type="radio"
-                                {...register('genero')}
-                                value='femenino'
-                                checked={state.reuneStateG.reuneData.genero === 'femenino'}
-                                disabled
-                            />
                             <label htmlFor="f">M</label>
+
+                            <Controller
+                                name='genero'
+                                control={control}
+                                rules={{ required: 'Seleccione un género' }}
+                                render={({ field, fieldState: { error } }) => (
+
+                                    <input
+                                        id="genero"
+                                        type="radio"
+                                        disabled
+
+                                        {...field}
+                                        value='femenino'
+                                        checked={field.value === 'femenino'}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'genero', value: e.target.value } })
+                                        }}
+                                    />
+                                )}
+                            />
                         </div>
 
                         <div className="flex gap-1">
-                            <input
-                                id="m"
-                                type="radio"
-                                disabled
-                                value='masculino'
-                                checked={state.reuneStateG.reuneData.genero === 'masculino'}
-                                {...register('genero')}
-                            />
                             <label htmlFor="m">H</label>
+
+                            <Controller
+                                name='genero'
+                                control={control}
+
+                                render={({ field, fieldState: { error } }) => (
+                                    <input
+                                        id="m"
+                                        type="radio"
+                                        disabled
+
+                                        {...field}
+                                        value='masculino'
+                                        checked={field.value === 'masculino'}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'genero', value: e.target.value } })
+                                        }}
+                                    />
+                                )}
+                            />
                         </div>
                     </div>
 
-                    <div className="basis-full xl:basis-1/5">
-                        <label htmlFor="pori" className="w-full xl:w-12">PORI:</label>
-                        <input
-                            id="pori"
-                            type="checkbox"
-                            value='true'
-                            className='xl:w-12 w-full'
-                            checked={state.reuneStateG.reuneData.pori === true}
-                            {...register('pori')}
+                    <div className="xl:flex">
+                        <label htmlFor="typePer" className="w-full xl:w-32">Tipo de Persona:</label>
+
+                        <Controller
+                            name='typePer'
+                            control={control}
+                            rules={{
+                                required: true
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-40">
+                                    <select
+                                        id="typePer"
+                                        disabled
+
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'typePer', value: e.target.value } })
+                                        }}
+                                    >
+                                        <option value='moral'>Moral</option>
+                                        <option value="fisica">Física</option>
+                                    </select>
+                                </div>
+                            )}
                         />
+
                     </div>
 
-                </div>
+                    <div className="xl:flex">
+                        <label htmlFor="age" className="w-full xl:w-12">Edad:</label>
+                        <Controller
+                            name='age'
+                            control={control}
+                            rules={{
+                                required: 'Agregar una edad',
+                                min: 18
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full">
+                                    <input
+                                        id="age"
+                                        type="number"
+                                        disabled
+
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'age', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        />
+
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 items-start justify-center">
+
+                        <label htmlFor="pori" className="w-full xl:w-12">PORI:</label>
+
+                        <Controller
+                            name='pori'
+                            control={control}
+
+                            render={({ field, fieldState: { error } }) => (
+
+                                <div className="w-full xl:w-12">
+                                    <input
+                                        id="pori"
+                                        type="checkbox"
+                                        checked={field.value}
+                                        onChange={(e) => {
+                                            field.onChange(e.target.checked)
+                                            dispatch({
+                                                type: 'client-update',
+                                                payload: { field: 'pori', value: e.target.checked }
+                                            })
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        />
+                    </div>
+                </section>
 
             </fieldset>
 
@@ -281,6 +398,31 @@ export default function ReuneForm() {
                     <div>
 
                         <label htmlFor="mes" className="w-full xl:w-10">Mes:</label>
+                        <Controller
+                            name='age'
+                            control={control}
+                            rules={{
+                                required: 'Agregar una edad',
+                                min: 18
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full">
+                                    <input
+                                        id="age"
+                                        type="number"
+                                        disabled
+
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'age', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        />
+
+
                         <input
                             id="mes"
                             type="number"

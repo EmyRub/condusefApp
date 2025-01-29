@@ -27,7 +27,15 @@
 }
 
 [data-formulario] input {
-    @apply border-b-2 border-teal-400 text-center;
+    @apply border-b-2 border-teal-400 text-center w-full;
+}
+
+[data-formulario] input[type='radio'] {
+    @apply mb-2 xl:mb-0;
+}
+
+[data-formulario] select {
+    @apply w-full;
 }
 
 /*=================CLASES=========================**/
@@ -47,6 +55,10 @@
 
 .gridColumns {
     @apply grid grid-cols-1 xl:grid-cols-2 gap-x-10;
+}
+
+.gridColumns3 {
+    @apply grid grid-cols-1 xl:grid-cols-3 gap-x-10;
 }
 
 .iconSearch {
