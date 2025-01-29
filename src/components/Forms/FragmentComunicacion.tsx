@@ -6,7 +6,7 @@ import SearchButton from "../SearchButton";
 
 import { useMemo } from 'react';
 import { useGlobal } from "../../hooks/useGlobal";
-import { useForm, UseFormRegister } from "react-hook-form";
+import { Controller, useForm, UseFormRegister } from "react-hook-form";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { reuneDataType, searchCat, SearchCategory } from "../../types";
@@ -23,7 +23,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
    * El uso simultáneo de value (estado controlado) y register (estado no controlado) no es compatible. React lanzará advertencias o ignorará el manejo de los valores.
    * */
   const { state, dispatch } = useGlobal()
-  const { watch } = useForm();
+  const { watch, control } = useForm();
 
 
   // Observa valor dinámico del select
@@ -45,182 +45,321 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
         <section className={clsx(styles.gridColumns, 'gap-y-16')}>
 
-          <div>
+          <div className='xl:flex'>
 
             <label htmlFor="mes" className="w-full xl:w-10">Mes:</label>
-            <input
-              id="mes"
-              type="number"
-              disabled
-              className="w-full xl:w-4/5"
-              value={state.reuneStateG.reuneData.mes}
 
-              {...register('mes', {
+            <Controller
+              name='mes'
+              control={control}
+              rules={{
                 required: "El mes es obligatorio",
-                minLength: {
+                min: {
                   value: 1,
                   message: "Formato de mes no válido."
                 },
-                maxLength: {
+                max: {
                   value: 12,
                   message: "Formato de mes no válido."
                 }
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-4/5">
+                  <input
+                    id="mes"
+                    type="number"
+                    disabled
 
-              })}
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'mes', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
-
           </div>
 
-          <div>
+          <div className='xl:flex gap-1'>
             <label htmlFor="nProd" className="w-full xl:w-40">Número de Producto:</label>
 
-            <input
-              id="nProdn"
-              type="text"
-              className="w-full xl:w-28"
-              value={state.reuneStateG.reuneData.nProdn}
-              readOnly disabled
-
-              {...register('nProdn', {
+            <Controller
+              name='nProdn'
+              control={control}
+              rules={{
                 required: "El tipo de localidad es obligatoria",
                 minLength: {
                   value: 0,
                   message: 'N° de Producto No Válido.'
                 }
-              })} />
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-28">
+                  <input
+                    id="nProdn"
+                    type="text"
+                    disabled
 
-            <select
-              id="nProdS"
-              className="w-full xl:w-40"
-              value={state.reuneStateG.reuneData.nProdS}
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'nProdn', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
+            />
 
-              {...register('nProdS', {
+            <Controller
+              name='nProdS'
+              control={control}
+              rules={{
                 required: true
-              })}
-            >
-              <option value="1">Crédito Simple Auto</option>
-            </select>
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-40">
+                  <select
+                    id="nProdS"
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'nProdS', value: e.target.value } })
+                    }}
+                  >
+                    <option value="1">Crédito Simple Auto</option>
+                    <option value="2">Crédito Simple CN</option>
+
+                  </select>
+                </div>
+              )}
+            />
+
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="fecReg" className="w-full xl:w-36">Fecha de Registro:</label>
-            <input
-              id="fecReg"
-              type="date"
-              className="w-full xl:w-72"
 
-              {...register('fecReg', {
+            <Controller
+              name='fecReg'
+              control={control}
+              rules={{
                 required: 'Seleccionar Fecha de Registro.'
-              })}
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <input
+                    id="fecReg"
+                    type="date"
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'fecReg', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="fecAtn" className="w-full xl:w-36">Fecha de Atención</label>
-            <input
-              id="fecAtn"
-              type="date"
-              className="w-full xl:w-72"
-              {...register('fecAtn', {
+
+            <Controller
+              name='fecAtn'
+              control={control}
+              rules={{
                 required: 'Seleccionar Fecha de Atención.'
-              })}
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <input
+                    id="fecAtn"
+                    type="date"
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'fecAtn', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
+
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="folAtn" className="w-full xl:w-36">Folio de Atención</label>
-            <input
-              id="folAtn"
-              type="text"
-              className="w-full xl:w-72"
-              value={state.reuneStateG.reuneData.folAtn}
-              readOnly disabled
-              {...register('folAtn', {
+
+            <Controller
+              name='folAtn'
+              control={control}
+              rules={{
                 required: true,
                 minLength: 1
-              })}
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <input
+                    id="folAtn"
+                    type="text"
+                    disabled
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'folAtn', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="folConduf" className="w-full xl:w-36">Folio condusef:</label>
-            <input
-              id="folConduf"
-              type="text"
-              className="w-full xl:w-72"
-              value={state.reuneStateG.reuneData.folConduf}
-              readOnly disabled
-              {...register('folConduf', {
+            <Controller
+              name='folConduf'
+              control={control}
+              rules={{
                 required: true,
                 minLength: 1
-              })}
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <input
+                    id="folConduf"
+                    type="text"
+                    disabled
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'folConduf', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="queja" className="w-full xl:w-36">Tipo de Queja</label>
 
-            <select
-              id="queja"
-              value={state.reuneStateG.reuneData.queja}
-              className="w-full xl:w-72"
-              {...register('queja', {
-                required: true
-              })}
-            >
-              <option value="consulta">Consulta</option>
-              <option value="reclamo">Reclamo</option>
-              <option value="aclaracion">Aclaración</option>
-            </select>
+            <Controller
+              name='queja'
+              control={control}
+              rules={{
+                required: 'Seleccione un tipo de queja'
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <select
+                    id="queja"
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'queja', value: e.target.value } })
+                    }}
+                  >
+                    <option value="consulta">Consulta</option>
+                    <option value="reclamo">Reclamo</option>
+                    <option value="aclaracion">Aclaración</option>
+
+                  </select>
+                </div>
+              )}
+            />
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="edoReg" className="w-full xl:w-36">Estado de registro</label>
 
-            <select
-              id="edoReg"
-              className="w-full xl:w-72"
-              value={state.reuneStateG.reuneData.edoReg}
-              {...register('edoReg', {
-                required: true
-              })}
-            >
-              <option value="ninguno">Ninguno</option>
-              <option value="pendiente">Pendiente</option>
-              <option value="concluido">Concluido</option>
-            </select>
+            <Controller
+              name='edoReg'
+              control={control}
+              rules={{
+                required: 'Seleccione un estado de registro'
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <select
+                    id="edoReg"
+
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'edoReg', value: e.target.value } })
+                    }}
+                  >
+                    <option value="ninguno">Ninguno</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="concluido">Concluido</option>
+
+                  </select>
+                </div>
+              )}
+            />
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="nvlAtn" className="w-full xl:w-36">Nivel de Atención:</label>
 
-            <select
-              id="nvlAtn"
-              className="w-full xl:w-72"
-              value={state.reuneStateG.reuneData.nvlAtn}
-              {...register('nvlAtn', {
+            <Controller
+              name='nvlAtn'
+              control={control}
+              rules={{
                 required: 'Seleccionar nivel de atención'
-              })}
-            >
-              <option value="1">Vía Eletrónica</option>
-              <option value="2">Vía Teléfonica</option>
-            </select>
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-72">
+                  <select
+                    id="nvlAtn"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'nvlAtn', value: e.target.value } })
+                    }}
+                  >
+                    <option value="1">Vía Eletrónica</option>
+                    <option value="2">Vía Teléfonica</option>
+
+                  </select>
+                </div>
+              )}
+            />
           </div>
 
-          <div>
+          <div className='xl:flex'>
             <label htmlFor="medioCmn" className="w-full xl:w-48">Medio de Comunicación:</label>
 
-            <select
-              id="medioCmn"
-              className="w-full xl:w-60"
-              value={state.reuneStateG.reuneData.medioCmn}
-              {...register('medioCmn', {
-                required: true
-              })}
-            >
-              <option value="email">Correo Electrónico</option>
-              <option value="web">Página web</option>
-            </select>
+            <Controller
+              name='medioCmn'
+              control={control}
+              rules={{
+                required: 'Seleccione un medio de comunicación'
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-60">
+                  <select
+                    id="medioCmn"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'medioCmn', value: e.target.value } })
+                    }}
+                  >
+                    <option value="email">Correo Electrónico</option>
+                    <option value="web">Página web</option>
+
+                  </select>
+                </div>
+              )}
+            />
           </div>
 
         </section>
@@ -246,68 +385,122 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
           </div>
 
-          <input
-            id="causa"
-            type="text"
-            className="basis-full xl:basis-4/5"
-            value={state.reuneStateG.reuneData.causa}
-            readOnly disabled
-            {...register('causa', {
+          <Controller
+            name='causa'
+            control={control}
+            rules={{
               required: true,
               minLength: 1
-            })}
+            }}
+            render={({ field, fieldState: { error } }) => (
+              <div className="w-full xl:w-4/5">
+                <input
+                  id="causa"
+                  type="text"
+                  disabled
+                  {...field}
+                  onChange={(e) => {
+                    field.onChange(e)
+                    dispatch({ type: 'client-update', payload: { field: 'causa', value: e.target.value } })
+                  }}
+                />
+              </div>
+            )}
           />
         </div>
 
       </fieldset>
 
-      <fieldset >
+      <fieldset>
 
         <legend>Datos Generales</legend>
 
         <div className={styles.gridColumns}>
 
-          <section className="flex flex-col items-center xl:items-start justify-center gap-y-10 gap-x-1">
+          <section className="flex flex-col items-center xl:items-start justify-center gap-y-6 gap-x-1">
 
             {isRever && (
-              <span className='flex flex-col items-center xl:items-start justify-center gap-y-10 gap-x-1'>
+              <span className='flex flex-col items-center xl:items-start justify-center gap-y-8 gap-x-1'>
 
-                <div>
+                <div className='xl:flex'>
                   <label htmlFor="rever" className="w-full xl:w-16">Reversa:</label>
-                  <input
-                    id="rever"
-                    type="checkbox"
-                    value="true"
-                    checked={state.reuneStateG.reuneData.rever === true}
-                    className='w-full xl:w-4'
-                    {...register('rever')}
+
+                  <Controller
+                    name='rever'
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+
+                      <div className="w-full xl:w-4">
+                        <input
+                          id="rever"
+                          type="checkbox"
+                          checked={field.value}
+                          onChange={(e) => {
+                            field.onChange(e.target.checked)
+                            dispatch({
+                              type: 'client-update',
+                              payload: { field: 'rever', value: e.target.checked }
+                            })
+                          }}
+                        />
+                      </div>
+                    )}
                   />
                 </div>
 
-                <div>
+                <div className='xl:flex'>
                   <label htmlFor="recl" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
-                  <input
-                    id="recl"
-                    type="checkbox"
-                    value='true'
-                    checked={state.reuneStateG.reuneData.recl === true}
-                    className='w-full xl:w-4'
-                    {...register('recl')}
+                  <Controller
+                    name='recl'
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+
+                      <div className="w-full xl:w-4">
+                        <input
+                          id="recl"
+                          type="checkbox"
+                          checked={field.value}
+                          onChange={(e) => {
+                            field.onChange(e.target.checked)
+                            dispatch({
+                              type: 'client-update',
+                              payload: { field: 'recl', value: e.target.checked }
+                            })
+                          }}
+                        />
+                      </div>
+                    )}
                   />
                 </div>
               </span>
             )}
 
-            <div>
-              <hr className="pb-4 w-44 xl:w-96 " />
+            <hr className="w-44 xl:w-96 " />
+
+            <div className='xl:flex'>
+
               <label htmlFor="exg" className="w-full xl:w-40">Si es del extranjero:</label>
-              <input
-                id="exg"
-                type="checkbox"
-                value='true'
-                checked={state.reuneStateG.reuneData.exg === true}
-                className='w-full xl:w-4'
-                {...register('exg')}
+
+              <Controller
+                name='exg'
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+
+                  <div className="w-full xl:w-4">
+                    <input
+                      id="exg"
+                      type="checkbox"
+                      checked={field.value}
+                      onChange={(e) => {
+                        field.onChange(e.target.checked)
+                        dispatch({
+                          type: 'client-update',
+                          payload: { field: 'exg', value: e.target.checked }
+                        })
+                      }}
+                    />
+                  </div>
+                )}
               />
             </div>
 
@@ -315,43 +508,79 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
           <section className={clsx(styles.flexColumns, 'mt-16 xl:mt-0')}>
 
-            <div className="basis-full">
+            <div className="basis-full xl:flex">
               <label htmlFor="fecNot" className="w-full xl:w-2/5">Fecha de Notificación:</label>
-              <input
-                id="fecNot"
-                type="date"
-                className="w-full xl:w-3/5"
-                {...register('fecNot', {
-                  required: true
-                })}
+              <Controller
+                name='fecNot'
+                control={control}
+                rules={{
+                  required: 'Seleccione una fecha'
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <div className="w-full xl:w-3/5">
+                    <input
+                      id="fecNot"
+                      type="date"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e)
+                        dispatch({ type: 'client-update', payload: { field: 'fecNot', value: e.target.value } })
+                      }}
+                    />
+                  </div>
+                )}
               />
             </div>
 
-            <div className="basis-full">
+            <div className="basis-full xl:flex">
               <label htmlFor="fecReso" className="w-full xl:w-2/5">Fecha de Resolución:</label>
-              <input
-                id="fecReso"
-                type="date"
-                className="w-full xl:w-3/5"
-                {...register('fecReso', {
-                  required: true
-                })}
+              <Controller
+                name='fecReso'
+                control={control}
+                rules={{
+                  required: 'Seleccione una fecha'
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <div className="w-full xl:w-3/5">
+                    <input
+                      id="fecReso"
+                      type="date"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e)
+                        dispatch({ type: 'client-update', payload: { field: 'fecReso', value: e.target.value } })
+                      }}
+                    />
+                  </div>
+                )}
               />
             </div>
 
-            <div className="basis-full">
+            <div className="basis-full xl:flex">
               <label htmlFor="typeRe" className="w-full xl:w-2/5">Tipo de Resolución:</label>
-              <select
-                id="typeRe"
-                className="w-full xl:w-3/5"
-                value={state.reuneStateG.reuneData.typeRe}
-                {...register('typeRe', {
-                  required: true
-                })}
-              >
-                <option value="1">Demandar</option>
-                <option value="2">Acusarlo con tu mamá</option>
-              </select>
+
+              <Controller
+                name='typeRe'
+                control={control}
+                rules={{
+                  required: 'Seleccione tipo de resolución'
+                }}
+                render={({ field, fieldState: { error } }) => (
+                  <div className="w-full xl:w-3/5">
+                    <select
+                      id="typeRe"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e)
+                        dispatch({ type: 'client-update', payload: { field: 'typeRe', value: e.target.value } })
+                      }}
+                    >
+                      <option value="1">Demandar</option>
+                      <option value="2">Acusarlo con tu mamá</option>
+                    </select>
+                  </div>
+                )}
+              />
             </div>
           </section>
         </div>
@@ -364,44 +593,79 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
 
         <div className={styles.flexColumns}>
 
-          <div className="basis-full xl:basis-72">
+          <div className="basis-full xl:basis-72 xl:flex">
             <label htmlFor="montRe" className="w-full xl:w-1/2">Monto Reclamado:</label>
-            <input
-              id="montRe"
-              type="number"
-              className="w-full xl:w-1/2"
-              value={state.reuneStateG.reuneData.montRe}
-              {...register('montRe', {
-                required: true,
-                minLength: 0
-              })}
+            <Controller
+              name='montRe'
+              control={control}
+              rules={{
+                required: 'Agregar monto reclamado',
+                min: 0
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-1/2">
+                  <input
+                    id="montRe"
+                    type="number"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'montRe', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
           </div>
 
-          <div className="basis-full xl:basis-72">
+          <div className="basis-full xl:basis-72 xl:flex">
             <label htmlFor="fecAbo" className="w-full xl:w-32">Fecha de Abono:</label>
-            <input
-              id="fecAbo"
-              type="date"
-              className="w-full xl:w-1/2"
-              {...register('fecAbo', {
-                required: true
-              })}
+
+            <Controller
+              name='fecAbo'
+              control={control}
+              rules={{
+                required: 'Agregar fecha de abono',
+                minLength: 0
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-1/2">
+                  <input
+                    id="fecAbo"
+                    type="date"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'fecAbo', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
           </div>
 
-          <div className="basis-full xl:basis-72">
+          <div className="basis-full xl:basis-72 xl:flex">
             <label htmlFor="montAbo" className="w-full xl:w-32">Monto Abonado:</label>
-            <input
-              type="number"
-
-              id="montAbo"
-              className="w-full xl:w-1/2"
-              value={state.reuneStateG.reuneData.montAbo}
-              {...register('montAbo', {
-                required: true,
-                minLength: 0
-              })}
+            <Controller
+              name='montAbo'
+              control={control}
+              rules={{
+                required: 'Agregar monto abonado',
+                min: 0
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <div className="w-full xl:w-1/2">
+                  <input
+                    id="montAbo"
+                    type="number"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      dispatch({ type: 'client-update', payload: { field: 'montAbo', value: e.target.value } })
+                    }}
+                  />
+                </div>
+              )}
             />
           </div>
         </div>
