@@ -51,7 +51,6 @@ export default function ReuneForm() {
     const concluido = edoReg === 'pendiente' || 'concluido';
 
 
-    //claimStatus === 'reclamo' && edoReg === 'pendiente',
     return (
 
         <form
@@ -92,6 +91,7 @@ export default function ReuneForm() {
                                 <input
                                     id="ente"
                                     type="number"
+                                    disabled
 
                                     {...field} // Propiedades del input controlado por React Hook Form
                                     onChange={(e) => {
@@ -135,6 +135,7 @@ export default function ReuneForm() {
                                 <input
                                     id="sucursal"
                                     type="number"
+                                    disabled
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
@@ -830,34 +831,39 @@ export default function ReuneForm() {
                                     </span>
                                 )}
 
-                                <hr className="w-44 xl:w-96 " />
+                                {claimStatus === 'aclaracion' && (
+                                    <>
 
-                                <div className='xl:flex'>
+                                        <hr className="w-44 xl:w-96 " />
 
-                                    <label htmlFor="exg" className="w-full xl:w-40">Si es del extranjero:</label>
+                                        <div className='xl:flex'>
 
-                                    <Controller
-                                        name='exg'
-                                        control={control}
-                                        render={({ field, fieldState: { error } }) => (
+                                            <label htmlFor="exg" className="w-full xl:w-40">Si es del extranjero:</label>
 
-                                            <div className="w-full xl:w-4">
-                                                <input
-                                                    id="exg"
-                                                    type="checkbox"
-                                                    checked={field.value}
-                                                    onChange={(e) => {
-                                                        field.onChange(e.target.checked)
-                                                        dispatch({
-                                                            type: 'client-update',
-                                                            payload: { field: 'exg', value: e.target.checked }
-                                                        })
-                                                    }}
-                                                />
-                                            </div>
-                                        )}
-                                    />
-                                </div>
+                                            <Controller
+                                                name='exg'
+                                                control={control}
+                                                render={({ field, fieldState: { error } }) => (
+
+                                                    <div className="w-full xl:w-4">
+                                                        <input
+                                                            id="exg"
+                                                            type="checkbox"
+                                                            checked={field.value}
+                                                            onChange={(e) => {
+                                                                field.onChange(e.target.checked)
+                                                                dispatch({
+                                                                    type: 'client-update',
+                                                                    payload: { field: 'exg', value: e.target.checked }
+                                                                })
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )}
+                                            />
+                                        </div>
+                                    </>
+                                )}
 
                             </section>
 
