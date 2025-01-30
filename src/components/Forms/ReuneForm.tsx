@@ -771,6 +771,182 @@ export default function ReuneForm() {
 
                         <legend>Datos Generales</legend>
 
+                        <section className="flex flex-col xl:flex-row justify-center  items-center gap-y-6 xl:gap-x-10 xl:mb-10 border-b-2 border-teal-300 pb-7">
+
+                            {claimType && concluido && (
+                                <>                                
+
+                                    <div className='xl:flex'>
+                                        <label htmlFor="recl" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
+                                        <Controller
+                                            name='recl'
+                                            control={control}
+                                            render={({ field, fieldState: { error } }) => (
+
+                                                <div className="w-full xl:w-4">
+                                                    <input
+                                                        id="recl"
+                                                        type="checkbox"
+                                                        checked={field.value}
+                                                        onChange={(e) => {
+                                                            field.onChange(e.target.checked)
+                                                            dispatch({
+                                                                type: 'client-update',
+                                                                payload: { field: 'recl', value: e.target.checked }
+                                                            })
+                                                        }}
+                                                    />
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className='xl:flex'>
+                                        <label htmlFor="rever" className="w-full xl:w-16">Reversa:</label>
+
+                                        <Controller
+                                            name='rever'
+                                            control={control}
+                                            render={({ field, fieldState: { error } }) => (
+
+                                                <div className="w-full xl:w-4">
+                                                    <input
+                                                        id="rever"
+                                                        type="checkbox"
+                                                        checked={field.value}
+                                                        onChange={(e) => {
+                                                            field.onChange(e.target.checked)
+                                                            dispatch({
+                                                                type: 'client-update',
+                                                                payload: { field: 'rever', value: e.target.checked }
+                                                            })
+                                                        }}
+                                                    />
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                </>
+                            )}
+
+                            {claimStatus === 'aclaracion' && (
+
+                                <div className='xl:flex'>
+
+                                    <label htmlFor="exg" className="w-full xl:w-40">Si es del extranjero:</label>
+
+                                    <Controller
+                                        name='exg'
+                                        control={control}
+                                        render={({ field, fieldState: { error } }) => (
+
+                                            <div className="w-full xl:w-4">
+                                                <input
+                                                    id="exg"
+                                                    type="checkbox"
+                                                    checked={field.value}
+                                                    onChange={(e) => {
+                                                        field.onChange(e.target.checked)
+                                                        dispatch({
+                                                            type: 'client-update',
+                                                            payload: { field: 'exg', value: e.target.checked }
+                                                        })
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+                                    />
+                                </div>
+
+                            )}
+
+                        </section>
+
+                        {claimType && edoReg === 'concluido' && (
+
+                            <section className={clsx(styles.gridColumns3, 'gap-y-12 mt-16 xl:mt-0')}>
+
+                                <div className="basis-full xl:flex">
+
+                                    <label htmlFor="fecNot" className="w-full xl:w-52">Fecha de Notificación:</label>
+
+                                    <Controller
+                                        name='fecNot'
+                                        control={control}
+                                        rules={{
+                                            required: 'Seleccione una fecha'
+                                        }}
+                                        render={({ field, fieldState: { error } }) => (
+                                            <div className="w-full xl:w-3/5">
+                                                <input
+                                                    id="fecNot"
+                                                    type="date"
+                                                    {...field}
+                                                    onChange={(e) => {
+                                                        field.onChange(e)
+                                                        dispatch({ type: 'client-update', payload: { field: 'fecNot', value: e.target.value } })
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="basis-full xl:flex">
+                                    <label htmlFor="fecReso" className="w-full xl:w-52">Fecha de Resolución:</label>
+                                    <Controller
+                                        name='fecReso'
+                                        control={control}
+                                        rules={{
+                                            required: 'Seleccione una fecha'
+                                        }}
+                                        render={({ field, fieldState: { error } }) => (
+                                            <div className="w-full xl:w-3/5">
+                                                <input
+                                                    id="fecReso"
+                                                    type="date"
+                                                    {...field}
+                                                    onChange={(e) => {
+                                                        field.onChange(e)
+                                                        dispatch({ type: 'client-update', payload: { field: 'fecReso', value: e.target.value } })
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="basis-full xl:flex">
+                                    <label htmlFor="typeRe" className="w-full xl:w-52">Tipo de Resolución:</label>
+
+                                    <Controller
+                                        name='typeRe'
+                                        control={control}
+                                        rules={{
+                                            required: 'Seleccione tipo de resolución'
+                                        }}
+                                        render={({ field, fieldState: { error } }) => (
+                                            <div className="w-full xl:w-3/5">
+                                                <select
+                                                    id="typeRe"
+                                                    {...field}
+                                                    onChange={(e) => {
+                                                        field.onChange(e)
+                                                        dispatch({ type: 'client-update', payload: { field: 'typeRe', value: e.target.value } })
+                                                    }}
+                                                >
+                                                    <option value="1">Demandar</option>
+                                                    <option value="2">Acusarlo con tu mamá</option>
+                                                </select>
+                                            </div>
+                                        )}
+                                    />
+                                </div>
+                            </section>
+                        )}
+
+                        {/** 
                         <div className={styles.gridColumns}>
 
                             <section className="flex flex-col items-center xl:items-start justify-center gap-y-6 gap-x-1">
@@ -947,7 +1123,7 @@ export default function ReuneForm() {
                                     </div>
                                 </section>
                             )}
-                        </div>
+                        </div>*/}
 
                     </fieldset>
 
@@ -1039,7 +1215,6 @@ export default function ReuneForm() {
                         </fieldset>
                     )}
                 </>
-
             )}
 
             <fieldset>
