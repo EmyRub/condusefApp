@@ -45,21 +45,11 @@ export default function ReuneForm() {
     // Observa valor dinámico del select
     const edoReg = watch('edoReg')
     const claimStatus = watch('queja')
+    const reclChecked = watch('recl')
 
     const claimType = claimStatus !== 'consulta';
+    const concluido = edoReg === 'pendiente' || 'concluido';
 
-    const isRever = useMemo(() => {
-
-        switch (claimStatus) {
-
-            case 'reclamo':
-                return '';
-            case 'aclaracion':
-                return '';
-            default:
-                return 'consulta';
-        }
-    }, [claimStatus, edoReg])
 
     //claimStatus === 'reclamo' && edoReg === 'pendiente',
     return (
@@ -784,7 +774,7 @@ export default function ReuneForm() {
 
                             <section className="flex flex-col items-center xl:items-start justify-center gap-y-6 gap-x-1">
 
-                                {isRever && (
+                                {claimType && concluido && (
                                     <span className='flex flex-col items-center xl:items-start justify-center gap-y-8 gap-x-1'>
 
                                         <div className='xl:flex'>
@@ -871,25 +861,116 @@ export default function ReuneForm() {
 
                             </section>
 
-                            <section className={clsx(styles.flexColumns, 'mt-16 xl:mt-0')}>
+                            {claimType && edoReg === 'concluido' && (
 
-                                <div className="basis-full xl:flex">
-                                    <label htmlFor="fecNot" className="w-full xl:w-2/5">Fecha de Notificación:</label>
+                                <section className={clsx(styles.flexColumns, 'mt-16 xl:mt-0')}>
+
+                                    <div className="basis-full xl:flex">
+                                        <label htmlFor="fecNot" className="w-full xl:w-2/5">Fecha de Notificación:</label>
+                                        <Controller
+                                            name='fecNot'
+                                            control={control}
+                                            rules={{
+                                                required: 'Seleccione una fecha'
+                                            }}
+                                            render={({ field, fieldState: { error } }) => (
+                                                <div className="w-full xl:w-3/5">
+                                                    <input
+                                                        id="fecNot"
+                                                        type="date"
+                                                        {...field}
+                                                        onChange={(e) => {
+                                                            field.onChange(e)
+                                                            dispatch({ type: 'client-update', payload: { field: 'fecNot', value: e.target.value } })
+                                                        }}
+                                                    />
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="basis-full xl:flex">
+                                        <label htmlFor="fecReso" className="w-full xl:w-2/5">Fecha de Resolución:</label>
+                                        <Controller
+                                            name='fecReso'
+                                            control={control}
+                                            rules={{
+                                                required: 'Seleccione una fecha'
+                                            }}
+                                            render={({ field, fieldState: { error } }) => (
+                                                <div className="w-full xl:w-3/5">
+                                                    <input
+                                                        id="fecReso"
+                                                        type="date"
+                                                        {...field}
+                                                        onChange={(e) => {
+                                                            field.onChange(e)
+                                                            dispatch({ type: 'client-update', payload: { field: 'fecReso', value: e.target.value } })
+                                                        }}
+                                                    />
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="basis-full xl:flex">
+                                        <label htmlFor="typeRe" className="w-full xl:w-2/5">Tipo de Resolución:</label>
+
+                                        <Controller
+                                            name='typeRe'
+                                            control={control}
+                                            rules={{
+                                                required: 'Seleccione tipo de resolución'
+                                            }}
+                                            render={({ field, fieldState: { error } }) => (
+                                                <div className="w-full xl:w-3/5">
+                                                    <select
+                                                        id="typeRe"
+                                                        {...field}
+                                                        onChange={(e) => {
+                                                            field.onChange(e)
+                                                            dispatch({ type: 'client-update', payload: { field: 'typeRe', value: e.target.value } })
+                                                        }}
+                                                    >
+                                                        <option value="1">Demandar</option>
+                                                        <option value="2">Acusarlo con tu mamá</option>
+                                                    </select>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+                                </section>
+                            )}
+                        </div>
+
+                    </fieldset>
+
+                    {reclChecked && (
+
+                        <fieldset >
+
+                            <legend>Datos del Reclamo por Abono</legend>
+
+                            <div className={styles.flexColumns}>
+
+                                <div className="basis-full xl:basis-72 xl:flex">
+                                    <label htmlFor="montRe" className="w-full xl:w-1/2">Monto Reclamado:</label>
                                     <Controller
-                                        name='fecNot'
+                                        name='montRe'
                                         control={control}
                                         rules={{
-                                            required: 'Seleccione una fecha'
+                                            required: 'Agregar monto reclamado',
+                                            min: 0
                                         }}
                                         render={({ field, fieldState: { error } }) => (
-                                            <div className="w-full xl:w-3/5">
+                                            <div className="w-full xl:w-1/2">
                                                 <input
-                                                    id="fecNot"
-                                                    type="date"
+                                                    id="montRe"
+                                                    type="number"
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'fecNot', value: e.target.value } })
+                                                        dispatch({ type: 'client-update', payload: { field: 'montRe', value: e.target.value } })
                                                     }}
                                                 />
                                             </div>
@@ -897,23 +978,25 @@ export default function ReuneForm() {
                                     />
                                 </div>
 
-                                <div className="basis-full xl:flex">
-                                    <label htmlFor="fecReso" className="w-full xl:w-2/5">Fecha de Resolución:</label>
+                                <div className="basis-full xl:basis-72 xl:flex">
+                                    <label htmlFor="fecAbo" className="w-full xl:w-32">Fecha de Abono:</label>
+
                                     <Controller
-                                        name='fecReso'
+                                        name='fecAbo'
                                         control={control}
                                         rules={{
-                                            required: 'Seleccione una fecha'
+                                            required: 'Agregar fecha de abono',
+                                            minLength: 0
                                         }}
                                         render={({ field, fieldState: { error } }) => (
-                                            <div className="w-full xl:w-3/5">
+                                            <div className="w-full xl:w-1/2">
                                                 <input
-                                                    id="fecReso"
+                                                    id="fecAbo"
                                                     type="date"
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'fecReso', value: e.target.value } })
+                                                        dispatch({ type: 'client-update', payload: { field: 'fecAbo', value: e.target.value } })
                                                     }}
                                                 />
                                             </div>
@@ -921,121 +1004,34 @@ export default function ReuneForm() {
                                     />
                                 </div>
 
-                                <div className="basis-full xl:flex">
-                                    <label htmlFor="typeRe" className="w-full xl:w-2/5">Tipo de Resolución:</label>
-
+                                <div className="basis-full xl:basis-72 xl:flex">
+                                    <label htmlFor="montAbo" className="w-full xl:w-32">Monto Abonado:</label>
                                     <Controller
-                                        name='typeRe'
+                                        name='montAbo'
                                         control={control}
                                         rules={{
-                                            required: 'Seleccione tipo de resolución'
+                                            required: 'Agregar monto abonado',
+                                            min: 0
                                         }}
                                         render={({ field, fieldState: { error } }) => (
-                                            <div className="w-full xl:w-3/5">
-                                                <select
-                                                    id="typeRe"
+                                            <div className="w-full xl:w-1/2">
+                                                <input
+                                                    id="montAbo"
+                                                    type="number"
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'typeRe', value: e.target.value } })
+                                                        dispatch({ type: 'client-update', payload: { field: 'montAbo', value: e.target.value } })
                                                     }}
-                                                >
-                                                    <option value="1">Demandar</option>
-                                                    <option value="2">Acusarlo con tu mamá</option>
-                                                </select>
+                                                />
                                             </div>
                                         )}
                                     />
                                 </div>
-                            </section>
-                        </div>
-
-                    </fieldset>
-
-                    <fieldset >
-
-                        <legend>Datos del Reclamo por Abono</legend>
-
-                        <div className={styles.flexColumns}>
-
-                            <div className="basis-full xl:basis-72 xl:flex">
-                                <label htmlFor="montRe" className="w-full xl:w-1/2">Monto Reclamado:</label>
-                                <Controller
-                                    name='montRe'
-                                    control={control}
-                                    rules={{
-                                        required: 'Agregar monto reclamado',
-                                        min: 0
-                                    }}
-                                    render={({ field, fieldState: { error } }) => (
-                                        <div className="w-full xl:w-1/2">
-                                            <input
-                                                id="montRe"
-                                                type="number"
-                                                {...field}
-                                                onChange={(e) => {
-                                                    field.onChange(e)
-                                                    dispatch({ type: 'client-update', payload: { field: 'montRe', value: e.target.value } })
-                                                }}
-                                            />
-                                        </div>
-                                    )}
-                                />
                             </div>
 
-                            <div className="basis-full xl:basis-72 xl:flex">
-                                <label htmlFor="fecAbo" className="w-full xl:w-32">Fecha de Abono:</label>
-
-                                <Controller
-                                    name='fecAbo'
-                                    control={control}
-                                    rules={{
-                                        required: 'Agregar fecha de abono',
-                                        minLength: 0
-                                    }}
-                                    render={({ field, fieldState: { error } }) => (
-                                        <div className="w-full xl:w-1/2">
-                                            <input
-                                                id="fecAbo"
-                                                type="date"
-                                                {...field}
-                                                onChange={(e) => {
-                                                    field.onChange(e)
-                                                    dispatch({ type: 'client-update', payload: { field: 'fecAbo', value: e.target.value } })
-                                                }}
-                                            />
-                                        </div>
-                                    )}
-                                />
-                            </div>
-
-                            <div className="basis-full xl:basis-72 xl:flex">
-                                <label htmlFor="montAbo" className="w-full xl:w-32">Monto Abonado:</label>
-                                <Controller
-                                    name='montAbo'
-                                    control={control}
-                                    rules={{
-                                        required: 'Agregar monto abonado',
-                                        min: 0
-                                    }}
-                                    render={({ field, fieldState: { error } }) => (
-                                        <div className="w-full xl:w-1/2">
-                                            <input
-                                                id="montAbo"
-                                                type="number"
-                                                {...field}
-                                                onChange={(e) => {
-                                                    field.onChange(e)
-                                                    dispatch({ type: 'client-update', payload: { field: 'montAbo', value: e.target.value } })
-                                                }}
-                                            />
-                                        </div>
-                                    )}
-                                />
-                            </div>
-                        </div>
-
-                    </fieldset>
+                        </fieldset>
+                    )}
                 </>
 
             )}
