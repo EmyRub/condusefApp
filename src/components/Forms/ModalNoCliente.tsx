@@ -1,14 +1,16 @@
 import { Dispatch } from 'react';
 import Error from "../Error";
 import styles from './Form.module.css';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { DraftnoClient } from '../../types';
 import clsx from 'clsx';
+import { useGlobal } from '../../hooks/useGlobal';
 
 export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
+    const { dispatch } = useGlobal()
     //Se le debe agregar el <DrafnoClient> para que no dé error el onSubmit (generar, y registrar)
-    const { register, handleSubmit, formState: { errors } } = useForm<DraftnoClient>()
+    const { register, handleSubmit, formState: { errors }, control } = useForm<DraftnoClient>()
 
     const registerNoClient = (data: DraftnoClient) => { }
 
@@ -24,21 +26,33 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
 
                 <div className="flex justify-center flex-wrap gap-6 mb-10">
 
-                    <div className="w-full xl:w-4/5">
+                    <div className="xl:flex">
 
                         <label htmlFor="name" className="w-full xl:w-44">Nombre de la Persona:</label>
 
-                        <input
-                            id="name"
-                            type="text"
-                            className="w-full xl:w-[27rem]"
-                            {...register('name', {
+                        <Controller
+                            name='name'
+                            control={control}
+                            rules={{
                                 required: 'El nombre es obligatorio.',
                                 minLength: {
                                     value: 2,
                                     message: 'Nombre no válido.'
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-[27rem]">
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'name', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                         {errors.name && (<Error>{errors.name?.message as string}</Error>)}
                     </div>
@@ -71,17 +85,29 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                     <div>
                         <label htmlFor="email" className="w-full xl:w-16">Correo:</label>
 
-                        <input
-                            type="email"
-                            id="email"
-                            className="w-full xl:w-[19rem]"
-                            {...register('email', {
+                        <Controller
+                            name='email'
+                            control={control}
+                            rules={{
                                 required: 'Correo Obligatorio.',
                                 pattern: {
                                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                     message: 'Formato no válido'
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-[19rem]">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'email', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                         {errors.email && (<Error>{errors.email?.message as string}</Error>)}
                     </div>
@@ -142,7 +168,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
 
                 </div>
 
-                <div className={clsx(styles.gridColumns,'gap-y-6')}>
+                <div className={clsx(styles.gridColumns, 'gap-y-6')}>
                     <input
                         type="submit"
                         value="Guardar"

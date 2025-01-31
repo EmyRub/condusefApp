@@ -1,13 +1,15 @@
 import { Dispatch } from 'react';
 import Error from "../Error";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import styles from './Form.module.css';
 import { DrafteditDirection } from '../../types';
 import clsx from 'clsx';
+import { useGlobal } from '../../hooks/useGlobal';
 
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<DrafteditDirection>({
+    const { dispatch } = useGlobal()
+    const { handleSubmit, formState: { errors }, control } = useForm<DrafteditDirection>({
 
         defaultValues: {
             cp: '123456',
@@ -35,71 +37,125 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
 
                 <div className={clsx(styles.gridColumns, 'gap-y-10 mb-10')}>
 
-                    <div>
+                    <div className='xl:flex'>
 
                         <label htmlFor="cp" className="w-full xl:w-8">C.P.</label>
-                        <input
-                            id="cp"
-                            type="text"
-                            className="w-full xl:w-4/5"
-                            {...register('cp', {
+
+                        <Controller
+                            name='cp'
+                            control={control}
+                            rules={{
                                 required: "El C.P. es obligatorio",
                                 minLength: {
                                     value: 5,
                                     message: "Formato de C.P. no válido."
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-4/5">
+                                    <input
+                                        id="cp"
+                                        type="text"
+
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'cp', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                         {errors.cp && (<Error>{errors.cp?.message as string}</Error>)}
                     </div>
 
-                    <div>
+                    <div className='xl:flex'>
                         <label htmlFor="loc" className="w-full xl:w-20">Localidad:</label>
-                        <input
-                            id="loc"
-                            type="text"
-                            className="w-full xl:w-3/4"
-                            {...register('loc', {
+
+                        <Controller
+                            name='loc'
+                            control={control}
+                            rules={{
                                 required: "La localidad es obligatoria",
                                 minLength: {
                                     value: 2,
                                     message: 'Localidad no válida'
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-3/4">
+                                    <input
+                                        id="loc"
+                                        type="text"
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'loc', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                         {errors.loc && (<Error>{errors.loc?.message as string}</Error>)}
                     </div>
 
-                    <div>
+                    <div className='xl:flex'>
                         <label htmlFor="edo" className="w-full xl:w-14">Estado:</label>
-                        <input
-                            id="edo"
-                            type="text"
-                            className="w-full xl:w-4/5"
-                            {...register('edo', {
+
+                        <Controller
+                            name='edo'
+                            control={control}
+                            rules={{
                                 required: "El Estado es obligatorio",
                                 minLength: {
                                     value: 3,
                                     message: 'Estado no válido'
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-4/5">
+                                    <input
+                                        id="edo"
+                                        type="text"
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'edo', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
+
                         {errors.edo && (<Error>{errors.edo?.message as string}</Error>)}
                     </div>
 
-                    <div className="basis-full xl:basis-1/2">
+                    <div className="xl:flex">
                         <label htmlFor="muni" className="w-full xl:w-20">Municipio:</label>
-                        <input
-                            id="muni"
-                            type="text"
-                            className="w-full xl:w-3/4"
-                            {...register('muni', {
+
+                        <Controller
+                            name='muni'
+                            control={control}
+                            rules={{
                                 required: "El Municipio es obligatorio",
                                 minLength: {
                                     value: 2,
                                     message: 'Municipio no válido'
                                 }
-                            })}
+                            }}
+                            render={({ field, fieldState: { error } }) => (
+                                <div className="w-full xl:w-3/4">
+                                    <input
+                                        id="muni"
+                                        type="text"
+                                        {...field}
+                                        onChange={(e) => {
+                                            field.onChange(e)
+                                            dispatch({ type: 'client-update', payload: { field: 'muni', value: e.target.value } })
+                                        }}
+                                    />
+                                </div>
+                            )}
                         />
                         {errors.muni && (<Error>{errors.muni?.message as string}</Error>
                         )}

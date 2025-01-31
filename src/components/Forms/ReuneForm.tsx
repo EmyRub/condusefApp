@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import './form.module.css';
 import styles from './form.module.css';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
