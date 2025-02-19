@@ -149,7 +149,7 @@ export default function ReuneForm() {
                 </div>
 
             </fieldset>
-
+            
             <fieldset>
 
                 <legend>Datos de la persona</legend>

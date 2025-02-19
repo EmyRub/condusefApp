@@ -26,6 +26,7 @@ export default function AppRouter() {
                             <NewAcountPage />
                         </Suspense>
                     } />
+                    
                 </Route>
 
                 <Route element={<Layout />}>
