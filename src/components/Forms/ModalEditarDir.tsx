@@ -1,10 +1,11 @@
-import { Dispatch } from 'react';
-import Error from "../Error";
-import { Controller, useForm } from "react-hook-form";
-import styles from './Form.module.css';
-import { DrafteditDirection } from '../../types';
 import clsx from 'clsx';
+import Error from "../Error";
+import { Dispatch } from 'react';
+import '../../css/Form.module.css';
+import styles from '../../css/Form.module.css';
+import { DrafteditDirection } from '../../types';
 import { useGlobal } from '../../hooks/useGlobal';
+import { Controller, useForm } from "react-hook-form";
 
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 

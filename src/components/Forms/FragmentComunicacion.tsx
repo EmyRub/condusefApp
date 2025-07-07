@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import './form.module.css';
-import styles from './form.module.css';
+import '../../css/Form.module.css';
+import styles from '../../css/Form.module.css';
 
 import SearchButton from "../SearchButton";
 

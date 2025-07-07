@@ -1,10 +1,10 @@
-import './form.module.css';
-import styles from './form.module.css';
-
-import { Controller, useForm, UseFormRegister } from "react-hook-form"
-import { useGlobal } from "../../hooks/useGlobal"
-import { reuneDataType } from "../../types"
 import clsx from 'clsx';
+import '../../css/Form.module.css';
+import styles from '../../css/Form.module.css';
+
+import { reuneDataType } from "../../types"
+import { useGlobal } from "../../hooks/useGlobal"
+import { Controller, useForm, UseFormRegister } from "react-hook-form"
 
 
 type FragmentInstitucionProps = {
