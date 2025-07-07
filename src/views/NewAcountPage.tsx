@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Error from "../components/Error";
+import Error from "../components/ui/Error";
 import { UserIcon, KeyIcon, EnvelopeIcon, BuildingOffice2Icon, LockClosedIcon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserIcon, KeyIcon, BuildingOffice2Icon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
-import Error from "../components/Error";
+import Error from "../components/ui/Error";
 
 export default function LoginPage() {
 

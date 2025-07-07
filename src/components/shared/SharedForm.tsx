@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import SearchButton from '../SearchButton';
+import SearchButton from '../ui/SearchButton';
 import styles from '../../css/Form.module.css';
 import { useGlobal } from '../../hooks/useGlobal';
 import { Controller, useForm } from 'react-hook-form';

@@ -1,9 +1,9 @@
-import RedecoForm from "../components/Forms/RedecoForm";
-import ReuneForm from "../components/Forms/ReuneForm";
+import RedecoForm from "../components/redeco/RedecoForm";
+import ReuneForm from "../components/reune/ReuneForm";
 
-import ModalButton from "../components/ModalButton";
-import ModalEditarDir from '../components/Forms/ModalEditarDir';
-import ModalNoCliente from "../components/Forms/ModalNoCliente";
+import ModalButton from "../components/ui/ModalButton";
+import ModalEditarDir from '../components/ui/modals/ModalEditarDir';
+import ModalNoCliente from "../components/ui/modals/ModalNoCliente";
 
 import { useFormCat } from "../hooks/useFormCat";
 import { Categories, ModalIds } from "../types";

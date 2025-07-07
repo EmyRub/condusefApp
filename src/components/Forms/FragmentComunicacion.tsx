@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import '../../css/Form.module.css';
 import styles from '../../css/Form.module.css';
 
-import SearchButton from "../SearchButton";
+import SearchButton from "../ui/SearchButton";
 
 import { useMemo } from 'react';
 import { useGlobal } from "../../hooks/useGlobal";
