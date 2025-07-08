@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import Layout from "./layouts/Layout";
 import BgLogin from "./layouts/BgLogin";
-import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const LoginPage = lazy(() => import("./views/LoginPage"))
 const IndexPage = lazy(() => import('./views/QuejasPage'))

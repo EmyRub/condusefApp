@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import Error from "../components/ui/Error";
-import { UserIcon, KeyIcon, EnvelopeIcon, BuildingOffice2Icon, LockClosedIcon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
 import { Link } from "react-router-dom";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import { UserIcon, KeyIcon, EnvelopeIcon, BuildingOffice2Icon, LockClosedIcon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
 
 
 export default function NewAcountPage() {
@@ -38,7 +38,7 @@ export default function NewAcountPage() {
 
       </div>
       {errors.empresa && (
-        <Error login={true}>{errors.empresa?.message as string}</Error>
+        <ErrorMessage login={true}>{errors.empresa?.message as string}</ErrorMessage>
       )}
 
       <div className="divStyleLog">
@@ -57,7 +57,7 @@ export default function NewAcountPage() {
 
       </div>
       {errors.inst && (
-        <Error login={true}>{errors.inst?.message as string}</Error>
+        <ErrorMessage login={true}>{errors.inst?.message as string}</ErrorMessage>
       )}
 
       <div className="divStyleLog">
@@ -76,7 +76,7 @@ export default function NewAcountPage() {
         />
       </div>
       {errors.name && (
-        <Error login={true}>{errors.name?.message as string}</Error>
+        <ErrorMessage login={true}>{errors.name?.message as string}</ErrorMessage>
       )}
 
       <div className="divStyleLog">
@@ -96,7 +96,7 @@ export default function NewAcountPage() {
         />
       </div>
       {errors.email && (
-        <Error login={true}>{errors.email?.message as string}</Error>
+        <ErrorMessage login={true}>{errors.email?.message as string}</ErrorMessage>
       )}
 
       <div className="divStyleLog">
@@ -116,7 +116,7 @@ export default function NewAcountPage() {
         />
       </div>
       {errors.password && (
-        <Error login={true}>{errors.password?.message as string}</Error>
+        <ErrorMessage login={true}>{errors.password?.message as string}</ErrorMessage>
       )}
 
       <div className="divStyleLog">
@@ -136,7 +136,7 @@ export default function NewAcountPage() {
         />
       </div>
       {errors.validatePassword && (
-        <Error login={true}>{errors.validatePassword?.message as string}</Error>
+        <ErrorMessage login={true}>{errors.validatePassword?.message as string}</ErrorMessage>
       )}
 
       <input

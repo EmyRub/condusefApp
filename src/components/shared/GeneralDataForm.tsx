@@ -1,8 +1,8 @@
 import clsx from "clsx"
-import '../../css/Form.module.css';
-import styles from '../../css/Form.module.css';
+import '@/css/Form.module.css';
+import styles from '@/css/Form.module.css';
+import { useGlobal } from "@/hooks/useGlobal";
 import { Controller, useForm } from "react-hook-form"
-import { useGlobal } from "../../hooks/useGlobal";
 
 export default function GeneralDataForm() {
 

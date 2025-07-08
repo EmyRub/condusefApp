@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import SearchButton from '../ui/SearchButton';
-import styles from '../../css/Form.module.css';
-import { useGlobal } from '../../hooks/useGlobal';
+import styles from '@/css/Form.module.css';
+import { useGlobal } from '@/hooks/useGlobal';
 import { Controller, useForm } from 'react-hook-form';
-import { searchCat, SearchCategory } from '../../types';
+import { searchCat, SearchCategory } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
+import ErrorMessage from '../ui/ErrorMessage';
 
 export default function SharedForm() {
 
@@ -19,7 +19,7 @@ export default function SharedForm() {
 
                 <div className={clsx(styles.divForm, 'basis-full xl:basis-1/2')}>
 
-                    <label htmlFor="ente" className="w-32">Número del ente:</label>
+                    <label htmlFor="NUM_ENTE" className="w-32">Número del ente:</label>
 
                     <div
                         className='relative'
@@ -37,7 +37,7 @@ export default function SharedForm() {
                     </div>
 
                     <Controller
-                        name='ente'
+                        name='NUM_ENTE'
                         control={control}// Este es el objeto de control que React Hook Form necesita para gestionar el campo
                         rules={{
                             required: 'Seleccione N° de Ente',
@@ -46,17 +46,17 @@ export default function SharedForm() {
                         render={({ field, fieldState: { error } }) => (
                             <div className="w-full xl:w-1/2">
                                 <input
-                                    id="ente"
+                                    id="NUM_ENTE"
                                     type="number"
-                                    disabled
+                                    readOnly
 
                                     {...field} // Propiedades del input controlado por React Hook Form
                                     onChange={(e) => {
                                         field.onChange(e)//Actualiza hook con el nuevo valor
-                                        dispatch({ type: 'client-update', payload: { field: 'ente', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NUM_ENTE', value: e.target.value } })
                                     }}
                                 />
-                                {error && <p>{error.message}</p>}
+                                {error?.message && (<ErrorMessage>{error.message as string}</ErrorMessage>)}
                             </div>
                         )}
                     />
@@ -64,7 +64,7 @@ export default function SharedForm() {
 
                 <div className={clsx(styles.divForm, 'basis-full xl:basis-2/5')}>
 
-                    <label htmlFor="sucursal" className="w-16">Sucursal:</label>
+                    <label htmlFor="CVE_SUCUR" className="w-16">Sucursal:</label>
 
                     <div
                         className='relative'
@@ -81,7 +81,7 @@ export default function SharedForm() {
                     </div>
 
                     <Controller
-                        name='sucursal'
+                        name='CVE_SUCUR'
                         control={control}
                         rules={{
                             required: 'Seleccione una sucursal',
@@ -90,15 +90,16 @@ export default function SharedForm() {
                         render={({ field, fieldState: { error } }) => (
                             <div className="w-full xl:w-3/5">
                                 <input
-                                    id="sucursal"
+                                    id="CVE_SUCUR"
                                     type="number"
                                     disabled
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'sucursal', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'CVE_SUCUR', value: e.target.value } })
                                     }}
                                 />
+                                {error && <p>{error.message}</p>}
                             </div>
                         )}
                     />
@@ -578,6 +579,7 @@ export default function SharedForm() {
                                         }}
                                     >
                                         <option value="consulta">Consulta</option>
+                                        <option value="queja">Queja</option>
                                         <option value="reclamo">Reclamo</option>
                                         <option value="aclaracion">Aclaración</option>
 

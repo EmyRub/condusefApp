@@ -1,38 +1,34 @@
-
-import clsx from 'clsx';
+import '@/css/Form.module.css';
 import { useEffect } from 'react';
-import '../../css/Form.module.css';
-import styles from '../../css/Form.module.css';
+import { reuneForm } from '@/types/zod';
+import styles from '@/css/Form.module.css';
+import { useGlobal } from '@/hooks/useGlobal';
 import { Controller, useForm } from 'react-hook-form';
 
-import { reuneDataType } from '../../types';
-import SharedForm from '../shared/SharedForm';
-import { useGlobal } from '../../hooks/useGlobal';
-import { dataFormatted } from '../../hooks/dataFormat';
 import FragmentInstitucion from '../shared/FragmentInstitucion';
 import GeneralDataForm from '../shared/GeneralDataForm';
+import SharedForm from '../shared/SharedForm';
 
 
 export default function ReuneForm() {
-
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useGlobal()
-    const { numberFormat } = dataFormatted()
 
-    const { handleSubmit, formState: { errors }, setValue, control, watch } = useForm<reuneDataType>({
+    const { handleSubmit, formState: { errors }, setValue, control, watch } = useForm<reuneForm>({
         //defaultValues es clave para cargar valores iniciales en el formulario.
-        defaultValues: state.reuneStateG.reuneData
+       // defaultValues: state.reuneStateG.reuneData
     })
 
-    //Sincronizar datos del formulario con el estado global
-    const reuneSubmit = (data: reuneDataType) => {
-        console.log(data)
-        //const newClient = dispatch({ type: 'client-add', payload: { data } })
-    }
+    // Observa valor dinámico del select
+    const edoReg = watch('edoReg')
+    const claimStatus = watch('queja')
+    const reclChecked = watch('recl')
 
-    const handleError = () => {
-        console.log(errors)
-    }
+    const claimType = claimStatus !== 'consulta';
+    const concluido = edoReg === 'pendiente' || 'concluido';
+
+    console.log(edoReg)
+
 
     //Efecto para cargar datos iniciales
     useEffect(() => {
@@ -43,21 +39,24 @@ export default function ReuneForm() {
     }, [state.reuneStateG.reuneData, setValue])
 
 
-    // Observa valor dinámico del select
-    const edoReg = watch('edoReg')
-    const claimStatus = watch('queja')
-    const reclChecked = watch('recl')
 
-    const claimType = claimStatus !== 'consulta';
-    const concluido = edoReg === 'pendiente' || 'concluido';
+    //Sincronizar datos del formulario con el estado global
+    const reuneSubmit = (data: reuneForm) => {
+        console.log(data)
+        //const newClient = dispatch({ type: 'client-add', payload: { data } })
+    }
 
+    const handleError = () => {
+        console.log(errors)
+    }
 
     return (
 
         <form
-            onSubmit={handleSubmit(reuneSubmit, handleError)}
+            data-formulario
             autoComplete="on"
-            data-formulario>
+            onSubmit={handleSubmit(reuneSubmit, handleError)}
+        >
 
             <SharedForm />
 
@@ -67,7 +66,7 @@ export default function ReuneForm() {
 
                         <legend>Datos Generales</legend>
 
-                        <section className="flex flex-col xl:flex-row justify-center  items-center gap-y-6 xl:gap-x-10 xl:mb-10 border-b-2 border-teal-300 pb-7">
+                        <section className="flex flex-col xl:flex-row justify-center items-center gap-y-6 xl:gap-x-10 xl:mb-10 border-b-2 border-teal-300 pb-7">
 
                             {claimType && concluido && (
                                 <>
@@ -256,7 +255,7 @@ export default function ReuneForm() {
             )}
 
             <FragmentInstitucion />
-            
+
 
             <input type="submit" value="Guardar" className="mt-9 uppercase" />
 

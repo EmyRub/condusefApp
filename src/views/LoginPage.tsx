@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 import { UserIcon, KeyIcon, BuildingOffice2Icon, BuildingLibraryIcon } from "@heroicons/react/16/solid";
-import Error from "../components/ui/Error";
 
 export default function LoginPage() {
 
@@ -34,7 +34,7 @@ export default function LoginPage() {
 
             </div>
             {errors.empresa && (
-                <Error login={true}>{errors.empresa?.message as string}</Error>
+                <ErrorMessage login={true}>{errors.empresa?.message as string}</ErrorMessage>
             )}
 
             <div className="divStyleLog">
@@ -53,7 +53,7 @@ export default function LoginPage() {
 
             </div>
             {errors.inst && (
-                <Error login={true}>{errors.inst?.message as string}</Error>
+                <ErrorMessage login={true}>{errors.inst?.message as string}</ErrorMessage>
             )}
 
             <div className="divStyleLog">
@@ -72,7 +72,7 @@ export default function LoginPage() {
                 />
             </div>
             {errors.email && (
-                <Error login={true}>{errors.email?.message as string}</Error>
+                <ErrorMessage login={true}>{errors.email?.message as string}</ErrorMessage>
             )}
 
             <div className="divStyleLog">
@@ -91,7 +91,7 @@ export default function LoginPage() {
                 />
             </div>
             {errors.password && (
-                <Error login={true}>{errors.password?.message as string}</Error>
+                <ErrorMessage login={true}>{errors.password?.message as string}</ErrorMessage>
             )}
 
             <input

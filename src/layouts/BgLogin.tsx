@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import ParticlesBackground from "../components/particles/ParticlesBackground";
+import ParticlesBackground from "@/components/particles/ParticlesBackground";
 
 export default function BgLogin() {
     return (

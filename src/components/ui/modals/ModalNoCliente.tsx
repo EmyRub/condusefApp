@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import Error from "../Error";
+import '@/css/Form.module.css';
 import { Dispatch } from 'react';
-import '../../../css/Form.module.css';
-import styles from '../../../css/Form.module.css';
-import { DraftnoClient } from '../../../types';
-import { useGlobal } from '../../../hooks/useGlobal';
+import styles from '@/css/Form.module.css';
+import { useGlobal } from '@/hooks/useGlobal';
+import { DraftnoClient } from '@/types/index';
 import { Controller, useForm } from 'react-hook-form';
+
+import ErrorMessage from '../ErrorMessage';
 
 export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
@@ -55,7 +56,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 </div>
                             )}
                         />
-                        {errors.name && (<Error>{errors.name?.message as string}</Error>)}
+                        {errors.name && (<ErrorMessage>{errors.name?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className="basis-full xl:basis-1/5 flex gap-3 items-center justify-center xl:justify-start">
@@ -110,7 +111,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 </div>
                             )}
                         />
-                        {errors.email && (<Error>{errors.email?.message as string}</Error>)}
+                        {errors.email && (<ErrorMessage>{errors.email?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div>
@@ -128,7 +129,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                 }
                             })}
                         />
-                        {errors.phone && (<Error>{errors.phone?.message as string}</Error>)}
+                        {errors.phone && (<ErrorMessage>{errors.phone?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div>
@@ -145,7 +146,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             <option value="1">0</option>
                         </select>
 
-                        {errors.typePer && (<Error>{errors.typePer?.message as string}</Error>)}
+                        {errors.typePer && (<ErrorMessage>{errors.typePer?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div>
@@ -164,7 +165,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                             }
                             )}
                         />
-                        {errors.age && (<Error>{errors.age?.message as string}</Error>)}
+                        {errors.age && (<ErrorMessage>{errors.age?.message as string}</ErrorMessage>)}
                     </div>
 
                 </div>

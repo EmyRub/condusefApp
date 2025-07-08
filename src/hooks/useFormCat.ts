@@ -1,5 +1,5 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { Categories, ModalIds } from "../types";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 /** FUNCIÓN QUE CONTROLA LA SELECCIÓN DE FORMULARIO REUNE/REDECO */
 const initialState = {

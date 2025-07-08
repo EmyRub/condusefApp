@@ -1,9 +1,6 @@
-import clsx from 'clsx';
-import '../../css/Form.module.css';
-import styles from '../../css/Form.module.css';
-
+import '@/css/Form.module.css';
 import { reuneDataType } from "../../types"
-import { useGlobal } from "../../hooks/useGlobal"
+import { useGlobal } from "@/hooks/useGlobal"
 import { Controller, useForm, UseFormRegister } from "react-hook-form"
 
 
@@ -23,9 +20,9 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
 
             <legend>Datos de la institución</legend>
 
-            <div className={clsx(styles.gridColumns, 'gap-y-10')}>
+            <div>
 
-                <div className='xl:flex'>
+                <div className='xl:flex mb-10'>
                     <label htmlFor="inst" className="w-full xl:w-48">Nombre de la institución:</label>
 
                     <Controller
@@ -35,7 +32,7 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                             required: 'La institución es requerida'
                         }}
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-1/2">
+                            <div className="w-full xl:w-9/12">
                                 <input
                                     id="inst"
                                     type="text"
@@ -61,7 +58,7 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                             required: 'El sector es requerido'
                         }}
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-4/5">
+                            <div className="w-full xl:w-11/12">
                                 <input
                                     id="sect"
                                     type="text"

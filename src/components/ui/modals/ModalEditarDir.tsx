@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import Error from "../Error";
+import '@/css/Form.module.css';
 import { Dispatch } from 'react';
-import '../../../css/Form.module.css';
-import styles from '../../../css/Form.module.css';
-import { DrafteditDirection } from '../../../types';
-import { useGlobal } from '../../../hooks/useGlobal';
+import styles from '@/css/Form.module.css';
+import { useGlobal } from '@/hooks/useGlobal';
+import { DrafteditDirection } from '@/types/index';
 import { Controller, useForm } from "react-hook-form";
+
+import ErrorMessage from '../ErrorMessage';
 
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
@@ -67,7 +68,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 </div>
                             )}
                         />
-                        {errors.cp && (<Error>{errors.cp?.message as string}</Error>)}
+                        {errors.cp && (<ErrorMessage>{errors.cp?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className='xl:flex'>
@@ -97,7 +98,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 </div>
                             )}
                         />
-                        {errors.loc && (<Error>{errors.loc?.message as string}</Error>)}
+                        {errors.loc && (<ErrorMessage>{errors.loc?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className='xl:flex'>
@@ -128,7 +129,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                             )}
                         />
 
-                        {errors.edo && (<Error>{errors.edo?.message as string}</Error>)}
+                        {errors.edo && (<ErrorMessage>{errors.edo?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className="xl:flex">
@@ -158,7 +159,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                 </div>
                             )}
                         />
-                        {errors.muni && (<Error>{errors.muni?.message as string}</Error>
+                        {errors.muni && (<ErrorMessage>{errors.muni?.message as string}</ErrorMessage>
                         )}
                     </div>
 

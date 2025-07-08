@@ -1,15 +1,15 @@
 import clsx from 'clsx';
-import '../../css/Form.module.css';
-import styles from '../../css/Form.module.css';
+import '@/css/Form.module.css';
+import styles from '@/css/Form.module.css';
 
 import SearchButton from "../ui/SearchButton";
 
 import { useMemo } from 'react';
-import { useGlobal } from "../../hooks/useGlobal";
+import { useGlobal } from "@/hooks/useGlobal";
 import { Controller, useForm, UseFormRegister } from "react-hook-form";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { reuneDataType, searchCat, SearchCategory } from "../../types";
+import { reuneDataType, searchCat, SearchCategory } from "@/types/index";
 
 
 type FragmentComunicationProps = {

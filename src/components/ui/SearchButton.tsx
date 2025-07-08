@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useSearchBox } from "../../hooks/useSearchBox";
+import { useSearchBox } from "@/hooks/useSearchBox";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 
 interface SearchBoxProps {

@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import '../../css/Form.module.css';
-import styles from '../../css/Form.module.css';
+import '@/css/Form.module.css';
+import styles from '@/css/Form.module.css';
+import { useGlobal } from '@/hooks/useGlobal';
+import { Controller, useForm } from "react-hook-form";
 
 import SharedForm from '../shared/SharedForm';
-import { useGlobal } from '../../hooks/useGlobal';
-import { Controller, useForm } from "react-hook-form";
 import GeneralDataForm from '../shared/GeneralDataForm';
 import FragmentInstitucion from '../shared/FragmentInstitucion';
 
@@ -12,7 +12,13 @@ import FragmentInstitucion from '../shared/FragmentInstitucion';
 export default function RedecoForm() {
 
     const { state, dispatch } = useGlobal()
-    const { register, handleSubmit, control } = useForm()
+    const { register, handleSubmit, control, watch } = useForm()
+
+    const edoReclaim = watch('edoReg')
+    const enableGeneralDta = edoReclaim === 'concluido';
+
+    console.log(edoReclaim)
+    console.log(enableGeneralDta)
 
     const redeSubmit = () => { }
 
@@ -26,10 +32,12 @@ export default function RedecoForm() {
 
             <SharedForm />
 
-            <fieldset>
-                <legend>Datos Generales</legend>
-                <GeneralDataForm />
-            </fieldset>
+            {enableGeneralDta && (
+                <fieldset>
+                    <legend>Datos Generales</legend>
+                    <GeneralDataForm />
+                </fieldset>
+            )}
 
             <fieldset>
 
