@@ -25,7 +25,11 @@ export default function RedecoForm() {
         >
 
             <SharedForm />
-            <GeneralDataForm />
+
+            <fieldset>
+                <legend>Datos Generales</legend>
+                <GeneralDataForm />
+            </fieldset>
 
             <fieldset>
 

@@ -607,7 +607,6 @@ export default function SharedForm() {
                                             dispatch({ type: 'client-update', payload: { field: 'edoReg', value: e.target.value } })
                                         }}
                                     >
-                                        <option value="ninguno">Ninguno</option>
                                         <option value="pendiente">Pendiente</option>
                                         <option value="concluido">Concluido</option>
 
