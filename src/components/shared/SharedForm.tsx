@@ -294,6 +294,7 @@ export default function SharedForm() {
                                         <option value='moral'>Moral</option>
                                         <option value="fisica">Física</option>
                                     </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -301,9 +302,9 @@ export default function SharedForm() {
                     </div>
 
                     <div className="xl:flex">
-                        <label htmlFor="age" className="w-full xl:w-12">Edad:</label>
+                        <label htmlFor="NUM_EDAD" className="w-full xl:w-12">Edad:</label>
                         <Controller
-                            name='age'
+                            name='NUM_EDAD'
                             control={control}
                             rules={{
                                 required: 'Agregar una edad',
@@ -312,16 +313,17 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full">
                                     <input
-                                        id="age"
+                                        id="NUM_EDAD"
                                         type="number"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'age', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_EDAD', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -330,27 +332,28 @@ export default function SharedForm() {
 
                     <div className="flex flex-wrap gap-3 items-start justify-center">
 
-                        <label htmlFor="pori" className="w-full xl:w-12">PORI:</label>
+                        <label htmlFor="BAN_PORI" className="w-full xl:w-12">PORI:</label>
 
                         <Controller
-                            name='pori'
+                            name='BAN_PORI'
                             control={control}
 
                             render={({ field, fieldState: { error } }) => (
 
                                 <div className="w-full xl:w-12">
                                     <input
-                                        id="pori"
+                                        id="BAN_PORI"
                                         type="checkbox"
                                         checked={field.value}
                                         onChange={(e) => {
                                             field.onChange(e.target.checked)
                                             dispatch({
                                                 type: 'client-update',
-                                                payload: { field: 'pori', value: e.target.checked }
+                                                payload: { field: 'BAN_PORI', value: e.target.checked }
                                             })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -367,10 +370,10 @@ export default function SharedForm() {
 
                     <div className='xl:flex'>
 
-                        <label htmlFor="mes" className="w-full xl:w-10">Mes:</label>
+                        <label htmlFor="CVE_TRIM" className="w-full xl:w-10">Mes:</label>
 
                         <Controller
-                            name='mes'
+                            name='CVE_TRIM'
                             control={control}
                             rules={{
                                 required: "El mes es obligatorio",
@@ -386,29 +389,30 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-4/5">
                                     <input
-                                        id="mes"
+                                        id="CVE_TRIM"
                                         type="number"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'mes', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_TRIM', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className='xl:flex gap-1'>
-                        <label htmlFor="nProd" className="w-full xl:w-40">Número de Producto:</label>
+                        <label htmlFor="NUM_PRODU" className="w-full xl:w-40">Número de Producto:</label>
 
                         <Controller
-                            name='nProdn'
+                            name='NUM_PRODU'
                             control={control}
                             rules={{
-                                required: "El tipo de localidad es obligatoria",
+                                required: "Elija un producto",
                                 minLength: {
                                     value: 0,
                                     message: 'N° de Producto No Válido.'
@@ -417,52 +421,35 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-28">
                                     <input
-                                        id="nProdn"
+                                        id="NUM_PRODU"
                                         type="text"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'nProdn', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_PRODU', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
 
-                        <Controller
-                            name='nProdS'
-                            control={control}
-                            rules={{
-                                required: true
-                            }}
-                            render={({ field, fieldState: { error } }) => (
-                                <div className="w-full xl:w-40">
-                                    <select
-                                        id="nProdS"
-
-                                        {...field}
-                                        onChange={(e) => {
-                                            field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'nProdS', value: e.target.value } })
-                                        }}
-                                    >
-                                        <option value="1">Crédito Simple Auto</option>
-                                        <option value="2">Crédito Simple CN</option>
-
-                                    </select>
-                                </div>
-                            )}
-                        />
+                        <div className="w-full xl:w-40">
+                            <select id="nProdS">
+                                <option value="1">Crédito Simple Auto</option>
+                                <option value="2">Crédito Simple CN</option>
+                            </select>
+                        </div>
 
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="fecReg" className="w-full xl:w-36">Fecha de Registro:</label>
+                        <label htmlFor="FEC_REGIS" className="w-full xl:w-36">Fecha de Registro:</label>
 
                         <Controller
-                            name='fecReg'
+                            name='FEC_REGIS'
                             control={control}
                             rules={{
                                 required: 'Seleccionar Fecha de Registro.'
@@ -470,25 +457,26 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
                                     <input
-                                        id="fecReg"
+                                        id="FEC_REGIS"
                                         type="date"
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'fecReg', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'FEC_REGIS', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="fecAtn" className="w-full xl:w-36">Fecha de Atención</label>
+                        <label htmlFor="FEC_ATEN" className="w-full xl:w-36">Fecha de Atención</label>
 
                         <Controller
-                            name='fecAtn'
+                            name='FEC_ATEN'
                             control={control}
                             rules={{
                                 required: 'Seleccionar Fecha de Atención.'
@@ -496,15 +484,16 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
                                     <input
-                                        id="fecAtn"
+                                        id="FEC_ATEN"
                                         type="date"
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'fecAtn', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'FEC_ATEN', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -512,10 +501,10 @@ export default function SharedForm() {
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="folAtn" className="w-full xl:w-36">Folio de Atención</label>
+                        <label htmlFor="NUM_FOLIO" className="w-full xl:w-36">Folio de Atención</label>
 
                         <Controller
-                            name='folAtn'
+                            name='NUM_FOLIO'
                             control={control}
                             rules={{
                                 required: true,
@@ -524,53 +513,58 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
                                     <input
-                                        id="folAtn"
+                                        id="NUM_FOLIO"
                                         type="text"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'folAtn', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_FOLIO', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="folConduf" className="w-full xl:w-36">Folio condusef:</label>
+                        <label htmlFor="NUM_FOCON" className="w-full xl:w-36">Folio condusef:</label>
+
                         <Controller
-                            name='folConduf'
+                            name='NUM_FOCON'
                             control={control}
                             rules={{
                                 required: true,
                                 minLength: 1
                             }}
+
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
                                     <input
-                                        id="folConduf"
+                                        id="NUM_FOCON"
                                         type="text"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'folConduf', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_FOCON', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
+                    {/*Cambiar a numero*/}
                     <div className='xl:flex'>
-                        <label htmlFor="queja" className="w-full xl:w-36">Tipo de Queja</label>
+                        <label htmlFor="CVE_Queja" className="w-full xl:w-36">Tipo de Queja</label>
 
                         <Controller
-                            name='queja'
+                            name='CVE_Queja'
                             control={control}
                             rules={{
                                 required: 'Seleccione un tipo de queja'
@@ -578,12 +572,12 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
                                     <select
-                                        id="queja"
+                                        id="CVE_Queja"
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'queja', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_Queja', value: e.target.value } })
                                         }}
                                     >
                                         <option value="consulta">Consulta</option>
@@ -592,73 +586,76 @@ export default function SharedForm() {
                                         <option value="aclaracion">Aclaración</option>
 
                                     </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="edoReg" className="w-full xl:w-36">Estado de registro</label>
+                        <label htmlFor="CVE_EDOCP" className="w-full xl:w-36">Estado de registro</label>
 
                         <Controller
-                            name='edoReg'
+                            name='CVE_EDOCP'
                             control={control}
                             rules={{
                                 required: 'Seleccione un estado de registro'
                             }}
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
-                                    <select
-                                        id="edoReg"
+                                    <select id="CVE_EDOCP"
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'edoReg', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_EDOCP', value: e.target.value } })
                                         }}
                                     >
                                         <option value="pendiente">Pendiente</option>
                                         <option value="concluido">Concluido</option>
 
                                     </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="nvlAtn" className="w-full xl:w-36">Nivel de Atención:</label>
+                        <label htmlFor="CVE_NIVAT" className="w-full xl:w-36">Nivel de Atención:</label>
 
                         <Controller
-                            name='nvlAtn'
+                            name='CVE_NIVAT'
                             control={control}
                             rules={{
                                 required: 'Seleccionar nivel de atención'
                             }}
+
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-72">
                                     <select
-                                        id="nvlAtn"
+                                        id="CVE_NIVAT"
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'nvlAtn', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_NIVAT', value: e.target.value } })
                                         }}
                                     >
-                                        <option value="1">Vía Eletrónica</option>
-                                        <option value="2">Vía Teléfonica</option>
+                                        <option value={1}>Vía Eletrónica</option>
+                                        <option value={2}>Vía Teléfonica</option>
 
                                     </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="medioCmn" className="w-full xl:w-48">Medio de Comunicación:</label>
+                        <label htmlFor="NUM_MEDRC" className="w-full xl:w-48">Medio de Comunicación:</label>
 
                         <Controller
-                            name='medioCmn'
+                            name='NUM_MEDRC'
                             control={control}
                             rules={{
                                 required: 'Seleccione un medio de comunicación'
@@ -666,17 +663,18 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-60">
                                     <select
-                                        id="medioCmn"
+                                        id="NUM_MEDRC"
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'medioCmn', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_MEDRC', value: e.target.value } })
                                         }}
                                     >
-                                        <option value="email">Correo Electrónico</option>
-                                        <option value="web">Página web</option>
+                                        <option value={1}>Correo Electrónico</option>
+                                        <option value={2}>Página web</option>
 
                                     </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -686,7 +684,7 @@ export default function SharedForm() {
 
                 <div className={clsx(styles.divForm, 'pt-16')}>
 
-                    <label htmlFor="causa" className="w-12">Causa:</label>
+                    <label htmlFor="TIP_CAUSA" className="w-12">Causa:</label>
 
                     <div
                         className='relative'
@@ -706,24 +704,27 @@ export default function SharedForm() {
                     </div>
 
                     <Controller
-                        name='causa'
+                        name='TIP_CAUSA'
                         control={control}
                         rules={{
                             required: true,
                             minLength: 1
                         }}
+
                         render={({ field, fieldState: { error } }) => (
                             <div className="w-full xl:w-4/5">
                                 <input
-                                    id="causa"
+                                    id="TIP_CAUSA"
                                     type="text"
-                                    disabled
+                                    readOnly
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'causa', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'TIP_CAUSA', value: e.target.value } })
                                     }}
                                 />
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
