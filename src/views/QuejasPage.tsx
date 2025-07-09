@@ -5,8 +5,8 @@ import { Categories, ModalIds } from "../types";
 import ReuneForm from "@/components/reune/ReuneForm";
 import ModalButton from "@/components/ui/ModalButton";
 import RedecoForm from "@/components/redeco/RedecoForm";
-import ModalEditarDir from "@/components/ui/modals/ModalEditarDir";
-import ModalNoCliente from "@/components/ui/modals/ModalNoCliente";
+import ModalEditarDir from "@/components/shared/modals/ModalEditarDir";
+import ModalNoCliente from "@/components/shared/modals/ModalNoCliente";
 
 export default function IndexPage() {
 

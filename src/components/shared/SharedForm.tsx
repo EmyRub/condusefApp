@@ -346,7 +346,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     <input
                                         id="BAN_PORI"
                                         type="checkbox"
-                                        checked={field.value}
+                              
                                         onChange={(e) => {
                                             field.onChange(e.target.checked)
                                             dispatch({

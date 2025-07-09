@@ -6,7 +6,7 @@ import { useGlobal } from '@/hooks/useGlobal';
 import { DrafteditDirection } from '@/types/index';
 import { Controller, useForm } from "react-hook-form";
 
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../../ui/ErrorMessage';
 
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 

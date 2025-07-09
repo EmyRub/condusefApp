@@ -31,6 +31,11 @@ option {
     @apply bg-teal-50;
 }
 
+select:disabled,
+input:read-only{
+    @apply cursor-not-allowed opacity-90;
+}
+
 .submit,
 input[type='submit'] {
     @apply bg-teal-900 rounded-3xl block w-full p-3 cursor-pointer text-white text-center hover:bg-teal-950
