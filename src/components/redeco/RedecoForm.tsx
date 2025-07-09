@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import '@/css/Form.module.css';
+import { redecoForm } from '@/types/zod';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
 import { Controller, useForm } from "react-hook-form";
@@ -7,17 +8,19 @@ import { Controller, useForm } from "react-hook-form";
 import SharedForm from '../shared/SharedForm';
 import GeneralDataForm from '../shared/GeneralDataForm';
 import FragmentInstitucion from '../shared/FragmentInstitucion';
+import ErrorMessage from '../ui/ErrorMessage';
 
 
 export default function RedecoForm() {
 
-    const { state, dispatch } = useGlobal()
-    const { register, handleSubmit, control, watch } = useForm()
+    const { dispatch } = useGlobal()
+    const { handleSubmit, control, watch } = useForm<redecoForm>()
 
-    const edoReclaim = watch('edoReg')
-    const enableGeneralDta = edoReclaim === 'concluido';
+    const CVE_EDOCP = watch('CVE_EDOCP')
+    const enableGeneralDta = CVE_EDOCP === 2;
 
-    console.log(edoReclaim)
+
+    console.log(CVE_EDOCP)
     console.log(enableGeneralDta)
 
     const redeSubmit = () => { }
@@ -30,12 +33,12 @@ export default function RedecoForm() {
             onSubmit={handleSubmit(redeSubmit)}
         >
 
-            <SharedForm />
+            <SharedForm control={control} />
 
             {enableGeneralDta && (
                 <fieldset>
                     <legend>Datos Generales</legend>
-                    <GeneralDataForm />
+                    <GeneralDataForm control={control} />
                 </fieldset>
             )}
 
@@ -47,10 +50,10 @@ export default function RedecoForm() {
 
                     <div className='xl:flex'>
 
-                        <label htmlFor="penalizacion" className="w-full xl:w-56">Número de Penalizaciones:</label>
+                        <label htmlFor="NUM_QuPen" className="w-full xl:w-56">Número de Penalizaciones:</label>
 
                         <Controller
-                            name='nPenalizacion'
+                            name='NUM_QuPen'
                             control={control}
                             rules={{
                                 required: "Número de penalización vacío.",
@@ -64,14 +67,15 @@ export default function RedecoForm() {
                                 <div className="w-full xl:w-48">
                                     <input
                                         type="number"
-                                        id="penalizacion"
+                                        id="NUM_QuPen"
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'nPenalizacion', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_QuPen', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -80,7 +84,7 @@ export default function RedecoForm() {
                     <div className='xl:flex'>
 
                         <Controller
-                            name='tipoPenalizacion'
+                            name='NUM_IdPen'
                             control={control}
                             rules={{
                                 required: 'Seleccione un tipo de penalización'
@@ -93,14 +97,15 @@ export default function RedecoForm() {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'tipoPenalizacion', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_IdPen', value: e.target.value } })
                                         }}
                                     >
-                                        <option value="contractuales">Contractuales</option>
-                                        <option value="reclamo">Reclamo</option>
-                                        <option value="economicas">Económicas</option>
-
+                                        <option value={1}>Contractuales</option>
+                                        <option value={2}>Reclamo</option>
+                                        <option value={3}>Económicas</option>
                                     </select>
+                                    
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -111,7 +116,7 @@ export default function RedecoForm() {
             </fieldset>
 
 
-            <FragmentInstitucion register={register} />
+            <FragmentInstitucion control={control} />
 
             <input
                 type="submit"
