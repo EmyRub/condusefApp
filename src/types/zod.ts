@@ -26,6 +26,7 @@ export const condusefFormSchema = z.object({
 
     BAN_MONET: z.boolean().optional(),
     BAN_REVER: z.boolean().optional(),
+    BAN_OPEXT: z.boolean().optional(),
 
     FEC_NOTI: z.date().optional(),
     FEC_RESOL: z.date().optional(),
@@ -46,5 +47,5 @@ export const condusefFormSchema = z.object({
 })
 export type Form = z.infer<typeof condusefFormSchema>
 
-export type reuneForm = Pick<Form, 'BAN_MONET' | 'BAN_PORI' | 'BAN_REVER' | 'CVE_EDOCP' | 'CVE_NIVAT' | 'CVE_Queja' | 'CVE_SEXO' | 'CVE_SUCUR' | 'CVE_TRIM' | 'FEC_ABONO' | 'FEC_ATEN' | 'FEC_NOTI' | 'FEC_REGIS' | 'FEC_RESOL' | 'MONT_ABOUS' | 'MONT_RECLA' | 'NOM_CoEnt' | 'NOM_INST' | 'NOM_SECT' | 'NUM_COL' | 'NUM_CPOS' | 'NUM_EDAD' | 'NUM_ENTE' | 'NUM_ENTFE' | 'NUM_FOCON' | 'NUM_FOLIO' | 'NUM_LOCAL' | 'NUM_MEDRC' | 'NUM_MUNI' | 'NUM_PRODU' | 'NUM_Tlfno' | 'TIP_CAUSA' | 'TIP_Corre' | 'TIP_ENTE' | 'TIP_LOCAL' | 'TIP_RESOL'>
+export type reuneForm = Pick<Form, 'BAN_MONET' | 'BAN_PORI' | 'BAN_REVER' | 'BAN_OPEXT' | 'CVE_EDOCP' | 'CVE_NIVAT' | 'CVE_Queja' | 'CVE_SEXO' | 'CVE_SUCUR' | 'CVE_TRIM' | 'FEC_ABONO' | 'FEC_ATEN' | 'FEC_NOTI' | 'FEC_REGIS' | 'FEC_RESOL' | 'MONT_ABOUS' | 'MONT_RECLA' | 'NOM_CoEnt' | 'NOM_INST' | 'NOM_SECT' | 'NUM_COL' | 'NUM_CPOS' | 'NUM_EDAD' | 'NUM_ENTE' | 'NUM_ENTFE' | 'NUM_FOCON' | 'NUM_FOLIO' | 'NUM_LOCAL' | 'NUM_MEDRC' | 'NUM_MUNI' | 'NUM_PRODU' | 'NUM_Tlfno' | 'TIP_CAUSA' | 'TIP_Corre' | 'TIP_ENTE' | 'TIP_LOCAL' | 'TIP_RESOL'>
 

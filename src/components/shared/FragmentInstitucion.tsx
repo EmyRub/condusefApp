@@ -1,17 +1,17 @@
 import '@/css/Form.module.css';
-import { reuneDataType } from "../../types"
+import { reuneForm } from '@/types/zod';
 import { useGlobal } from "@/hooks/useGlobal"
-import { Controller, useForm, UseFormRegister } from "react-hook-form"
+import { Control, Controller } from "react-hook-form"
 
+import ErrorMessage from '../ui/ErrorMessage';
 
 type FragmentInstitucionProps = {
-    register: UseFormRegister<reuneDataType>
+    control: Control<reuneForm, any>
 }
 
-export default function FragmentInstitucion({ register }: FragmentInstitucionProps) {
+export default function FragmentInstitucion({ control }: FragmentInstitucionProps) {
 
-    const { state, dispatch } = useGlobal()
-    const { control } = useForm();
+    const { dispatch } = useGlobal()
 
     return (
 
@@ -23,10 +23,10 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
             <div>
 
                 <div className='xl:flex mb-10'>
-                    <label htmlFor="inst" className="w-full xl:w-48">Nombre de la institución:</label>
+                    <label htmlFor="NOM_INST" className="w-full xl:w-48">Nombre de la institución:</label>
 
                     <Controller
-                        name='inst'
+                        name='NOM_INST'
                         control={control}
                         rules={{
                             required: 'La institución es requerida'
@@ -34,15 +34,17 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                         render={({ field, fieldState: { error } }) => (
                             <div className="w-full xl:w-9/12">
                                 <input
-                                    id="inst"
+                                    id="NOM_INST"
                                     type="text"
-                                    disabled
+                                    readOnly
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'inst', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NOM_INST', value: e.target.value } })
                                     }}
                                 />
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
@@ -50,25 +52,29 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                 </div>
 
                 <div className='xl:flex'>
-                    <label htmlFor="sector" className="w-full xl:w-14">Sector:</label>
+                    <label htmlFor="NOM_SECT" className="w-full xl:w-14">Sector:</label>
+
                     <Controller
-                        name='sector'
+                        name='NOM_SECT'
                         control={control}
                         rules={{
                             required: 'El sector es requerido'
                         }}
+
                         render={({ field, fieldState: { error } }) => (
                             <div className="w-full xl:w-11/12">
                                 <input
-                                    id="sect"
+                                    id="NOM_SECT"
                                     type="text"
-                                    disabled
+                                    readOnly
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'sector', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NOM_SECT', value: e.target.value } })
                                     }}
                                 />
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
@@ -79,9 +85,10 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
             <section className="grid grid-cols-1 xl:grid-cols-3 gap-y-16 gap-x-10 pt-16">
 
                 <div className='xl:flex'>
-                    <label htmlFor="cp" className="w-full xl:w-8">C.P.</label>
+                    <label htmlFor="NUM_CPOS" className="w-full xl:w-8">C.P.</label>
+
                     <Controller
-                        name='cp'
+                        name='NUM_CPOS'
                         control={control}
                         rules={{
                             required: "El C.P. es obligatorio",
@@ -90,70 +97,50 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                                 message: "Formato de C.P. no válido."
                             }
                         }}
+
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-auto">
+                            <div className="w-full">
                                 <input
-                                    id="cp"
-                                    type="text"
-                                    disabled
+                                    id="NUM_CPOS"
+                                    type="number"
+                                    readOnly
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'cp', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NUM_CPOS', value: e.target.value } })
                                     }}
                                 />
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
                 </div>
 
                 <div className="xl:flex gap-2 items-center">
-                    <label htmlFor="colNumber" className="w-full xl:w-16">Colonia:</label>
-                    <Controller
-                        name='colNumber'
-                        control={control}
-                        rules={{
-                            required: "El tipo de localidad es obligatoria",
-                            minLength: {
-                                value: 0,
-                                message: 'Colonia no válida'
-                            }
-                        }}
-                        render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-12">
-                                <input
-                                    id="colNumber"
-                                    type="number"
-                                    disabled
-                                    {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'colNumber', value: e.target.value } })
-                                    }}
-                                />
-                            </div>
-                        )}
-                    />
+                    <label htmlFor="NUM_COL" className="w-full xl:w-16">Colonia:</label>
 
                     <Controller
-                        name='colName'
+                        name='NUM_COL'
                         control={control}
                         rules={{
                             required: "Colonia no válida"
                         }}
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-72">
+                            <div className="w-full">
                                 <select
-                                    id="colName"
+                                    id="NUM_COL"
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'colName', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NUM_COL', value: e.target.value } })
                                     }}
                                 >
-                                    <option value="1">Ninguno</option>
-                                    <option value="2">Fresas</option>
+                                    <option value={1}>Ninguno</option>
+                                    <option value={2}>Fresas</option>
                                 </select>
+
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
@@ -161,216 +148,122 @@ export default function FragmentInstitucion({ register }: FragmentInstitucionPro
                 </div>
 
                 <div className="xl:flex gap-2 items-center">
-                    <label htmlFor="edo" className="w-full xl:w-14">Estado:</label>
+                    <label htmlFor="NUM_ENTFE" className="w-full xl:w-14">Estado:</label>
 
                     <Controller
-                        name='edoNumber'
-                        control={control}
-                        rules={{
-                            required: "El Estado es obligatorio",
-                            minLength: {
-                                value: 3,
-                                message: 'Estado no válido'
-                            }
-                        }}
-                        render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-12">
-                                <input
-                                    id="edo"
-                                    type="number"
-                                    disabled
-                                    {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'edoNumber', value: e.target.value } })
-                                    }}
-                                />
-                            </div>
-                        )}
-                    />
-
-                    <Controller
-                        name='edoName'
+                        name='NUM_ENTFE'
                         control={control}
                         rules={{
                             required: "Estado no válido"
                         }}
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-52">
+                            <div className="w-full">
                                 <select
-                                    id="edoName"
+                                    id="NUM_ENTFE"
                                     disabled
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'edoName', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NUM_ENTFE', value: e.target.value } })
                                     }}
                                 >
-                                    <option value="1">Ninguno</option>
-                                    <option value="2">Benito Juarez</option>
-                                    <option value="3">Tlalpan</option>
+                                    <option value={1}>Ninguno</option>
+                                    <option value={2}>Benito Juarez</option>
+                                    <option value={3}>Tlalpan</option>
                                 </select>
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
                 </div>
 
                 <div className="xl:flex gap-2 items-center">
-                    <label htmlFor="muniNumber" className="w-full xl:w-20">Municipio:</label>
+                    <label htmlFor="NUM_MUNI" className="w-full xl:w-20">Municipio:</label>
 
                     <Controller
-                        name='muniNumber'
-                        control={control}
-                        rules={{
-                            required: "El Municipio es obligatorio",
-                            minLength: {
-                                value: 2,
-                                message: 'Municipio no válido'
-                            }
-                        }}
-                        render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-16">
-                                <input
-                                    id="muniNumber"
-                                    type="number"
-                                    disabled
-                                    {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'muniNumber', value: e.target.value } })
-                                    }}
-                                />
-                            </div>
-                        )}
-                    />
-
-                    <Controller
-                        name='muniName'
+                        name='NUM_MUNI'
                         control={control}
                         rules={{
                             required: "Municipio no válido"
                         }}
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-72">
+                            <div className="w-full">
                                 <select
-                                    id="muniName"
+                                    id="NUM_MUNI"
                                     disabled
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'muniName', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NUM_MUNI', value: e.target.value } })
                                     }}
                                 >
-                                    <option value="1">Ninguno</option>
-                                    <option value="2">cdmx</option>
+                                    <option value={1}>Ninguno</option>
+                                    <option value={2}>cdmx</option>
                                 </select>
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
                 </div>
 
                 <div className='xl:flex gap-2 items-center'>
-                    <label htmlFor="locNumber" className="w-full xl:w-20">Localidad:</label>
+                    <label htmlFor="NUM_LOCAL" className="w-full xl:w-20">Localidad:</label>
 
                     <Controller
-                        name='locNumber'
-                        control={control}
-                        rules={{
-                            required: "La localidad es obligatoria",
-                            minLength: {
-                                value: 0,
-                                message: 'Localidad no válida'
-                            }
-                        }}
-                        render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-12">
-                                <input
-                                    id="locNumber"
-                                    type="number"
-                                    disabled
-                                    {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'locNumber', value: e.target.value } })
-                                    }}
-                                />
-                            </div>
-                        )}
-                    />
-
-                    <Controller
-                        name='locName'
+                        name='NUM_LOCAL'
                         control={control}
                         rules={{
                             required: "Localidad no válida"
                         }}
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-36">
+                            <div className="w-full">
                                 <select
-                                    id="locName"
+                                    id="NUM_LOCAL"
                                     disabled
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'locName', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NUM_LOCAL', value: e.target.value } })
                                     }}
                                 >
-                                    <option value="1">Ninguno</option>
-                                    <option value="2">cdmx</option>
+                                    <option value={1}>Ninguno</option>
+                                    <option value={2}>cdmx</option>
                                 </select>
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
                 </div>
 
                 <div className='xl:flex gap-2 items-center'>
-                    <label htmlFor="tyLocNumber" className="w-full xl:w-28">Tipo Localidad:</label>
-                    <Controller
-                        name='tyLocNumber'
-                        control={control}
-                        rules={{
-                            required: "El tipo de localidad es obligatoria",
-                            minLength: {
-                                value: 0,
-                                message: 'Tipo de Localidad no válida'
-                            }
-                        }}
-                        render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-12">
-                                <input
-                                    id="tyLocNumber"
-                                    type="number"
-                                    disabled
-                                    {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'tyLocNumber', value: e.target.value } })
-                                    }}
-                                />
-                            </div>
-                        )}
-                    />
+                    <label htmlFor="TIP_LOCAL" className="w-full xl:w-28">Tipo Localidad:</label>
 
                     <Controller
-                        name='tyLocName'
+                        name='TIP_LOCAL'
                         control={control}
                         rules={{
                             required: "Tipo de Localidad no válida"
                         }}
+
                         render={({ field, fieldState: { error } }) => (
-                            <div className="w-full xl:w-28">
+                            <div className="w-full xl:w-44">
                                 <select
-                                    id="tyLocName"
+                                    id="TIP_LOCAL"
                                     disabled
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'tyLocName', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'TIP_LOCAL', value: e.target.value } })
                                     }}
                                 >
-                                    <option value="1">Ninguno</option>
-                                    <option value="2">Localidad</option>
+                                    <option value={1}>Ninguno</option>
+                                    <option value={2}>Localidad</option>
                                 </select>
+
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />

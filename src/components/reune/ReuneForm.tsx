@@ -8,6 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import FragmentInstitucion from '../shared/FragmentInstitucion';
 import GeneralDataForm from '../shared/GeneralDataForm';
 import SharedForm from '../shared/SharedForm';
+import ErrorMessage from '../ui/ErrorMessage';
 
 
 export default function ReuneForm() {
@@ -16,18 +17,17 @@ export default function ReuneForm() {
 
     const { handleSubmit, formState: { errors }, setValue, control, watch } = useForm<reuneForm>({
         //defaultValues es clave para cargar valores iniciales en el formulario.
-       // defaultValues: state.reuneStateG.reuneData
+        // defaultValues: state.reuneStateG.reuneData
     })
 
     // Observa valor dinámico del select
-    const edoReg = watch('edoReg')
-    const claimStatus = watch('queja')
-    const reclChecked = watch('recl')
+    const CVE_EDOCP = watch('CVE_EDOCP')
+    const CVE_Queja = watch('CVE_Queja')
+    const BAN_MONET = watch('BAN_MONET')
 
-    const claimType = claimStatus !== 'consulta';
-    const concluido = edoReg === 'pendiente' || 'concluido';
+    const tipo_Queja = CVE_Queja !== 1;
 
-    console.log(edoReg)
+    console.log(CVE_EDOCP)
 
 
     //Efecto para cargar datos iniciales
@@ -58,9 +58,9 @@ export default function ReuneForm() {
             onSubmit={handleSubmit(reuneSubmit, handleError)}
         >
 
-            <SharedForm />
+            <SharedForm control={control} />
 
-            {claimType && (
+            {tipo_Queja && (
                 <>
                     <fieldset>
 
@@ -68,26 +68,26 @@ export default function ReuneForm() {
 
                         <section className="flex flex-col xl:flex-row justify-center items-center gap-y-6 xl:gap-x-10 xl:mb-10 border-b-2 border-teal-300 pb-7">
 
-                            {claimType && concluido && (
+                            {tipo_Queja && (
                                 <>
-
                                     <div className='xl:flex'>
-                                        <label htmlFor="recl" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
+                                        <label htmlFor="BAN_MONET" className="w-full xl:w-96">¿El reclamo o Aclaración es de objeto monetario?</label>
+
                                         <Controller
-                                            name='recl'
+                                            name='BAN_MONET'
                                             control={control}
-                                            render={({ field, fieldState: { error } }) => (
+                                            render={({ field }) => (
 
                                                 <div className="w-full xl:w-4">
                                                     <input
-                                                        id="recl"
+                                                        id="BAN_MONET"
                                                         type="checkbox"
                                                         checked={field.value}
                                                         onChange={(e) => {
                                                             field.onChange(e.target.checked)
                                                             dispatch({
                                                                 type: 'client-update',
-                                                                payload: { field: 'recl', value: e.target.checked }
+                                                                payload: { field: 'BAN_MONET', value: e.target.checked }
                                                             })
                                                         }}
                                                     />
@@ -97,23 +97,23 @@ export default function ReuneForm() {
                                     </div>
 
                                     <div className='xl:flex'>
-                                        <label htmlFor="rever" className="w-full xl:w-16">Reversa:</label>
+                                        <label htmlFor="BAN_REVER" className="w-full xl:w-16">Reversa:</label>
 
                                         <Controller
-                                            name='rever'
+                                            name='BAN_REVER'
                                             control={control}
-                                            render={({ field, fieldState: { error } }) => (
+                                            render={({ field }) => (
 
                                                 <div className="w-full xl:w-4">
                                                     <input
-                                                        id="rever"
+                                                        id="BAN_REVER"
                                                         type="checkbox"
                                                         checked={field.value}
                                                         onChange={(e) => {
                                                             field.onChange(e.target.checked)
                                                             dispatch({
                                                                 type: 'client-update',
-                                                                payload: { field: 'rever', value: e.target.checked }
+                                                                payload: { field: 'BAN_REVER', value: e.target.checked }
                                                             })
                                                         }}
                                                     />
@@ -121,34 +121,34 @@ export default function ReuneForm() {
                                             )}
                                         />
                                     </div>
-
                                 </>
                             )}
 
-                            {claimStatus === 'aclaracion' && (
+                            {CVE_Queja === 3 && (
 
                                 <div className='xl:flex'>
 
-                                    <label htmlFor="exg" className="w-full xl:w-40">Si es del extranjero:</label>
+                                    <label htmlFor="BAN_OPEXT" className="w-full xl:w-40">Si es del extranjero:</label>
 
                                     <Controller
-                                        name='exg'
+                                        name='BAN_OPEXT'
                                         control={control}
-                                        render={({ field, fieldState: { error } }) => (
+                                        render={({ field }) => (
 
                                             <div className="w-full xl:w-4">
                                                 <input
-                                                    id="exg"
+                                                    id="BAN_OPEXT"
                                                     type="checkbox"
                                                     checked={field.value}
                                                     onChange={(e) => {
                                                         field.onChange(e.target.checked)
                                                         dispatch({
                                                             type: 'client-update',
-                                                            payload: { field: 'exg', value: e.target.checked }
+                                                            payload: { field: 'BAN_OPEXT', value: e.target.checked }
                                                         })
                                                     }}
                                                 />
+
                                             </div>
                                         )}
                                     />
@@ -158,13 +158,13 @@ export default function ReuneForm() {
 
                         </section>
 
-                        {claimType && edoReg === 'concluido' && (
-                            <GeneralDataForm />
+                        {tipo_Queja && CVE_EDOCP === 2 && (
+                            <GeneralDataForm control={control} />
                         )}
 
                     </fieldset>
 
-                    {reclChecked && (
+                    {BAN_MONET && (
 
                         <fieldset >
 
@@ -173,76 +173,84 @@ export default function ReuneForm() {
                             <div className={styles.flexColumns}>
 
                                 <div className="basis-full xl:basis-72 xl:flex">
-                                    <label htmlFor="montRe" className="w-full xl:w-1/2">Monto Reclamado:</label>
+                                    <label htmlFor="MONT_RECLA" className="w-full xl:w-1/2">Monto Reclamado:</label>
+
                                     <Controller
-                                        name='montRe'
+                                        name='MONT_RECLA'
                                         control={control}
                                         rules={{
                                             required: 'Agregar monto reclamado',
                                             min: 0
                                         }}
+
                                         render={({ field, fieldState: { error } }) => (
                                             <div className="w-full xl:w-1/2">
                                                 <input
-                                                    id="montRe"
+                                                    id="MONT_RECLA"
                                                     type="number"
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'montRe', value: e.target.value } })
+                                                        dispatch({ type: 'client-update', payload: { field: 'MONT_RECLA', value: e.target.value } })
                                                     }}
                                                 />
+                                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                             </div>
                                         )}
                                     />
                                 </div>
 
                                 <div className="basis-full xl:basis-72 xl:flex">
-                                    <label htmlFor="fecAbo" className="w-full xl:w-32">Fecha de Abono:</label>
+                                    <label htmlFor="FEC_ABONO" className="w-full xl:w-32">Fecha de Abono:</label>
 
                                     <Controller
-                                        name='fecAbo'
+                                        name='FEC_ABONO'
                                         control={control}
                                         rules={{
                                             required: 'Agregar fecha de abono',
                                             minLength: 0
                                         }}
+
                                         render={({ field, fieldState: { error } }) => (
                                             <div className="w-full xl:w-1/2">
                                                 <input
-                                                    id="fecAbo"
+                                                    id="FEC_ABONO"
                                                     type="date"
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'fecAbo', value: e.target.value } })
+                                                        dispatch({ type: 'client-update', payload: { field: 'FEC_ABONO', value: e.target.value } })
                                                     }}
                                                 />
+                                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                             </div>
                                         )}
                                     />
                                 </div>
 
                                 <div className="basis-full xl:basis-72 xl:flex">
-                                    <label htmlFor="montAbo" className="w-full xl:w-32">Monto Abonado:</label>
+                                    <label htmlFor="MONT_ABOUS" className="w-full xl:w-32">Monto Abonado:</label>
+
                                     <Controller
-                                        name='montAbo'
+                                        name='MONT_ABOUS'
                                         control={control}
                                         rules={{
                                             required: 'Agregar monto abonado',
                                             min: 0
                                         }}
+
                                         render={({ field, fieldState: { error } }) => (
                                             <div className="w-full xl:w-1/2">
                                                 <input
-                                                    id="montAbo"
+                                                    id="MONT_ABOUS"
                                                     type="number"
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'montAbo', value: e.target.value } })
+                                                        dispatch({ type: 'client-update', payload: { field: 'MONT_ABOUS', value: e.target.value } })
                                                     }}
                                                 />
+                                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                             </div>
                                         )}
                                     />
@@ -254,7 +262,7 @@ export default function ReuneForm() {
                 </>
             )}
 
-            <FragmentInstitucion />
+            <FragmentInstitucion control={control} />
 
 
             <input type="submit" value="Guardar" className="mt-9 uppercase" />

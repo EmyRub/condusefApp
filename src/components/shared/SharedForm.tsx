@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
-import { Controller, useForm } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 import { searchCat, SearchCategory } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
@@ -9,11 +9,13 @@ import ErrorMessage from '../ui/ErrorMessage';
 import { reuneForm } from '@/types/zod';
 import SearchButton from '../ui/SearchButton';
 
-export default function SharedForm() {
+export type SharedFormProps = {
+    control: Control<reuneForm, any>
+}
+
+export default function SharedForm({ control }: SharedFormProps) {
 
     const { state, dispatch } = useGlobal()
-    const { control } = useForm<reuneForm>()
-
 
     return (
         <>
@@ -580,10 +582,10 @@ export default function SharedForm() {
                                             dispatch({ type: 'client-update', payload: { field: 'CVE_Queja', value: e.target.value } })
                                         }}
                                     >
-                                        <option value="consulta">Consulta</option>
-                                        <option value="queja">Queja</option>
-                                        <option value="reclamo">Reclamo</option>
-                                        <option value="aclaracion">Aclaración</option>
+                                        <option value={1}>Consulta</option>
+                                        <option value={2}>Reclamo</option>
+                                        <option value={3}>Aclaración</option>
+                                        <option value={4}>Queja</option>
 
                                     </select>
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -611,8 +613,8 @@ export default function SharedForm() {
                                             dispatch({ type: 'client-update', payload: { field: 'CVE_EDOCP', value: e.target.value } })
                                         }}
                                     >
-                                        <option value="pendiente">Pendiente</option>
-                                        <option value="concluido">Concluido</option>
+                                        <option value={1}>Pendiente</option>
+                                        <option value={2}>Concluido</option>
 
                                     </select>
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
