@@ -6,11 +6,13 @@ import { searchCat, SearchCategory } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
 import ErrorMessage from '../ui/ErrorMessage';
+import { reuneForm } from '@/types/zod';
+import SearchButton from '../ui/SearchButton';
 
 export default function SharedForm() {
 
     const { state, dispatch } = useGlobal()
-    const { control } = useForm()
+    const { control } = useForm<reuneForm>()
 
 
     return (
@@ -56,7 +58,7 @@ export default function SharedForm() {
                                         dispatch({ type: 'client-update', payload: { field: 'NUM_ENTE', value: e.target.value } })
                                     }}
                                 />
-                                {error?.message && (<ErrorMessage>{error.message as string}</ErrorMessage>)}
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
@@ -92,14 +94,15 @@ export default function SharedForm() {
                                 <input
                                     id="CVE_SUCUR"
                                     type="number"
-                                    disabled
+                                    readOnly
+
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
                                         dispatch({ type: 'client-update', payload: { field: 'CVE_SUCUR', value: e.target.value } })
                                     }}
                                 />
-                                {error && <p>{error.message}</p>}
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </div>
                         )}
                     />
@@ -114,10 +117,10 @@ export default function SharedForm() {
 
                 <div className="w-full mb-16">
 
-                    <label htmlFor="cliente" className="w-full xl:w-36">Nombre del Cliente:</label>
+                    <label htmlFor="NOM_CoEnt" className="w-full xl:w-36">Nombre del Cliente:</label>
 
                     <Controller
-                        name='cliente'
+                        name='NOM_CoEnt'
                         control={control}
                         rules={{
                             required: 'El nombre es obligatorio.',
@@ -130,16 +133,17 @@ export default function SharedForm() {
 
                             <span className="w-full xl:w-5/6 inline-block">
                                 <input
-                                    id="cliente"
+                                    id="NOM_CoEnt"
                                     type="text"
-                                    disabled
+                                    readOnly
 
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'cliente', value: e.target.value } })
+                                        dispatch({ type: 'client-update', payload: { field: 'NOM_CoEnt', value: e.target.value } })
                                     }}
                                 />
+                                {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                             </span>
                         )}
                     />
@@ -148,10 +152,10 @@ export default function SharedForm() {
                 <section className={clsx(styles.gridColumns3, 'gap-y-16 gap-x-2')}>
 
                     <div className="xl:flex">
-                        <label htmlFor="email" className="w-full xl:w-16">Correo:</label>
+                        <label htmlFor="TIP_Corre" className="w-full xl:w-16">Correo:</label>
 
                         <Controller
-                            name='email'
+                            name='TIP_Corre'
                             control={control}
                             rules={{
                                 required: 'El correo es obligatorio',
@@ -163,16 +167,17 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full">
                                     <input
-                                        id="email"
+                                        id="TIP_Corre"
                                         type="email"
-
                                         {...field}
-                                        disabled
+                                        readOnly
+
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'email', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'TIP_Corre', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
@@ -180,10 +185,10 @@ export default function SharedForm() {
 
                     <div className="xl:flex">
 
-                        <label htmlFor="tel" className="w-full xl:w-20">Teléfono:</label>
+                        <label htmlFor="NUM_Tlfno" className="w-full xl:w-20">Teléfono:</label>
 
                         <Controller
-                            name='telefono'
+                            name='NUM_Tlfno'
                             control={control}
                             rules={{
                                 required: 'El teléfono es obligatorio',
@@ -192,69 +197,72 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full">
                                     <input
-                                        id="tel"
+                                        id="NUM_Tlfno"
                                         type="tel"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'telefono', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_Tlfno', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
                     </div>
 
                     <div className="flex gap-3 items-center xl:items-start justify-center">
-                        <label htmlFor="genero" className="xl:w-12">Sexo:</label>
+                        <label htmlFor="CVE_SEXO" className="xl:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
-                            <label htmlFor="f">M</label>
+                            <label htmlFor="femenino">M</label>
 
                             <Controller
-                                name='genero'
+                                name='CVE_SEXO'
                                 control={control}
                                 rules={{ required: 'Seleccione un género' }}
-                                render={({ field, fieldState: { error } }) => (
+                                render={({ field }) => (
 
                                     <input
-                                        id="genero"
+                                        id="femenino"
                                         type="radio"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         value='femenino'
                                         checked={field.value === 'femenino'}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'genero', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
                                         }}
+
                                     />
+
                                 )}
                             />
                         </div>
 
                         <div className="flex gap-1">
-                            <label htmlFor="m">H</label>
+                            <label htmlFor="masculino">H</label>
 
                             <Controller
-                                name='genero'
+                                name='CVE_SEXO'
                                 control={control}
 
-                                render={({ field, fieldState: { error } }) => (
+                                render={({ field }) => (
                                     <input
-                                        id="m"
+                                        id="masculino"
                                         type="radio"
-                                        disabled
+                                        readOnly
 
                                         {...field}
                                         value='masculino'
                                         checked={field.value === 'masculino'}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'genero', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
                                         }}
                                     />
                                 )}
@@ -263,10 +271,10 @@ export default function SharedForm() {
                     </div>
 
                     <div className="xl:flex">
-                        <label htmlFor="typePer" className="w-full xl:w-32">Tipo de Persona:</label>
+                        <label htmlFor="TIP_ENTE" className="w-full xl:w-32">Tipo de Persona:</label>
 
                         <Controller
-                            name='typePer'
+                            name='TIP_ENTE'
                             control={control}
                             rules={{
                                 required: true
@@ -274,13 +282,13 @@ export default function SharedForm() {
                             render={({ field, fieldState: { error } }) => (
                                 <div className="w-full xl:w-40">
                                     <select
-                                        id="typePer"
+                                        id="TIP_ENTE"
                                         disabled
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'typePer', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'TIP_ENTE', value: e.target.value } })
                                         }}
                                     >
                                         <option value='moral'>Moral</option>
