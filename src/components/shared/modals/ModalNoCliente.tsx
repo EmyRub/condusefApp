@@ -82,7 +82,6 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                     <input
                                         id="femenino"
                                         type="radio"
-                                        readOnly
 
                                         {...field}
                                         value='femenino'
@@ -109,7 +108,6 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                     <input
                                         id="masculino"
                                         type="radio"
-                                        readOnly
 
                                         {...field}
                                         value='masculino'

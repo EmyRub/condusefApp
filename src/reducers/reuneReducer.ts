@@ -1,12 +1,8 @@
-import { reuneDataType } from "../types"
+import { reuneForm } from "@/types/zod"
 
-export type reuneActions =
-    { type: 'client-add', payload: { newClient: reuneDataType } } |
-    { type: 'client-update', payload: { field: string, value: any } } |
-    { type: 'client-get' }
 
 export type reuneStateProps = {
-    reuneData: reuneDataType
+    reuneData: reuneForm
 }
 
 export const reuneInitialState: reuneStateProps = {
@@ -59,6 +55,12 @@ export const reuneInitialState: reuneStateProps = {
     }
 }
 
+export type reuneActions =
+    { type: 'client-add', payload: { newClient: reuneForm } } |
+    { type: 'client-update', payload: { field: string, value: any } } |
+    { type: 'client-get' }
+
+
 export const reuneReducer = (
     state: reuneStateProps = reuneInitialState,
     action: reuneActions
@@ -70,6 +72,13 @@ export const reuneReducer = (
         console.log(action.payload.newClient)
     }
 
+    if (action.type === 'client-update') {
+        return {
+            ...state,
+            reuneData: { ...state.reuneData, [action.payload.field]: action.payload.value }
+        }
+    }
+
     if (action.type === 'client-get') {
 
         return {
@@ -78,12 +87,6 @@ export const reuneReducer = (
 
     }
 
-    if (action.type === 'client-update') {
-        return {
-            ...state,
-            reuneData: { ...state.reuneData, [action.payload.field]: action.payload.value }
-        }
-    }
 
 
     return state

@@ -3,7 +3,7 @@ import '@/css/Form.module.css';
 import { Dispatch } from 'react';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
-import { DrafteditDirection } from '@/types/index';
+import { newDirectionForm } from '@/types/zod';
 import { Controller, useForm } from "react-hook-form";
 
 import ErrorMessage from '../../ui/ErrorMessage';
@@ -11,25 +11,20 @@ import ErrorMessage from '../../ui/ErrorMessage';
 export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.SetStateAction<boolean>> }) {
 
     const { dispatch } = useGlobal()
-    const { handleSubmit, formState: { errors }, control } = useForm<DrafteditDirection>({
+    const { handleSubmit, control } = useForm<newDirectionForm>();
 
-        defaultValues: {
-            cp: '123456',
-            loc: 'se llenara conforme la base de datos',
-            edo: '',
-            muni: ''
-        }
-    });
-
-    const editDirection = (data: DrafteditDirection) => {
+    const editDirection = (data: newDirectionForm) => {
         console.log(data)
+        setModal(false)
     }
 
     return (
 
         <form
+            data-formulario
+            className={styles.bgModal}
             onSubmit={handleSubmit(editDirection)}
-            className={styles.bgModal} data-formulario>
+        >
 
             <fieldset className={styles.modal}>
 
@@ -41,10 +36,10 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
 
                     <div className='xl:flex'>
 
-                        <label htmlFor="cp" className="w-full xl:w-8">C.P.</label>
+                        <label htmlFor="NUM_CPOS" className="w-full xl:w-8">C.P.</label>
 
                         <Controller
-                            name='cp'
+                            name='NUM_CPOS'
                             control={control}
                             rules={{
                                 required: "El C.P. es obligatorio",
@@ -53,116 +48,112 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                     message: "Formato de C.P. no válido."
                                 }
                             }}
+
                             render={({ field, fieldState: { error } }) => (
-                                <div className="w-full xl:w-4/5">
+                                <div className="w-full">
                                     <input
-                                        id="cp"
-                                        type="text"
+                                        id="NUM_CPOS"
+                                        type="number"
 
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'cp', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_CPOS', value: e.target.value } })
                                         }}
                                     />
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
-                        {errors.cp && (<ErrorMessage>{errors.cp?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="loc" className="w-full xl:w-20">Localidad:</label>
+                        <label htmlFor="NUM_LOCAL" className="w-full xl:w-20">Localidad:</label>
 
                         <Controller
-                            name='loc'
+                            name='NUM_LOCAL'
                             control={control}
                             rules={{
-                                required: "La localidad es obligatoria",
-                                minLength: {
-                                    value: 2,
-                                    message: 'Localidad no válida'
-                                }
+                                required: "Seleccione una localidad"
                             }}
                             render={({ field, fieldState: { error } }) => (
-                                <div className="w-full xl:w-3/4">
-                                    <input
-                                        id="loc"
-                                        type="text"
+                                <div className="w-full">
+                                    <select
+                                        id="NUM_LOCAL"
+
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'loc', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_LOCAL', value: e.target.value } })
                                         }}
-                                    />
+                                    >
+                                        <option value={1}>Ninguno</option>
+                                        <option value={2}>cdmx</option>
+                                    </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
-                        {errors.loc && (<ErrorMessage>{errors.loc?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className='xl:flex'>
-                        <label htmlFor="edo" className="w-full xl:w-14">Estado:</label>
+                        <label htmlFor="NUM_ENTFE" className="w-full xl:w-14">Estado:</label>
 
                         <Controller
-                            name='edo'
+                            name='NUM_ENTFE'
                             control={control}
                             rules={{
-                                required: "El Estado es obligatorio",
-                                minLength: {
-                                    value: 3,
-                                    message: 'Estado no válido'
-                                }
+                                required: "Estado no válido"
                             }}
                             render={({ field, fieldState: { error } }) => (
-                                <div className="w-full xl:w-4/5">
-                                    <input
-                                        id="edo"
-                                        type="text"
+                                <div className="w-full">
+                                    <select
+                                        id="NUM_ENTFE"
+
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'edo', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_ENTFE', value: e.target.value } })
                                         }}
-                                    />
+                                    >
+                                        <option value={1}>Ninguno</option>
+                                        <option value={2}>Benito Juarez</option>
+                                        <option value={3}>Tlalpan</option>
+                                    </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
-
-                        {errors.edo && (<ErrorMessage>{errors.edo?.message as string}</ErrorMessage>)}
                     </div>
 
                     <div className="xl:flex">
-                        <label htmlFor="muni" className="w-full xl:w-20">Municipio:</label>
-
+                        <label htmlFor="NUM_MUNI" className="w-full xl:w-20">Municipio:</label>
                         <Controller
-                            name='muni'
+                            name='NUM_MUNI'
                             control={control}
                             rules={{
-                                required: "El Municipio es obligatorio",
-                                minLength: {
-                                    value: 2,
-                                    message: 'Municipio no válido'
-                                }
+                                required: "Municipio no válido"
                             }}
                             render={({ field, fieldState: { error } }) => (
-                                <div className="w-full xl:w-3/4">
-                                    <input
-                                        id="muni"
-                                        type="text"
+                                <div className="w-full">
+                                    <select
+                                        id="NUM_MUNI"
+
+
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'muni', value: e.target.value } })
+                                            dispatch({ type: 'client-update', payload: { field: 'NUM_MUNI', value: e.target.value } })
                                         }}
-                                    />
+                                    >
+                                        <option value={1}>Ninguno</option>
+                                        <option value={2}>cdmx</option>
+                                    </select>
+                                    {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}
                         />
-                        {errors.muni && (<ErrorMessage>{errors.muni?.message as string}</ErrorMessage>
-                        )}
                     </div>
-
                 </div>
 
                 <div className={clsx(styles.gridColumns, 'gap-y-6')}>
