@@ -6,7 +6,7 @@ export type formStateProps = {
     redecoData: redecoForm
 }
 
-export const initialState: formStateProps = {
+export const formInitialState: formStateProps = {
 
     reuneData: {
         NUM_ENTE: 54,
@@ -97,8 +97,8 @@ export type formActions =
     { type: 'client-get' }
 
 
-export const reuneReducer = (
-    state: formStateProps = initialState,
+export const formReducer = (
+    state: formStateProps = formInitialState,
     action: formActions
 
 ): formStateProps => {

@@ -31,10 +31,10 @@ export default function ReuneForm() {
     //Efecto para cargar datos iniciales
     useEffect(() => {
         //key es de tipo string (derivado de Object.entries)
-        Object.entries(state.reuneStateG.reuneData).forEach(([key, value]) => {
-            setValue(key as keyof reuneDataType, value)
+        Object.entries(state.formStateG.reuneData).forEach(([key, value]) => {
+            setValue(key as keyof reuneForm, value)
         })
-    }, [state.reuneStateG.reuneData, setValue])
+    }, [state.formStateG.reuneData, setValue])
 
 
     //Sincronizar datos del formulario con el estado global

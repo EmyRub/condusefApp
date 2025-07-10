@@ -1,15 +1,15 @@
 import { createContext, Dispatch, ReactNode, useReducer } from "react"
 import { ModalActions, modalInitialState, modalReducer, ModalStateProps } from "../reducers/modalReducer"
-import { reuneActions, reuneInitialState, reuneReducer, reuneStateProps } from "../reducers/reuneReducer"
+import { formActions, formInitialState, formReducer, formStateProps } from "../reducers/formReducer"
 
 
 //Definir los tipos de estado y acciones combinados
 type GlobalState = {
     modalStateG: ModalStateProps,
-    reuneStateG: reuneStateProps
+    formStateG: formStateProps
 }
 
-type GlobalActions = ModalActions | reuneActions;
+type GlobalActions = ModalActions | formActions;
 
 // Define las props del contexto
 type GlobalContextProps = {
@@ -33,12 +33,12 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
     // Configurar cada reducer
     const [modalStateG, modalDispatchG] = useReducer(modalReducer, modalInitialState)
-    const [reuneStateG, reuneDispatchG] = useReducer(reuneReducer, reuneInitialState)
+    const [formStateG, formDispatchG] = useReducer(formReducer, formInitialState)
 
     //Combina los estados
     const state: GlobalState = {
         modalStateG,
-        reuneStateG
+        formStateG
     }
 
     // Combina los dispatchers
@@ -48,7 +48,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
             if (action.type.startsWith('modal-')) {
                 modalDispatchG(action as ModalActions)
             } else if (action.type.startsWith('client-')) {
-                reuneDispatchG(action as reuneActions)
+                formDispatchG(action as formActions)
             }
         }
     }
