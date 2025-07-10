@@ -1,5 +1,5 @@
 import '@/css/Form.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { reuneForm } from '@/types/zod';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
@@ -14,10 +14,11 @@ import ErrorMessage from '../ui/ErrorMessage';
 export default function ReuneForm() {
     //Dispatch.- función especial que permite ejecutar acciones cuando se le llame   
     const { state, dispatch } = useGlobal()
+    const [users, setUsers] = useState([])
 
     const { handleSubmit, formState: { errors }, setValue, control, watch } = useForm<reuneForm>({
         //defaultValues es clave para cargar valores iniciales en el formulario.
-         defaultValues: state.formStateG.reuneData
+        defaultValues: state.formStateG.reuneData
     })
 
     // Observa valor dinámico del select
@@ -36,6 +37,23 @@ export default function ReuneForm() {
         })
     }, [state.formStateG.reuneData, setValue])
 
+    //EJEMPLO PARA OBTENER DATOS DE UNA API (USAR EL PLUGIN DEL CURSO)
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const data = await getFormData();
+    //             dispatch({
+    //                 type: "form-add",
+    //                 payload: { newClient: data.reuneData },
+    //             });
+    //             // Si quieres usar redecoData también, podrías hacer un nuevo type o una acción adicional
+    //         } catch (error) {
+    //             console.error("Error al obtener los datos del formulario:", error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
 
     //Sincronizar datos del formulario con el estado global
     const reuneSubmit = (data: reuneForm) => {

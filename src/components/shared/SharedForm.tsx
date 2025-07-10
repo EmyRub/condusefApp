@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { redecoForm, reuneForm } from '@/types/zod';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
+import { redecoForm, reuneForm } from '@/types/zod';
 import { Control, Controller } from 'react-hook-form';
 import { searchCat, SearchCategory } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
