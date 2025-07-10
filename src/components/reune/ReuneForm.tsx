@@ -27,8 +27,6 @@ export default function ReuneForm() {
 
     const tipo_Queja = CVE_Queja !== 1;
 
-    console.log(CVE_EDOCP)
-
 
     //Efecto para cargar datos iniciales
     useEffect(() => {
@@ -37,7 +35,6 @@ export default function ReuneForm() {
             setValue(key as keyof reuneDataType, value)
         })
     }, [state.reuneStateG.reuneData, setValue])
-
 
 
     //Sincronizar datos del formulario con el estado global
@@ -83,6 +80,7 @@ export default function ReuneForm() {
                                                         id="BAN_MONET"
                                                         type="checkbox"
                                                         checked={field.value}
+
                                                         onChange={(e) => {
                                                             field.onChange(e.target.checked)
                                                             dispatch({

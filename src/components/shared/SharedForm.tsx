@@ -339,14 +339,13 @@ export default function SharedForm({ control }: SharedFormProps) {
                         <Controller
                             name='BAN_PORI'
                             control={control}
-
                             render={({ field, fieldState: { error } }) => (
 
                                 <div className="w-full xl:w-12">
                                     <input
                                         id="BAN_PORI"
                                         type="checkbox"
-                              
+
                                         onChange={(e) => {
                                             field.onChange(e.target.checked)
                                             dispatch({
@@ -578,8 +577,12 @@ export default function SharedForm({ control }: SharedFormProps) {
 
                                         {...field}
                                         onChange={(e) => {
-                                            field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_Queja', value: e.target.value } })
+                                            const numericValue = Number(e.target.value)
+                                            field.onChange(numericValue)
+                                            dispatch({
+                                                type: 'client-update',
+                                                payload: { field: 'CVE_Queja', value: numericValue }
+                                            })
                                         }}
                                     >
                                         <option value={1}>Consulta</option>
@@ -609,8 +612,9 @@ export default function SharedForm({ control }: SharedFormProps) {
 
                                         {...field}
                                         onChange={(e) => {
-                                            field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_EDOCP', value: e.target.value } })
+                                            const numericValue = Number(e.target.value)
+                                            field.onChange(numericValue)
+                                            dispatch({ type: 'client-update', payload: { field: 'CVE_EDOCP', value: numericValue } })
                                         }}
                                     >
                                         <option value={1}>Pendiente</option>
