@@ -38,7 +38,7 @@ export default function GeneralDataForm({ control }: GeneralDataFormProps) {
                                 {...field}
                                 onChange={(e) => {
                                     field.onChange(e)
-                                    dispatch({ type: 'client-update', payload: { field: 'FEC_NOTI', value: e.target.value } })
+                                    dispatch({ type: 'form-update', payload: { field: 'FEC_NOTI', value: e.target.value } })
                                 }}
                             />
                             {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -65,7 +65,7 @@ export default function GeneralDataForm({ control }: GeneralDataFormProps) {
                                 {...field}
                                 onChange={(e) => {
                                     field.onChange(e)
-                                    dispatch({ type: 'client-update', payload: { field: 'FEC_RESOL', value: e.target.value } })
+                                    dispatch({ type: 'form-update', payload: { field: 'FEC_RESOL', value: e.target.value } })
                                 }}
                             />
                             {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -91,7 +91,7 @@ export default function GeneralDataForm({ control }: GeneralDataFormProps) {
                                 {...field}
                                 onChange={(e) => {
                                     field.onChange(e)
-                                    dispatch({ type: 'client-update', payload: { field: 'TIP_RESOL', value: e.target.value } })
+                                    dispatch({ type: 'form-update', payload: { field: 'TIP_RESOL', value: e.target.value } })
                                 }}
                             >
                                 <option value={1}>Demandar</option>

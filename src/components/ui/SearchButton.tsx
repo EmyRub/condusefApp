@@ -21,6 +21,7 @@ export default function SearchButton({ label }: SearchBoxProps) {
 
             <div className="border-teal-500 border-2 mb-6 flex">
                 <MagnifyingGlassIcon className="bg-teal-500 w-8 text-white inline-block" />
+               
                 <input
                     type="search"
                     id="search"

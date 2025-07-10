@@ -1,6 +1,5 @@
 import { redecoForm, reuneForm } from "@/types/zod"
 
-
 export type formStateProps = {
     reuneData: reuneForm,
     redecoData: redecoForm
@@ -92,9 +91,9 @@ export const formInitialState: formStateProps = {
 }
 
 export type formActions =
-    { type: 'client-add', payload: { newClient: reuneForm } } |
-    { type: 'client-update', payload: { field: string, value: any } } |
-    { type: 'client-get' }
+    { type: 'form-add', payload: { newClient: reuneForm } } |
+    { type: 'form-update', payload: { field: string, value: any } } |
+    { type: 'form-get' }
 
 
 export const formReducer = (
@@ -103,19 +102,19 @@ export const formReducer = (
 
 ): formStateProps => {
 
-
-    if (action.type === 'client-add') {
+    if (action.type === 'form-add') {
         console.log(action.payload.newClient)
     }
 
-    if (action.type === 'client-update') {
+    if (action.type === 'form-update') {
         return {
             ...state,
-            reuneData: { ...state.reuneData, [action.payload.field]: action.payload.value }
+            reuneData: { ...state.reuneData, [action.payload.field]: action.payload.value },
+            redecoData: { ...state.redecoData, [action.payload.field]: action.payload.value },
         }
     }
 
-    if (action.type === 'client-get') {
+    if (action.type === 'form-get') {
 
         return {
             ...state

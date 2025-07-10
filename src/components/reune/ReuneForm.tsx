@@ -17,7 +17,7 @@ export default function ReuneForm() {
 
     const { handleSubmit, formState: { errors }, setValue, control, watch } = useForm<reuneForm>({
         //defaultValues es clave para cargar valores iniciales en el formulario.
-        // defaultValues: state.reuneStateG.reuneData
+         defaultValues: state.formStateG.reuneData
     })
 
     // Observa valor dinámico del select
@@ -40,7 +40,7 @@ export default function ReuneForm() {
     //Sincronizar datos del formulario con el estado global
     const reuneSubmit = (data: reuneForm) => {
         console.log(data)
-        //const newClient = dispatch({ type: 'client-add', payload: { data } })
+        //const newClient = dispatch({ type: 'form-add', payload: { data } })
     }
 
     const handleError = () => {
@@ -84,7 +84,7 @@ export default function ReuneForm() {
                                                         onChange={(e) => {
                                                             field.onChange(e.target.checked)
                                                             dispatch({
-                                                                type: 'client-update',
+                                                                type: 'form-update',
                                                                 payload: { field: 'BAN_MONET', value: e.target.checked }
                                                             })
                                                         }}
@@ -110,7 +110,7 @@ export default function ReuneForm() {
                                                         onChange={(e) => {
                                                             field.onChange(e.target.checked)
                                                             dispatch({
-                                                                type: 'client-update',
+                                                                type: 'form-update',
                                                                 payload: { field: 'BAN_REVER', value: e.target.checked }
                                                             })
                                                         }}
@@ -141,7 +141,7 @@ export default function ReuneForm() {
                                                     onChange={(e) => {
                                                         field.onChange(e.target.checked)
                                                         dispatch({
-                                                            type: 'client-update',
+                                                            type: 'form-update',
                                                             payload: { field: 'BAN_OPEXT', value: e.target.checked }
                                                         })
                                                     }}
@@ -188,7 +188,7 @@ export default function ReuneForm() {
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'MONT_RECLA', value: e.target.value } })
+                                                        dispatch({ type: 'form-update', payload: { field: 'MONT_RECLA', value: e.target.value } })
                                                     }}
                                                 />
                                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -216,7 +216,7 @@ export default function ReuneForm() {
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'FEC_ABONO', value: e.target.value } })
+                                                        dispatch({ type: 'form-update', payload: { field: 'FEC_ABONO', value: e.target.value } })
                                                     }}
                                                 />
                                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -244,7 +244,7 @@ export default function ReuneForm() {
                                                     {...field}
                                                     onChange={(e) => {
                                                         field.onChange(e)
-                                                        dispatch({ type: 'client-update', payload: { field: 'MONT_ABOUS', value: e.target.value } })
+                                                        dispatch({ type: 'form-update', payload: { field: 'MONT_ABOUS', value: e.target.value } })
                                                     }}
                                                 />
                                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}

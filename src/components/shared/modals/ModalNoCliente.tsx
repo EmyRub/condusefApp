@@ -15,10 +15,10 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
     const { handleSubmit, control } = useForm<noClientForm>()
 
     const registerNoClient = (data: noClientForm) => {
-        console.log(data)
+        console.log('re',data)
         setModal(false)
     }
-
+4
     return (
 
         <form
@@ -57,7 +57,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NOM_CoEnt', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NOM_CoEnt', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message as string}</ErrorMessage>)}
@@ -88,7 +88,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         checked={field.value === 'femenino'}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
                                         }}
 
                                     />
@@ -114,7 +114,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         checked={field.value === 'masculino'}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
                                         }}
                                     />
                                 )}
@@ -146,7 +146,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'TIP_Corre', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'TIP_Corre', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message as string}</ErrorMessage>)}
@@ -174,7 +174,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_Tlfno', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_Tlfno', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -201,7 +201,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'TIP_ENTE', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'TIP_ENTE', value: e.target.value } })
                                         }}
                                     >
                                         <option value='moral'>Moral</option>
@@ -232,7 +232,7 @@ export default function ModalNoCliente({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_EDAD', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_EDAD', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}

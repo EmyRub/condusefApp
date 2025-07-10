@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { redecoForm, reuneForm } from '@/types/zod';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
 import { Control, Controller } from 'react-hook-form';
@@ -6,11 +7,10 @@ import { searchCat, SearchCategory } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
 import ErrorMessage from '../ui/ErrorMessage';
-import { reuneForm } from '@/types/zod';
 import SearchButton from '../ui/SearchButton';
 
 export type SharedFormProps = {
-    control: Control<reuneForm, any>
+    control: Control<reuneForm, redecoForm>
 }
 
 export default function SharedForm({ control }: SharedFormProps) {
@@ -57,7 +57,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     {...field} // Propiedades del input controlado por React Hook Form
                                     onChange={(e) => {
                                         field.onChange(e)//Actualiza hook con el nuevo valor
-                                        dispatch({ type: 'client-update', payload: { field: 'NUM_ENTE', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NUM_ENTE', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -101,7 +101,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'CVE_SUCUR', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'CVE_SUCUR', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -142,7 +142,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NOM_CoEnt', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NOM_CoEnt', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -176,7 +176,7 @@ export default function SharedForm({ control }: SharedFormProps) {
 
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'TIP_Corre', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'TIP_Corre', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -206,7 +206,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_Tlfno', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_Tlfno', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -237,7 +237,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         checked={field.value === 'femenino'}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
                                         }}
 
                                     />
@@ -264,7 +264,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         checked={field.value === 'masculino'}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_SEXO', value: e.target.value } })
                                         }}
                                     />
                                 )}
@@ -290,7 +290,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'TIP_ENTE', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'TIP_ENTE', value: e.target.value } })
                                         }}
                                     >
                                         <option value='moral'>Moral</option>
@@ -322,7 +322,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_EDAD', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_EDAD', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -349,7 +349,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         onChange={(e) => {
                                             field.onChange(e.target.checked)
                                             dispatch({
-                                                type: 'client-update',
+                                                type: 'form-update',
                                                 payload: { field: 'BAN_PORI', value: e.target.checked }
                                             })
                                         }}
@@ -397,7 +397,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_TRIM', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_TRIM', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -429,7 +429,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_PRODU', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_PRODU', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -464,7 +464,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'FEC_REGIS', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'FEC_REGIS', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -491,7 +491,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'FEC_ATEN', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'FEC_ATEN', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -521,7 +521,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_FOLIO', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_FOLIO', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -551,7 +551,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_FOCON', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_FOCON', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -580,7 +580,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                             const numericValue = Number(e.target.value)
                                             field.onChange(numericValue)
                                             dispatch({
-                                                type: 'client-update',
+                                                type: 'form-update',
                                                 payload: { field: 'CVE_Queja', value: numericValue }
                                             })
                                         }}
@@ -614,7 +614,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         onChange={(e) => {
                                             const numericValue = Number(e.target.value)
                                             field.onChange(numericValue)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_EDOCP', value: numericValue } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_EDOCP', value: numericValue } })
                                         }}
                                     >
                                         <option value={1}>Pendiente</option>
@@ -644,7 +644,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'CVE_NIVAT', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'CVE_NIVAT', value: e.target.value } })
                                         }}
                                     >
                                         <option value={1}>Vía Eletrónica</option>
@@ -673,7 +673,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_MEDRC', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_MEDRC', value: e.target.value } })
                                         }}
                                     >
                                         <option value={1}>Correo Electrónico</option>
@@ -727,7 +727,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'TIP_CAUSA', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'TIP_CAUSA', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}

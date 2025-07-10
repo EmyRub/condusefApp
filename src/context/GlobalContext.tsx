@@ -47,7 +47,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         if ('type' in action) {
             if (action.type.startsWith('modal-')) {
                 modalDispatchG(action as ModalActions)
-            } else if (action.type.startsWith('client-')) {
+            } else if (action.type.startsWith('form-')) {
                 formDispatchG(action as formActions)
             }
         }

@@ -41,7 +41,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NOM_INST', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NOM_INST', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -71,7 +71,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NOM_SECT', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NOM_SECT', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -108,7 +108,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NUM_CPOS', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NUM_CPOS', value: e.target.value } })
                                     }}
                                 />
                                 {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -133,7 +133,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NUM_COL', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NUM_COL', value: e.target.value } })
                                     }}
                                 >
                                     <option value={1}>Ninguno</option>
@@ -164,7 +164,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NUM_ENTFE', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NUM_ENTFE', value: e.target.value } })
                                     }}
                                 >
                                     <option value={1}>Ninguno</option>
@@ -195,7 +195,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NUM_MUNI', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NUM_MUNI', value: e.target.value } })
                                     }}
                                 >
                                     <option value={1}>Ninguno</option>
@@ -225,7 +225,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'NUM_LOCAL', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'NUM_LOCAL', value: e.target.value } })
                                     }}
                                 >
                                     <option value={1}>Ninguno</option>
@@ -256,7 +256,7 @@ export default function FragmentInstitucion({ control }: FragmentInstitucionProp
                                     {...field}
                                     onChange={(e) => {
                                         field.onChange(e)
-                                        dispatch({ type: 'client-update', payload: { field: 'TIP_LOCAL', value: e.target.value } })
+                                        dispatch({ type: 'form-update', payload: { field: 'TIP_LOCAL', value: e.target.value } })
                                     }}
                                 >
                                     <option value={1}>Ninguno</option>

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import '@/css/Form.module.css';
+import { useEffect } from 'react';
 import { redecoForm } from '@/types/zod';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
@@ -13,24 +14,27 @@ import ErrorMessage from '../ui/ErrorMessage';
 
 export default function RedecoForm() {
 
-    const { dispatch } = useGlobal()
-    const { handleSubmit, control, watch } = useForm<redecoForm>()
+    const { state, dispatch } = useGlobal()
+    const { handleSubmit, control, watch, setValue, formState: { errors } } = useForm<redecoForm>()
 
     const CVE_EDOCP = watch('CVE_EDOCP')
-    const enableGeneralDta = CVE_EDOCP === 2;
+    const enableGeneralDta = CVE_EDOCP === 2
 
+    const redeSubmit = (data: redecoForm) => { console.log('REDE',data) }
+    const handleError = () => { console.log(errors) }
 
-    console.log(CVE_EDOCP)
-    console.log(enableGeneralDta)
-
-    const redeSubmit = () => { }
+    useEffect(() => {
+        Object.entries(state.formStateG.redecoData).forEach(([key, value]) => {
+            setValue(key as keyof redecoForm, value)
+        })
+    }, [state.formStateG.redecoData, setValue])
 
     return (
 
         <form
             data-formulario
             autoComplete="on"
-            onSubmit={handleSubmit(redeSubmit)}
+            onSubmit={handleSubmit(redeSubmit, handleError)}
         >
 
             <SharedForm control={control} />
@@ -72,7 +76,7 @@ export default function RedecoForm() {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_QuPen', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_QuPen', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -97,14 +101,14 @@ export default function RedecoForm() {
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_IdPen', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_IdPen', value: e.target.value } })
                                         }}
                                     >
                                         <option value={1}>Contractuales</option>
                                         <option value={2}>Reclamo</option>
                                         <option value={3}>Económicas</option>
                                     </select>
-                                    
+
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
                                 </div>
                             )}

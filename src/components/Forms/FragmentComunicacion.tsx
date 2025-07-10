@@ -73,7 +73,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'mes', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'mes', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -104,7 +104,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'nProdn', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'nProdn', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -125,7 +125,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'nProdS', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'nProdS', value: e.target.value } })
                     }}
                   >
                     <option value="1">Crédito Simple Auto</option>
@@ -156,7 +156,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'fecReg', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'fecReg', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'fecAtn', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'fecAtn', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -211,7 +211,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'folAtn', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'folAtn', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -238,7 +238,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'folConduf', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'folConduf', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -263,7 +263,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'queja', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'queja', value: e.target.value } })
                     }}
                   >
                     <option value="consulta">Consulta</option>
@@ -293,7 +293,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'edoReg', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'edoReg', value: e.target.value } })
                     }}
                   >
                     <option value="ninguno">Ninguno</option>
@@ -322,7 +322,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'nvlAtn', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'nvlAtn', value: e.target.value } })
                     }}
                   >
                     <option value="1">Vía Eletrónica</option>
@@ -350,7 +350,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'medioCmn', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'medioCmn', value: e.target.value } })
                     }}
                   >
                     <option value="email">Correo Electrónico</option>
@@ -401,7 +401,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                   {...field}
                   onChange={(e) => {
                     field.onChange(e)
-                    dispatch({ type: 'client-update', payload: { field: 'causa', value: e.target.value } })
+                    dispatch({ type: 'form-update', payload: { field: 'causa', value: e.target.value } })
                   }}
                 />
               </div>
@@ -438,7 +438,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                           onChange={(e) => {
                             field.onChange(e.target.checked)
                             dispatch({
-                              type: 'client-update',
+                              type: 'form-update',
                               payload: { field: 'rever', value: e.target.checked }
                             })
                           }}
@@ -463,7 +463,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                           onChange={(e) => {
                             field.onChange(e.target.checked)
                             dispatch({
-                              type: 'client-update',
+                              type: 'form-update',
                               payload: { field: 'recl', value: e.target.checked }
                             })
                           }}
@@ -494,7 +494,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                       onChange={(e) => {
                         field.onChange(e.target.checked)
                         dispatch({
-                          type: 'client-update',
+                          type: 'form-update',
                           payload: { field: 'exg', value: e.target.checked }
                         })
                       }}
@@ -524,7 +524,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                       {...field}
                       onChange={(e) => {
                         field.onChange(e)
-                        dispatch({ type: 'client-update', payload: { field: 'fecNot', value: e.target.value } })
+                        dispatch({ type: 'form-update', payload: { field: 'fecNot', value: e.target.value } })
                       }}
                     />
                   </div>
@@ -548,7 +548,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                       {...field}
                       onChange={(e) => {
                         field.onChange(e)
-                        dispatch({ type: 'client-update', payload: { field: 'fecReso', value: e.target.value } })
+                        dispatch({ type: 'form-update', payload: { field: 'fecReso', value: e.target.value } })
                       }}
                     />
                   </div>
@@ -572,7 +572,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                       {...field}
                       onChange={(e) => {
                         field.onChange(e)
-                        dispatch({ type: 'client-update', payload: { field: 'typeRe', value: e.target.value } })
+                        dispatch({ type: 'form-update', payload: { field: 'typeRe', value: e.target.value } })
                       }}
                     >
                       <option value="1">Demandar</option>
@@ -610,7 +610,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'montRe', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'montRe', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -636,7 +636,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'fecAbo', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'fecAbo', value: e.target.value } })
                     }}
                   />
                 </div>
@@ -661,7 +661,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     {...field}
                     onChange={(e) => {
                       field.onChange(e)
-                      dispatch({ type: 'client-update', payload: { field: 'montAbo', value: e.target.value } })
+                      dispatch({ type: 'form-update', payload: { field: 'montAbo', value: e.target.value } })
                     }}
                   />
                 </div>

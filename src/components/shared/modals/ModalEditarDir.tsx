@@ -58,7 +58,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_CPOS', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_CPOS', value: e.target.value } })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
@@ -84,7 +84,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_LOCAL', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_LOCAL', value: e.target.value } })
                                         }}
                                     >
                                         <option value={1}>Ninguno</option>
@@ -113,7 +113,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_ENTFE', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_ENTFE', value: e.target.value } })
                                         }}
                                     >
                                         <option value={1}>Ninguno</option>
@@ -143,7 +143,7 @@ export default function ModalEditarDir({ setModal }: { setModal: Dispatch<React.
                                         {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'client-update', payload: { field: 'NUM_MUNI', value: e.target.value } })
+                                            dispatch({ type: 'form-update', payload: { field: 'NUM_MUNI', value: e.target.value } })
                                         }}
                                     >
                                         <option value={1}>Ninguno</option>
