@@ -35,7 +35,7 @@ export default function GeneralDataForm({ control }: GeneralDataFormProps) {
                             <input
                                 id="FEC_NOTI"
                                 type="date"
-                                {...field}
+                                value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
                                 onChange={(e) => {
                                     field.onChange(e)
                                     dispatch({ type: 'form-update', payload: { field: 'FEC_NOTI', value: e.target.value } })
@@ -62,7 +62,7 @@ export default function GeneralDataForm({ control }: GeneralDataFormProps) {
                             <input
                                 id="FEC_RESOL"
                                 type="date"
-                                {...field}
+                                value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
                                 onChange={(e) => {
                                     field.onChange(e)
                                     dispatch({ type: 'form-update', payload: { field: 'FEC_RESOL', value: e.target.value } })

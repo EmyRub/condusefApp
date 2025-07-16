@@ -9,11 +9,12 @@ import { useGlobal } from "@/hooks/useGlobal";
 import { Controller, useForm, UseFormRegister } from "react-hook-form";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { reuneDataType, searchCat, SearchCategory } from "@/types/index";
+import { searchCat, SearchCategory } from "@/types/index";
+import { reuneForm } from '@/types/zod';
 
 
 type FragmentComunicationProps = {
-  register: UseFormRegister<reuneDataType>,
+  register: UseFormRegister<reuneForm>,
 }
 
 export default function FragmentComunicacion({ register }: FragmentComunicationProps) {
@@ -179,7 +180,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
                     id="fecAtn"
                     type="date"
 
-                    {...field}
+                   value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
                     onChange={(e) => {
                       field.onChange(e)
                       dispatch({ type: 'form-update', payload: { field: 'fecAtn', value: e.target.value } })

@@ -231,7 +231,7 @@ export default function ReuneForm() {
                                                 <input
                                                     id="FEC_ABONO"
                                                     type="date"
-                                                    {...field}
+                                                    value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
                                                     onChange={(e) => {
                                                         field.onChange(e)
                                                         dispatch({ type: 'form-update', payload: { field: 'FEC_ABONO', value: e.target.value } })

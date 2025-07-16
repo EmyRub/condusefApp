@@ -460,8 +460,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     <input
                                         id="FEC_REGIS"
                                         type="date"
-
-                                        {...field}
+                                        value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
                                         onChange={(e) => {
                                             field.onChange(e)
                                             dispatch({ type: 'form-update', payload: { field: 'FEC_REGIS', value: e.target.value } })
@@ -487,11 +486,14 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     <input
                                         id="FEC_ATEN"
                                         type="date"
+                                        value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
 
-                                        {...field}
                                         onChange={(e) => {
                                             field.onChange(e)
-                                            dispatch({ type: 'form-update', payload: { field: 'FEC_ATEN', value: e.target.value } })
+                                            dispatch({
+                                                type: 'form-update',
+                                                payload: { field: 'FEC_ATEN', value: e.target.value }
+                                            })
                                         }}
                                     />
                                     {error && (<ErrorMessage>{error.message}</ErrorMessage>)}
