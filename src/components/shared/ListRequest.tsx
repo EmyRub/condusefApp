@@ -27,9 +27,30 @@ export default function ListRequest() {
             selector: (row) => row.NUM_FOCON,
             sortable: true
         },
+        {
+            name: 'Seleccionar',
+            cell: (row, index) => (
+                <input
+                    type="checkbox"
+                    // {...register(`reTransaction.${index}.seleccionado`, {
+                    //     onChange: (e) => {
+                    //         const checked = e.target.checked;
+
+                    //         // Si el checkbox esta deshabilitado, se resetea la cantidad
+                    //         if (!checked) {
+                    //             setValue(`reTransaction.${index}.cantidad`, 1);
+                    //         }
+
+                    //         setValue(`reTransaction.${index}.seleccionado`, checked);
+                    //         setValue(`reTransaction.${index}.idProducto`, row.idProducto);
+                    //     }
+                    // })}
+                />
+            )
+        },
 
     ];
-
+  
     return (
 
         <form>
