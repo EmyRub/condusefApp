@@ -15,7 +15,10 @@ import ErrorMessage from '../ui/ErrorMessage';
 export default function RedecoForm() {
 
     const { state, dispatch } = useGlobal()
-    const { handleSubmit, control, watch, setValue, formState: { errors } } = useForm<redecoForm>()
+    const { handleSubmit, control, watch, setValue, formState: { errors } } = useForm<redecoForm>({
+        //defaultValues es clave para cargar valores iniciales en el formulario.
+        defaultValues: state.formStateG.redecoData
+    })
 
     const CVE_EDOCP = watch('CVE_EDOCP')
     const enableGeneralDta = CVE_EDOCP === 2
