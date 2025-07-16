@@ -51,6 +51,8 @@ export const condusefFormSchema = z.object({
 })
 export type Form = z.infer<typeof condusefFormSchema>
 
+export type tableCondusef = Pick<Form, 'NUM_ENTE' | 'NOM_CoEnt' | 'FEC_REGIS' | 'NUM_FOCON'>
+
 export type noClientForm = Pick<Form, 'CVE_SEXO' | 'NOM_CoEnt' | 'NUM_EDAD' | 'NUM_Tlfno' | 'TIP_Corre' | 'TIP_ENTE'>
 export type newDirectionForm = Pick<Form, 'NUM_CPOS' | 'NUM_LOCAL' | 'NUM_ENTFE' | 'NUM_MUNI'>
 

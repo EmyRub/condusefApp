@@ -7,6 +7,7 @@ import ModalButton from "@/components/ui/ModalButton";
 import RedecoForm from "@/components/redeco/RedecoForm";
 import ModalEditarDir from "@/components/shared/modals/ModalEditarDir";
 import ModalNoCliente from "@/components/shared/modals/ModalNoCliente";
+import ModalRequest from "@/components/shared/modals/ModalRequest";
 
 export default function IndexPage() {
 
@@ -51,9 +52,13 @@ export default function IndexPage() {
 
         {category === Categories.REUNE ? <ReuneForm /> : <RedecoForm />}
 
+        <ModalRequest />
+
       </main>
 
       {modal && ModalForms[idModal]}
+
+
 
     </>
   )
