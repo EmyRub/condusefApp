@@ -32,7 +32,7 @@ export const entes = [
 
 export const usuariosData: dataClientForm[] = [
     {
-        CVE_SEXO: 'M',
+        CVE_SEXO: 'femenino',
         NOM_CoEnt: 'Panfilo 1',
         NUM_EDAD: 23,
         NUM_Tlfno: 8823719217,
@@ -41,7 +41,7 @@ export const usuariosData: dataClientForm[] = [
         NUM_ENTE: 1
     },
     {
-        CVE_SEXO: 'M',
+        CVE_SEXO: 'femenino',
         NOM_CoEnt: 'juanita 1',
         NUM_EDAD: 96,
         NUM_Tlfno: 882219217,
@@ -50,7 +50,7 @@ export const usuariosData: dataClientForm[] = [
         NUM_ENTE: 2
     },
     {
-        CVE_SEXO: 'H',
+        CVE_SEXO: 'masculino',
         NOM_CoEnt: 'mancracio',
         NUM_EDAD: 27,
         NUM_Tlfno: 8823719217,
