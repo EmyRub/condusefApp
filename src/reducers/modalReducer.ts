@@ -26,7 +26,6 @@ export const modalReducer = (
 ): ModalStateProps => {
 
     if (action.type === 'modal-open') {
-        console.log('desde reducer')
         action.payload.event.preventDefault()
 
         return {

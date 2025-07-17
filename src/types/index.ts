@@ -63,24 +63,24 @@ export const usuariosData: dataClientForm[] = [
 export const sucursalesData: dataDirectionForm[] = [
     {
         NUM_CPOS: 56,
-        NUM_LOCAL: 45,
-        NUM_ENTFE: 5,
+        NUM_LOCAL: 2,
+        NUM_ENTFE: 1,
         NUM_MUNI: 2,
         CVE_SUCUR: 80,
         NOM_SUCUR: 'pantitlan'
     },
     {
         NUM_CPOS: 56,
-        NUM_LOCAL: 45,
-        NUM_ENTFE: 5,
+        NUM_LOCAL: 2,
+        NUM_ENTFE: 2,
         NUM_MUNI: 2,
         CVE_SUCUR: 89,
         NOM_SUCUR: 'benito'
     },
     {
         NUM_CPOS: 56,
-        NUM_LOCAL: 45,
-        NUM_ENTFE: 5,
+        NUM_LOCAL: 2,
+        NUM_ENTFE: 1,
         NUM_MUNI: 2,
         CVE_SUCUR: 4,
         NOM_SUCUR: 'rosa'
@@ -91,7 +91,11 @@ export const causaData: datacausaForm[] = [
     {
         TIP_CAUSA: 'lo dejo la novia',
         NUM_CAUSA: 1
-    }
+    },
+    {
+        TIP_CAUSA: 'Los de coppel lo acosan',
+        NUM_CAUSA: 2
+    },
 ]
 /**================================================================ */
 export interface searchModal {
