@@ -18,43 +18,43 @@ export default function SearchButton({ label, data }: SearchBoxProps) {
     useSearchBox({ modalRef })
 
     const filterData = () => {
+        const allResults: searchKey[] = []
 
-        const filterData = data.forEach(item => {
-
+        data.forEach(item => {
             const keys = Object.keys(item)
 
             keys.forEach(key => {
-
                 switch (key) {
-
                     case 'NUM_ENTE':
                         const user = item as dataClientForm
-                        setKeysData([{
+                        allResults.push({
                             ID_KEY: user.NUM_ENTE,
                             CONTENT: user.NOM_CoEnt
-                        }])
+                        })
                         break;
 
                     case 'CVE_SUCUR':
                         const sucur = item as dataDirectionForm
-                        setKeysData([{
+                        allResults.push({
                             ID_KEY: sucur.CVE_SUCUR,
                             CONTENT: sucur.NOM_SUCUR
-                        }])
+                        })
                         break;
 
                     case 'TIP_CAUSA':
                         const causa = item as datacausaForm
-                        setKeysData([{
+                        allResults.push({
                             ID_KEY: causa.NUM_CAUSA,
                             CONTENT: causa.TIP_CAUSA
-                        }])
+                        })
+
                         break;
                 }
             })
 
         })
 
+        setKeysData(allResults)
     }
 
     useEffect(() => {

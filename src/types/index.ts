@@ -1,4 +1,4 @@
-import { datacausaForm, dataClientForm, dataDirectionForm, noClientForm } from "./zod"
+import { datacausaForm, dataClientForm, dataDirectionForm } from "./zod"
 
 // Opciones para el formulario
 export enum Categories {
@@ -66,7 +66,7 @@ export const sucursalesData: dataDirectionForm[] = [
         NUM_LOCAL: 45,
         NUM_ENTFE: 5,
         NUM_MUNI: 2,
-        CVE_SUCUR: 89,
+        CVE_SUCUR: 80,
         NOM_SUCUR: 'pantitlan'
     },
     {
@@ -82,7 +82,7 @@ export const sucursalesData: dataDirectionForm[] = [
         NUM_LOCAL: 45,
         NUM_ENTFE: 5,
         NUM_MUNI: 2,
-        CVE_SUCUR: 89,
+        CVE_SUCUR: 4,
         NOM_SUCUR: 'rosa'
     },
 ]

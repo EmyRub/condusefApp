@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
-import { datacausaForm, dataClientForm, dataDirectionForm, redecoForm, reuneForm } from '@/types/zod';
 import { Control, Controller } from 'react-hook-form';
-import { causaData, searchCat, SearchCategory, sucursalesData, usuariosData } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
+import { datacausaForm, dataClientForm, dataDirectionForm, redecoForm, reuneForm } from '@/types/zod';
+import { causaData, searchCat, SearchCategory, sucursalesData, usuariosData } from '@/types/index';
 
 import ErrorMessage from '../ui/ErrorMessage';
 import SearchButton from '../ui/SearchButton';
