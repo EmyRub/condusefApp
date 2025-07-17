@@ -1,13 +1,14 @@
 import clsx from 'clsx';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
-import { redecoForm, reuneForm } from '@/types/zod';
+import { datacausaForm, dataClientForm, dataDirectionForm, redecoForm, reuneForm } from '@/types/zod';
 import { Control, Controller } from 'react-hook-form';
-import { searchCat, SearchCategory } from '@/types/index';
+import { causaData, searchCat, SearchCategory, sucursalesData, usuariosData } from '@/types/index';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 
 import ErrorMessage from '../ui/ErrorMessage';
 import SearchButton from '../ui/SearchButton';
+import { useState } from 'react';
 
 export type SharedFormProps = {
     control: Control<reuneForm, redecoForm>
@@ -16,6 +17,9 @@ export type SharedFormProps = {
 export default function SharedForm({ control }: SharedFormProps) {
 
     const { state, dispatch } = useGlobal()
+    const [causa, setCausa] = useState<datacausaForm[]>(causaData)
+    const [clients, setClients] = useState<dataClientForm[]>(usuariosData)
+    const [sucurs, setSucurs] = useState<dataDirectionForm[]>(sucursalesData)
 
     return (
         <>
@@ -35,7 +39,10 @@ export default function SharedForm({ control }: SharedFormProps) {
                         </button>
 
                         {SearchCategory.Cliente === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-                            <SearchButton label={searchCat.cliente} />
+                            <SearchButton
+                                data={clients}
+                                label={searchCat.cliente}
+                            />
                         )}
 
                     </div>
@@ -80,7 +87,10 @@ export default function SharedForm({ control }: SharedFormProps) {
                         </button>
 
                         {SearchCategory.Sucursal === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-                            <SearchButton label={searchCat.sucursal} />
+                            <SearchButton
+                                data={sucurs}
+                                label={searchCat.sucursal}
+                            />
                         )}
                     </div>
 
@@ -705,6 +715,7 @@ export default function SharedForm({ control }: SharedFormProps) {
 
                         {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
                             <SearchButton
+                                data={causa}
                                 label={searchCat.causa}
                             />
                         )}
