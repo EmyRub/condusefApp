@@ -94,21 +94,19 @@ export default function SearchModal({ label, data }: SearchModalProps) {
             }
 
         })
-        dispatch({ type: 'modal-close' })
+
     }
 
     useEffect(() => {
         categoryData()
     }, [data])
 
-  
-
 
     return (
 
         <article
             ref={modalRef}
-            className="bg-slate-50 p-6 rounded-md shadow absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96">
+            className="bg-slate-50 p-6 rounded-md shadow absolute top-0 left-1/2 -translate-x-2/3 lg:left-8 lg:-translate-x-8 w-96 z-50">
 
             <SearchBox label={label} tableData={tableData} setFilterSearch={setFilterSearch} />
 
@@ -121,11 +119,15 @@ export default function SearchModal({ label, data }: SearchModalProps) {
                     </tr>
                 </thead>
 
+                {/** OnMouseDown, se usa en vez de click para que se cierre el modal */}
                 <tbody>
                     {filterSearch.length > 0 ? filterSearch.map(key => (
                         <tr
                             key={key.ID_KEY}
-                            onClick={() => updateForm(key.ID_KEY)}
+                            onMouseDown={() => {
+                                updateForm(key.ID_KEY)
+                                dispatch({ type: 'modal-close' })
+                            }}
                             className="hover:bg-teal-100 hover:cursor-pointer"
                         >
                             <td>{key.ID_KEY}</td>

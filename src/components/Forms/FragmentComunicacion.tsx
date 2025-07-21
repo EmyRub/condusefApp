@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import '@/css/Form.module.css';
 import styles from '@/css/Form.module.css';
 
-import SearchButton from "../ui/SearchModal";
+
 
 import { useMemo } from 'react';
 import { useGlobal } from "@/hooks/useGlobal";
@@ -379,7 +379,7 @@ export default function FragmentComunicacion({ register }: FragmentComunicationP
             </button>
 
             {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-              <SearchButton
+              <SearchModal
                 label={searchCat.causa}
               />
             )}

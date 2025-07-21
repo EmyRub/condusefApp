@@ -31,8 +31,12 @@ option {
     @apply bg-teal-50;
 }
 
-select:disabled,
-input:read-only{
+input[type="text"]:read-only,
+input[type="number"]:read-only,
+input[type="tel"]:read-only,
+input[type="email"]:read-only,
+input[type="password"]:read-only,
+select:disabled{
     @apply cursor-not-allowed opacity-90;
 }
 

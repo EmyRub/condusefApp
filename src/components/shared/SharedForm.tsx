@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useState } from 'react';
 import styles from '@/css/Form.module.css';
 import { useGlobal } from '@/hooks/useGlobal';
 import { Control, Controller } from 'react-hook-form';
@@ -6,9 +7,8 @@ import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import { datacausaForm, dataClientForm, dataDirectionForm, redecoForm, reuneForm } from '@/types/zod';
 import { causaData, searchCat, SearchCategory, sucursalesData, usuariosData } from '@/types/index';
 
+import SearchModal from '../ui/SearchModal';
 import ErrorMessage from '../ui/ErrorMessage';
-import SearchButton from '../ui/SearchModal';
-import { useState } from 'react';
 
 export type SharedFormProps = {
     control: Control<reuneForm, redecoForm>
@@ -17,9 +17,9 @@ export type SharedFormProps = {
 export default function SharedForm({ control }: SharedFormProps) {
 
     const { state, dispatch } = useGlobal()
-    const [causa, setCausa] = useState<datacausaForm[]>(causaData)
-    const [clients, setClients] = useState<dataClientForm[]>(usuariosData)
-    const [sucurs, setSucurs] = useState<dataDirectionForm[]>(sucursalesData)
+    const [causa] = useState<datacausaForm[]>(causaData)
+    const [clients] = useState<dataClientForm[]>(usuariosData)
+    const [sucurs] = useState<dataDirectionForm[]>(sucursalesData)
 
     return (
         <>
@@ -39,7 +39,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                         </button>
 
                         {SearchCategory.Cliente === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-                            <SearchButton
+                            <SearchModal
                                 data={clients}
                                 label={searchCat.cliente}
                             />
@@ -87,7 +87,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                         </button>
 
                         {SearchCategory.Sucursal === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-                            <SearchButton
+                            <SearchModal
                                 data={sucurs}
                                 label={searchCat.sucursal}
                             />
@@ -226,7 +226,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                     </div>
 
                     <div className="flex gap-3 items-center xl:items-start justify-center">
-                        <label htmlFor="CVE_SEXO" className="xl:w-12">Sexo:</label>
+                        <label className="xl:w-12">Sexo:</label>
 
                         <div className="flex gap-1">
                             <label htmlFor="femenino">M</label>
@@ -240,7 +240,6 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     <input
                                         id="femenino"
                                         type="radio"
-                                        readOnly
 
                                         {...field}
                                         value='femenino'
@@ -267,7 +266,6 @@ export default function SharedForm({ control }: SharedFormProps) {
                                     <input
                                         id="masculino"
                                         type="radio"
-                                        readOnly
 
                                         {...field}
                                         value='masculino'
@@ -714,7 +712,7 @@ export default function SharedForm({ control }: SharedFormProps) {
                         </button>
 
                         {SearchCategory.Causa === state.modalStateG.modalState.id && state.modalStateG.modalState.modal && (
-                            <SearchButton
+                            <SearchModal
                                 data={causa}
                                 label={searchCat.causa}
                             />

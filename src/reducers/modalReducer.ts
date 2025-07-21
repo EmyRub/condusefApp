@@ -35,7 +35,7 @@ export const modalReducer = (
     }
 
     if (action.type === 'modal-close') {
-
+    console.log('entr')
         return {
             ...state,
             modalState: { id: null, modal: false }
