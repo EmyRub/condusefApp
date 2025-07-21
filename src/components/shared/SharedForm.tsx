@@ -7,7 +7,7 @@ import { datacausaForm, dataClientForm, dataDirectionForm, redecoForm, reuneForm
 import { causaData, searchCat, SearchCategory, sucursalesData, usuariosData } from '@/types/index';
 
 import ErrorMessage from '../ui/ErrorMessage';
-import SearchButton from '../ui/SearchButton';
+import SearchButton from '../ui/SearchModal';
 import { useState } from 'react';
 
 export type SharedFormProps = {
