@@ -88,7 +88,8 @@ export default function ListRequest() {
 
         <form>
 
-            <fieldset className="flex justify-center gap-8 bg-teal-500 py-6 mb-8 ">
+            <fieldset className="flex flex-wrap justify-center gap-8 bg-teal-500 py-6 mb-8 ">
+
                 <div className="flex gap-2 items-center">
                     <label className="text-white" htmlFor="todos">Todos</label>
                     <input
