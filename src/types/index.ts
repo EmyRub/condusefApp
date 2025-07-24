@@ -1,4 +1,4 @@
-import { datacausaForm, dataClientForm, dataDirectionForm } from "./zod"
+import { datacausaForm, dataClientForm, dataDirectionForm, tableCondusef, tableCondusefFilter } from "./zod"
 
 // Opciones para el formulario
 export enum Categories {
@@ -95,6 +95,30 @@ export const causaData: datacausaForm[] = [
     {
         TIP_CAUSA: 'Los de coppel lo acosan',
         NUM_CAUSA: 2
+    },
+]
+
+export const condusefData: tableCondusefFilter[] = [
+    {
+        NUM_ENTE: 656546,
+        NOM_CoEnt: 'Consulta',
+        FEC_REGIS: new Date(),
+        NUM_FOCON: 'asdd78qw',
+        CAT_FOCON: 1
+    },
+    {
+        NUM_ENTE: 656546,
+        NOM_CoEnt: 'Reclamo',
+        FEC_REGIS: new Date(),
+        NUM_FOCON: 'asdd78qw',
+        CAT_FOCON: 2
+    },
+    {
+        NUM_ENTE: 656546,
+        NOM_CoEnt: 'Aclaración',
+        FEC_REGIS: new Date(),
+        NUM_FOCON: 'asdd78qw',
+        CAT_FOCON: 3
     },
 ]
 /**================================================================ */

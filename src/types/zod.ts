@@ -52,10 +52,13 @@ export const condusefFormSchema = z.object({
     NUM_QuPen: z.number().optional(),
     NUM_IdPen: z.number().optional(),
 
+    CAT_FOCON: z.number()
+
 })
 export type Form = z.infer<typeof condusefFormSchema>
 
 export type tableCondusef = Pick<Form, 'NUM_ENTE' | 'NOM_CoEnt' | 'FEC_REGIS' | 'NUM_FOCON'>
+export type tableCondusefFilter = Pick<Form, 'NUM_ENTE' | 'NOM_CoEnt' | 'FEC_REGIS' | 'NUM_FOCON' | 'CAT_FOCON'>
 
 export type datacausaForm = Pick<Form, 'TIP_CAUSA' | 'NUM_CAUSA'>
 export type noClientForm = Pick<Form, 'CVE_SEXO' | 'NOM_CoEnt' | 'NUM_EDAD' | 'NUM_Tlfno' | 'TIP_Corre' | 'TIP_ENTE'>
@@ -67,8 +70,10 @@ export type reuneForm = Pick<Form, 'BAN_MONET' | 'BAN_PORI' | 'BAN_REVER' | 'BAN
 export type redecoForm = Pick<Form, 'BAN_PORI' | 'CVE_EDOCP' | 'CVE_NIVAT' | 'CVE_Queja' | 'CVE_SEXO' | 'CVE_SUCUR' | 'CVE_TRIM' | 'FEC_ATEN' | 'FEC_NOTI' | 'FEC_REGIS' | 'FEC_RESOL' | 'NOM_CoEnt' | 'NOM_INST' | 'NOM_SECT' | 'NUM_COL' | 'NUM_CPOS' | 'NUM_EDAD' | 'NUM_ENTE' | 'NUM_ENTFE' | 'NUM_FOCON' | 'NUM_FOLIO' | 'NUM_LOCAL' | 'NUM_MEDRC' | 'NUM_MUNI' | 'NUM_PRODU' | 'NUM_Tlfno' | 'TIP_CAUSA' | 'TIP_Corre' | 'TIP_ENTE' | 'TIP_LOCAL' | 'TIP_RESOL' | 'NUM_QuPen' | 'NUM_IdPen'>
 
 
+/**======================================================================================================================================================================= */
 export const searchKeySchema = z.object({
     ID_KEY: z.number(),
     CONTENT: z.string()
 })
 export type searchKey = z.infer<typeof searchKeySchema>
+
