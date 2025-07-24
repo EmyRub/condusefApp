@@ -1,4 +1,4 @@
-import { datacausaForm, dataClientForm, dataDirectionForm, tableCondusef, tableCondusefFilter } from "./zod"
+import { datacausaForm, dataClientForm, dataDirectionForm, tableCondusefFilter } from "./zod"
 
 // Opciones para el formulario
 export enum Categories {
